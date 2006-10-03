@@ -1,0 +1,72 @@
+<html>
+<body>
+<pre>
+<h1>Erstellungsprotokoll</h1>
+<h3>
+--------------------Konfiguration: hallo - Win32 Debug--------------------
+</h3>
+<h3>Befehlszeilen</h3>
+Erstellen der temporären Datei  "C:\DOKUME~1\Reinhold\LOKALE~1\Temp\RSP3F.tmp" mit Inhalten
+[
+/nologo /MLd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fr"Debug/" /Fp"Debug/hallo.pch" /YX /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\cpp\populous\graphic_init.cpp"
+"C:\cpp\populous\options.cpp"
+]
+Creating command line "cl.exe @C:\DOKUME~1\Reinhold\LOKALE~1\Temp\RSP3F.tmp" 
+Erstellen der temporären Datei  "C:\DOKUME~1\Reinhold\LOKALE~1\Temp\RSP40.tmp" mit Inhalten
+[
+WS2_32.LIB winmm.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib OpenGL32.lib GLaux.lib GLu32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/multi.pdb" /debug /machine:I386 /out:"Debug/multi.exe" /pdbtype:sept 
+.\Debug\errors.obj
+.\Debug\fireball.obj
+.\Debug\game.obj
+.\Debug\grafik.obj
+.\Debug\graphic_init.obj
+.\Debug\hero.obj
+.\Debug\ingame.obj
+.\Debug\main.obj
+.\Debug\map.obj
+.\Debug\menue.obj
+.\Debug\netcode.obj
+.\Debug\options.obj
+.\Debug\settings.obj
+.\Debug\spells.obj
+.\Debug\WndProc.obj
+]
+Erstellen der Befehlzeile "link.exe @C:\DOKUME~1\Reinhold\LOKALE~1\Temp\RSP40.tmp"
+<h3>Ausgabefenster</h3>
+Kompilierung läuft...
+graphic_init.cpp
+options.cpp
+c:\cpp\populous\options.cpp(80) : warning C4800: 'int' : Variable wird auf booleschen Wert ('True' oder 'False') gesetzt (Auswirkungen auf Leistungsverhalten moeglich)
+c:\cpp\populous\options.cpp(84) : warning C4800: 'int' : Variable wird auf booleschen Wert ('True' oder 'False') gesetzt (Auswirkungen auf Leistungsverhalten moeglich)
+c:\cpp\populous\options.cpp(92) : warning C4800: 'int' : Variable wird auf booleschen Wert ('True' oder 'False') gesetzt (Auswirkungen auf Leistungsverhalten moeglich)
+Linker-Vorgang läuft...
+Erstellen der temporären Datei  "C:\DOKUME~1\Reinhold\LOKALE~1\Temp\RSP41.tmp" mit Inhalten
+[
+/nologo /o"Debug/hallo.bsc" 
+.\Debug\errors.sbr
+.\Debug\fireball.sbr
+.\Debug\game.sbr
+.\Debug\grafik.sbr
+.\Debug\graphic_init.sbr
+.\Debug\hero.sbr
+.\Debug\ingame.sbr
+.\Debug\main.sbr
+.\Debug\map.sbr
+.\Debug\menue.sbr
+.\Debug\netcode.sbr
+.\Debug\options.sbr
+.\Debug\settings.sbr
+.\Debug\spells.sbr
+.\Debug\WndProc.sbr]
+Erstellen der Befehlzeile "bscmake.exe @C:\DOKUME~1\Reinhold\LOKALE~1\Temp\RSP41.tmp"
+Browse-Informationsdatei wird erstellt...
+<h3>Ausgabefenster</h3>
+
+
+
+<h3>Ergebnisse</h3>
+multi.exe - 0 Fehler, 3 Warnung(en)
+</pre>
+</body>
+</html>
