@@ -7,11 +7,23 @@
 //
 /////////////////////////////////////////////////////////////////
 
+#ifndef DEF_MENUE
+#define DEF_MENUE
+#include <vector>
+#include "menu_button.h"
 
 namespace Menu
 {
+	
+	std::vector<MenuButton>	getMenuList();
+	void				setMenuList(std::vector<MenuButton> btnmenue);
 	namespace MainMenu
 	{
+
+		
+
+
+		
 		void switchTo();
 		void DrawMenu();
 		void DrawBG();
@@ -28,3 +40,15 @@ namespace Menu
 		void Input();
 	}
 }
+
+/*class Menu{
+private:
+	//MenuButton* IngameMenu::buttonList;
+	static 
+
+public:
+	
+};*/
+
+
+#endif

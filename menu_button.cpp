@@ -12,7 +12,12 @@
 #include "graphic.h"
 #include "ingame_menu.h"
 #include "gra_ingame.h"
-MenuButton* IngameMenu::buttonList;
+#include <vector>
+
+
+
+
+
 int MenuButton::counter = 0 ;
 MenuButton::MenuButton(int x1, int x2, int y1, int y2, void (*function)(int)) {
 	

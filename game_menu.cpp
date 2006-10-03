@@ -13,11 +13,14 @@
 #include "options.h"
 #include "ingame.h"
 #include "errors.h"
+#include "menue.h"
 /*
  *
  * draws menu
  *
  */
+
+using namespace std;
 void IngameMenu::drawMenu() {
 	
 	Graphic::changeTo2D();
@@ -40,10 +43,9 @@ void IngameMenu::drawMenu() {
  *
  */
 void IngameMenu::drawButtons() { 
-	MenuButton* lp = IngameMenu::buttonList;
-	while (lp != 0) {
-		lp->draw();
-		lp = lp->nextButton;
+	vector<MenuButton> menue=Menu::getMenuList();
+	for (int i=0;i<menue.size();i++){		
+		menue.at(i).draw();
 	}
 }
 /*

@@ -2,8 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="8,00"
-	Name="hallo"
+	Name="oetting_strat"
 	ProjectGUID="{26B3D76E-6F45-4BB0-B4A5-E4CAEF5B1283}"
+	RootNamespace="oetting_strat"
 	>
 	<Platforms>
 		<Platform
@@ -48,12 +49,12 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				EnableIntrinsicFunctions="true"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;"
 				StringPooling="true"
 				MinimalRebuild="true"
 				ExceptionHandling="1"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="2"
+				RuntimeLibrary="1"
 				PrecompiledHeaderFile=".\Debug/hallo.pch"
 				AssemblerListingLocation=".\Debug/"
 				ObjectFile=".\Debug/"
@@ -81,6 +82,7 @@
 				OutputFile="Debug/multi.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
+				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\Debug/multi.pdb"
 				SubSystem="2"
@@ -179,7 +181,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="WS2_32.LIB odbc32.lib odbccp32.lib OpenGL32.lib GLaux.lib GLu32.lib DevIL.lib ILU.lib ILUT.lib"
+				AdditionalDependencies="WS2_32.LIB odbc32.lib odbccp32.lib OpenGL32.lib GLaux.lib gl\GLut32.lib gl\DevIL.lib gl\ILU.lib gl\ILUT.lib"
 				OutputFile=".\Release/hallo.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"

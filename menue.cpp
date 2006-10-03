@@ -31,6 +31,13 @@
  *
  */
 
+	std::vector <MenuButton> menue;
+
+
+
+	std::vector<MenuButton>	 Menu::getMenuList(){return menue;};
+	void				Menu::setMenuList(std::vector<MenuButton> btnmenue){menue=btnmenue;};
+
 void Menu::MainMenu::DrawMenu()
 {
 	DrawBG();
@@ -177,3 +184,5 @@ void Menu::NewGame::Input()
 		return;
 	}*/
 }
+
+
