@@ -9,12 +9,13 @@
 #define PARTY
 
 #include <string>
+#include "unit.h"
 class party{
 	bool computerplayer;
-	string name;
-	Unit units[];
+	std::string name;
+	//Unit units[];
 
-}
+};
 
 
 #endif
