@@ -646,6 +646,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\party.h"
+					>
+				</File>
+				<File
 					RelativePath=".\pathfinding.h"
 					>
 				</File>
