@@ -8,12 +8,17 @@
 #ifndef PARTY
 #define PARTY
 
-#include <string>
+#include <stdio.h>
 #include "unit.h"
+#include <vector>
 class party{
+
+	//std::vector <Unit> units;
+
 	bool computerplayer;
 	std::string name;
-	//Unit units[];
+	
+	
 
 };
 

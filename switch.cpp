@@ -10,7 +10,6 @@
 #include "switch.h"
 #include "graphic.h"
 #include "gl/glut.h"
-#include "menue.h"
 #include "ingame.h"
 #include "inp_ingame.h"
 #include "errors.h"
@@ -18,7 +17,7 @@
 #include "gra_ingame.h"
 #include "devil/include/IL/il.h"
 #include "devil/include/IL/ilut.h"
-
+#include "menue.h"
 
 /*
  *

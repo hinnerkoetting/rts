@@ -12,7 +12,7 @@
 #include <string> 
 
 #include "pathfinding.h"
-class Unit abstract {
+class abstract Unit  {
 	friend class Hero;	
 	protected:
 		int hp;

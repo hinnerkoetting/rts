@@ -11,7 +11,7 @@
 #include "menu_button.h"
 class IngameMenu {
 	public:
-		static MenuButton* buttonList;
+		//static MenuButton* buttonList;
 		static void calcFPS(int time);
 		static void drawMenu();
 		static void drawMiniMap();

@@ -217,13 +217,14 @@ void Ingame::mouseClick(int button, int state, int x, int y) {
 		if (y >= Options::ResolutionY - GraIngame::getMenuWidth() * Options::ResolutionX) //on minimap
 			IngameMenu::miniMapClick(button, state, x, y);
 		else {
-			MenuButton* lp = IngameMenu::buttonList;
+			std::vector<MenuButton> menueList=Menu::getMenuList();
+
 			int mx = x / GraIngame::getMenuWidth();
-			while (lp != 0) {
-				
-				if ( lp->x1 <= mx && lp->x2 >= mx && lp->y1 <= y && lp->y2 >= y)
-					lp->function(button);
-				lp = lp->nextButton;
+			for (unsigned int i=0;i<menueList.size();i++){				
+				MenuButton btn=menueList.at(i);				
+				if (  btn.x1 <= mx && btn.x2 >= mx && btn.y1 <= y && btn.y2 >= y)
+					btn.function(button);
+				//lp = button->nextButton;
 			}
 		}
 	}

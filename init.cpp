@@ -12,12 +12,14 @@
 #include "options.h"
 #include "ingame_menu.h"
 #include "gra_ingame.h"
+#include <vector>
 //test
 /*
  *
  * creates edges
  * *NOTE: need to create world before calling
  */
+using namespace std;
 void Ingame::Init::createEdges() {
 	Field* lpX = Ingame::firstField;
 	Field* lpY;
@@ -181,8 +183,12 @@ void Ingame::Init::menu() {
 	int resX = Options::ResolutionX;
 	int resY = Options::ResolutionY;
 	float wid = GraIngame::getMenuWidth();
-	IngameMenu::buttonList = new MenuButton(0, resX * 0.05/wid, resY * 0.1, resY * 0.15, &IngameMenu::test);
-	MenuButton* lp = IngameMenu::buttonList;
-	IngameMenu::buttonList = new MenuButton(resX * 0.05/wid, resX * 0.1/wid, resY *0.1, resY*0.15, &IngameMenu::test);
-	IngameMenu::buttonList->nextButton = lp;
+	vector <MenuButton> menue;
+	MenuButton* m1= new MenuButton(0, resX * 0.05/wid, resY * 0.1, resY * 0.15, &IngameMenu::test);
+
+	MenuButton* m2 = new MenuButton(resX * 0.05/wid, resX * 0.1/wid, resY *0.1, resY*0.15, &IngameMenu::test);
+	menue.push_back(*m1);
+	menue.push_back(*m2);
+
+	
 }
