@@ -524,6 +524,10 @@
 						</FileConfiguration>
 					</File>
 					<File
+						RelativePath=".\party.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\unit.cpp"
 						>
 					</File>
