@@ -32,6 +32,7 @@ void Hero::draw() {
 							Point(x - 0.01f	, y	- 0.02f	, 0.02f, 1.0f),
 							Point(x - 0.01f	, y + 0.02f	, 0.02f, 1.0f));*/
 	//}
+	Unit* u;
 }
 
 

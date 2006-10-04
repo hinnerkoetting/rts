@@ -323,26 +323,6 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="menue.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							PreprocessorDefinitions=""
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							PreprocessorDefinitions=""
-						/>
-					</FileConfiguration>
-				</File>
-				<File
 					RelativePath="options.cpp"
 					>
 					<FileConfiguration
@@ -454,7 +434,35 @@
 						>
 					</File>
 					<File
+						RelativePath=".\mainmenu.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\menu_button.cpp"
+						>
+					</File>
+					<File
+						RelativePath="menue.cpp"
+						>
+						<FileConfiguration
+							Name="Debug|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								PreprocessorDefinitions=""
+							/>
+						</FileConfiguration>
+						<FileConfiguration
+							Name="Release|Win32"
+							>
+							<Tool
+								Name="VCCLCompilerTool"
+								PreprocessorDefinitions=""
+							/>
+						</FileConfiguration>
+					</File>
+					<File
+						RelativePath=".\newmenu.cpp"
 						>
 					</File>
 				</Filter>
@@ -565,10 +573,6 @@
 				>
 			</File>
 			<File
-				RelativePath="menue.h"
-				>
-			</File>
-			<File
 				RelativePath="options.h"
 				>
 			</File>
@@ -640,7 +644,19 @@
 				Name="Menu"
 				>
 				<File
+					RelativePath=".\mainmenu.h"
+					>
+				</File>
+				<File
 					RelativePath=".\menu_button.h"
+					>
+				</File>
+				<File
+					RelativePath="menue.h"
+					>
+				</File>
+				<File
+					RelativePath=".\newmenu.h"
 					>
 				</File>
 			</Filter>
