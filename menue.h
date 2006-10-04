@@ -14,7 +14,7 @@
 
 namespace Menu
 {
-	
+	extern std::vector<MenuButton> menu;
 	std::vector<MenuButton>	getMenuList();
 	void				setMenuList(std::vector<MenuButton> btnmenue);
 	namespace MainMenu
