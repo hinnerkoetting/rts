@@ -22,7 +22,7 @@
  */
 bool Spells::spIncrease()
 {
-	int x = GraIngame::whichClicked(true);
+	/*int x = GraIngame::whichClicked(true);
 	if (x >= Options::iNumberEdgesX - 1)
 		return false;
 	int y = GraIngame::whichClicked(false);
@@ -34,7 +34,7 @@ bool Spells::spIncrease()
 	for (int i = 0; i <= y; i++)
 		lp = lp->top;
 	if (incField(lp->lb, lp))
-		return true;
+		return true;*/
 	return false;
 }
 
@@ -44,7 +44,7 @@ bool Spells::spIncrease()
  *
  */
 bool Spells::spDecrease() {
-		int x = GraIngame::whichClicked(true);
+		/*int x = GraIngame::whichClicked(true);
 	if (x >= Options::iNumberEdgesX)
 		return false;
 	int y = GraIngame::whichClicked(false);
@@ -56,7 +56,7 @@ bool Spells::spDecrease() {
 	for (int i = 0; i <= y; i++)
 		lp = lp->top;
 	if (decField(lp->lb, lp))
-		return true;
+		return true;*/
 	return false;
 }
 
@@ -66,7 +66,7 @@ bool Spells::spDecrease() {
  *
  */
 bool Spells::incField(Edge* edge, Field* field) {	 //BUG: erhöht die höhe des drüberliegenden feldes auch wenn ein drunterliegendes feld nicht erhöht werden kann
-	if (edge->getHeigth() == 10)
+	/*if (edge->getHeigth() == 10)
 		return false;
 	if (field != 0 && field->left != 0 && field->bottom != 0) {// if not at the border of map
 		int heigth = edge->getHeigth();
@@ -111,7 +111,7 @@ bool Spells::incField(Edge* edge, Field* field) {	 //BUG: erhöht die höhe des dr
 		field->bottom->calcType();
 		field->left->bottom->calcType();
 		return true;
-	}
+	}*/
 	return false;
 }
 
@@ -122,7 +122,7 @@ bool Spells::incField(Edge* edge, Field* field) {	 //BUG: erhöht die höhe des dr
  */
 bool Spells::decField(Edge* edge, Field* field)
 {
-	
+/*	
 	if (edge->getHeigth() == 0)
 		return false;
 	if (field != 0 && field->left != 0 && field->bottom != 0) {// if not at the border of map
@@ -168,6 +168,6 @@ bool Spells::decField(Edge* edge, Field* field)
 		field->bottom->calcType();
 		field->left->bottom->calcType();
 		return true;
-	}
+	}*/
 	return false;
 }

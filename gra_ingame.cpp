@@ -30,57 +30,45 @@ int GraIngame::mouseY = 0;
 float GraIngame::menuX = 0.25f;
 	
 void GraIngame::drawUnits() {
-	Unit* unit = Ingame::Heroes;
-	while (unit != 0) {
-		unit->draw();
-		unit = unit->next;
-	}
-	unit = Ingame::Workers;
-	while (unit != 0) {
-		unit->draw();
-		unit = unit->next;
-	}
+	for (unsigned i= 0; i < Ingame::Workers.size();i++) 
+		Ingame::Workers.at(i).draw();
 }
 
 void GraIngame::drawFields() {
 	
 
-	Field* lpX = Ingame::firstField;
-	Field* lpY;
+
 	int x = 0;
 	bool vX = false; // visible x
 	bool vY = false;
 	bool leaveX = false;
 	bool leaveY = false;
-	while (lpX != 0 && !leaveX) {
+	while (x < Options::iNumberEdgesX != 0 && !leaveX) {
 		int y = 0;
-		lpY = lpX;
 		if (Graphic::visible(Point(x * getLength(), getY() ))) { // better performance
 			vX = true;
-			while (lpY != 0 && !leaveY) {
+			while (y < Options::iNumberEdgesY && !leaveY) {
 				leaveY = false;
 				vY = false;
 				if (Graphic::visible(Point(x * getLength(), y * getHeigth(), 0))) { // better performance
 					vY = true;
-					if (lpY->lt->getHeigth() == 0 || lpY->rt->getHeigth() == 0 ||
-						lpY->rb->getHeigth() == 0 || lpY->lb->getHeigth() == 0) // if a part of water field
+					if (Ingame::fields[x][y].lt->getHeigth() == 0 || Ingame::fields[x][y].rt->getHeigth() == 0 ||
+						Ingame::fields[x][y].rb->getHeigth() == 0 || Ingame::fields[x][y].lb->getHeigth() == 0) // if a part of water field
 						glCallList(1);
 					else 
 						glCallList(17);						// draw green field behind gradient
-					glCallList(lpY->type);				// draw field
+					glCallList(Ingame::fields[x][y].type);				// draw field
 				}
 				else if (vY)		//  better performance
 					leaveY = true;
 				glTranslatef(0, getHeigth(), 0);
 				y++;
-				lpY = lpY->top;
 			}
 		}
 		else if (vX)  // there have been visible fields left from this, this is invisible so no need to check the rest: better performance
 			leaveX = true; 
 		glTranslatef(getLength(), -getHeigth() *y, 0);
 		x++;
-		lpX = lpX->rigth;
 	}
 	glTranslatef(-getLength()*x,0,0);
 	

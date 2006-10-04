@@ -72,11 +72,11 @@ void Fireball::Draw(Fireball* Fireball)
 /*
  *
  * moves a fireball
- *
+ * TODO: rewrite
  */
 void Fireball::Move(Fireball* Fireball)
 {
-	Fireball->xPos -= Fireball->Direction.x;
+	/*Fireball->xPos -= Fireball->Direction.x;
 	Fireball->yPos -= Fireball->Direction.y;
 	if (Fireball->iTimeLived > Settings::FireballTimeToLive) // if fireball has lived to long, all values are set to 0; no 'clean' solution, but easy ;)
 	{
@@ -105,6 +105,6 @@ void Fireball::Move(Fireball* Fireball)
 					Fireball->Direction.z = 0.0f;
 				}
 		lpHero = lpHero->next;
-	}
+	}*/
 
 }

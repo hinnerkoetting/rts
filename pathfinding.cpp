@@ -113,7 +113,7 @@ Node* Pathfinding::findLowestCosts(Node* list, int desX, int desY) {
  * TODO free pointers
  */
 Node* Pathfinding::findPath(float orX, float orY, float desX, float desY) {
-	Field* lpField = Ingame::firstField;
+	/*Field* lpField = Ingame::firstField;
 	for(int i = 0; i < orX; i++) 
 		lpField = lpField->rigth;
 	for(int i =0; i < orY; i++)
@@ -131,5 +131,6 @@ Node* Pathfinding::findPath(float orX, float orY, float desX, float desY) {
 			}
 		actual = findLowestCosts(openList, desX, desY);
 	}
-	return openList;
+	return openList;*/
+	return 0;
 }
