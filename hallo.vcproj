@@ -82,7 +82,7 @@
 				OutputFile="Debug/multi.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				IgnoreDefaultLibraryNames=""
+				IgnoreDefaultLibraryNames="libc.lib, libcmt.lib, msvcrt.lib, libcd.lib, msvcrtd.lib"
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\Debug/multi.pdb"
 				SubSystem="2"

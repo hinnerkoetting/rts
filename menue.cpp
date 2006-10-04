@@ -31,12 +31,12 @@
  *
  */
 
-	std::vector <MenuButton> menue;
+std::vector <MenuButton> Menu::menu;
 
 
 
-	std::vector<MenuButton>	 Menu::getMenuList(){return menue;};
-	void				Menu::setMenuList(std::vector<MenuButton> btnmenue){menue=btnmenue;};
+	std::vector<MenuButton>	 Menu::getMenuList(){return menu;};
+	void				Menu::setMenuList(std::vector<MenuButton> btnmenue){menu=btnmenue;};
 
 void Menu::MainMenu::DrawMenu()
 {
