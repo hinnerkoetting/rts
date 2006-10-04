@@ -22,8 +22,8 @@ namespace Options
 	bool bFPS = true;			// FPS display?
 	int CUR_LANG = LANG_GERMAN;
 	bool bCoords = true;		// Display of coordinates?
-	const int iNumberEdgesX = 116;	//World size TO-DO: add to config
-	const int iNumberEdgesY = 116;	//..
+	const int iNumberEdgesX = 100;	//World size TO-DO: add to config
+	const int iNumberEdgesY = 100;	//..
 	int ResolutionX = GetSystemMetrics(SM_CXSCREEN);
 	int ResolutionY = GetSystemMetrics(SM_CYSCREEN);
 	int BitsPerPixel = 16;

@@ -27,12 +27,12 @@
 #include "ingame_menu.h"
 
 namespace Ingame {
-	Field* firstField = 0;
+	Field fields[MAX_FIELDS_X][MAX_FIELDS_Y];
 	
 	int iCurXPos = 0;	//map position
 	int iCurYPos = 0;
-	Hero* Heroes = 0;
-	Worker* Workers = 0;
+	std::vector<Hero> Heroes;
+	std::vector<Worker> Workers;
 	int iFPSCounter = 0;
 	int timeBaseFPS = 0;
 	int timeBaseKeys = 0;
@@ -72,11 +72,8 @@ void Ingame::draw() {
 }
 
 void Ingame::moveAllWorker() {
-	Unit* lp = Workers;
-	while (lp != 0) {
-		lp->move();
-		lp = lp->next;
-	}
+	for (unsigned i= 0; i < Ingame::Workers.size(); i++)
+		Ingame::Workers.at(i).move();
 }
 /*
  *
@@ -171,39 +168,13 @@ void Ingame::Draw::ClipBorders()
 
 /*
  *
- *  return pointer to hero, the player controls
- *
- */
-Hero* Ingame::GetMyHero()
-{
-	Hero* lpHero = Heroes;
-	int i = 0;
-	/*while ( i < Netcode::iPlayerID)
-	{
-		lpHero = lpHero->next;
-		i++;
-	}*/
-	return lpHero;
-}
-		
-
-
-
-/*
- *
  * destroys all classes, .., created while played
  *
  */
 
 void Ingame::DestroyWorld() {
-	Unit* lp = Heroes;
-	Unit* lp1;
-	while (lp != 0) {
-		lp1 = lp->next;
-		delete lp;
-		lp = lp1;
-	}
-	// TODO:fields
+
+	
 }
 
 /*

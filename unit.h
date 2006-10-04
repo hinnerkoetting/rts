@@ -38,7 +38,7 @@ class  Unit  {
 		std::string getName() { return name; }
 		virtual void draw() = 0;
 		void goTo(float x, float y);
-		Unit* next;
+		//Unit* next;
 		void move();
 };
 #endif

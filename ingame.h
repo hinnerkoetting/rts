@@ -10,6 +10,7 @@
 
 #ifndef INGAME_H_DEF
 #define INGAME_H_DEF
+#include <vector>
 
 #include "hero.h"
 #include "worker.h"
@@ -19,7 +20,7 @@
 
 namespace Ingame
 { 
-	extern Field* firstField;
+	extern Field fields[MAX_FIELDS_X][MAX_FIELDS_Y];
 	namespace Init {
 		void createWorld(int x, int y);
 		void createFields(int x, int y );
@@ -48,13 +49,11 @@ namespace Ingame
 	void calc();
 	extern int iCurXPos;
 	extern int iCurYPos;
-	extern Hero* Heroes;
-	extern Worker* Workers;
+	extern std::vector<Hero> Heroes;
+	extern std::vector<Worker> Workers;
 	void moveAllWorker();
 	
 	void Input();
-	
-	Hero* GetMyHero();
 	
 	void mouseClick(int button, int state, int x, int y);
 

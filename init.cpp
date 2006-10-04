@@ -22,38 +22,46 @@
  */
 using namespace std;
 void Ingame::Init::createEdges() {
-	Field* lpX = Ingame::firstField;
-	Field* lpY;
-	while (lpX != 0) {
-		lpY = lpX;
-		while (lpY != 0) {
-			if (lpY == firstField) {		// first field
-				lpY->lt = new Edge(0);
-				lpY->rt = new Edge(1);
-				lpY->rb = new Edge(0);
-				lpY->lb = new Edge(0);				
+	int x = 0;
+	int y = 0;
+	while (x < Options::iNumberEdgesX) {
+		y = 0;
+		while (y < Options::iNumberEdgesY) {
+			if (y == 0 && x == 0) {		// first field
+				Ingame::fields[x][y].lt = new Edge(0);
+				Ingame::fields[x][y].rt = new Edge(1);
+				Ingame::fields[x][y].rb = new Edge(0);
+				Ingame::fields[x][y].lb = new Edge(0);				
 			}
-			else if (lpY == lpX) {     // most bottom line
-				lpY->lt = lpY->left->rt;
-				lpY->rt = new Edge(1);
-				lpY->rb = new Edge(0);
-				lpY->lb = lpY->left->rb;
+			else if (y == 0) {     // most bottom line
+				Ingame::fields[x][y].lt = Ingame::fields[x-1][y].rt;
+				Ingame::fields[x][y].rt = new Edge(1);
+				Ingame::fields[x][y].rb = new Edge(0);
+				Ingame::fields[x][y].lb = Ingame::fields[x-1][y].rb;
 			}
-			else if (lpX == firstField) {	// most left line
-				lpY->lt = new Edge(0);
-				lpY->rt = new Edge(1);
-				lpY->rb = lpY->bottom->rt;
-				lpY->lb = lpY->bottom->lt;	
+			else if (x == 0) {	// most left line
+				Ingame::fields[x][y].lt = new Edge(0);
+				Ingame::fields[x][y].rt = new Edge(1);
+				Ingame::fields[x][y].rb = Ingame::fields[x][y-1].rt;
+				Ingame::fields[x][y].lb = Ingame::fields[x][y-1].lt;	
 			}
 			else {
-				lpY->lt = lpY->left->rt;
-				lpY->rt = new Edge(1);
-				lpY->rb = lpY->bottom->rt;
-				lpY->lb = lpY->left->rb;
+				Ingame::fields[x][y].lt = Ingame::fields[x-1][y].rt;
+				Ingame::fields[x][y].rt = new Edge(1);
+				Ingame::fields[x][y].rb = Ingame::fields[x][y-1].rt;
+				Ingame::fields[x][y].lb = Ingame::fields[x-1][y].rb;
 			}
-			lpY = lpY->top;
+			if (y == Options::iNumberEdgesY - 1) { //decrease most top line to heigth 0
+				Ingame::fields[x][y].lt->dec();
+				Ingame::fields[x][y].rt->dec();
+			}
+			if ( x == Options::iNumberEdgesX -1 && y < Options::iNumberEdgesY - 1) { //most right line
+				Ingame::fields[x][y].rt->dec();
+				Ingame::fields[x][y].rb->dec();
+			}
+			y++;
 		}
-		lpX = lpX->rigth;
+		x++;
 	}
 }
 			
@@ -63,7 +71,7 @@ void Ingame::Init::createEdges() {
  *
  */
 void Ingame::Init::createFields(int x, int y) {
-	Field* f;
+/*	Field* f;
 	for (int i = 0; i < x; i++) {
 		f = firstField;
 		firstField = new Field();
@@ -86,7 +94,7 @@ void Ingame::Init::createFields(int x, int y) {
 		}
 		while (firstField->bottom != 0)
 			firstField = firstField->bottom;
-	}
+	}*/
 }
 /*
  *
@@ -94,16 +102,9 @@ void Ingame::Init::createFields(int x, int y) {
  *
  */
 void Ingame::Init::calcFields() {
-	Field* lpX = firstField;
-	Field* lpY;
-	while (lpX != 0) {
-		lpY = lpX;
-		while (lpY != 0) {
-			lpY->calcType();
-			lpY = lpY->top;
-		}
-		lpX = lpX->rigth;
-	}
+	for (int i = 0; i< Options::iNumberEdgesX; i++)
+		for (int j = 0; j < Options::iNumberEdgesY; j++) 
+			Ingame::fields[i][j].calcType();
 }
 /*
  *
@@ -138,21 +139,10 @@ void Ingame::initGame() {
 /*
  *
  * creates new heroes
- *
+ * TODO
  */
 void Ingame::Init::newHeroes(const int iNumber) {
-	Hero* lpHero;
-	for (int i = 0; i < iNumber; i++) {	
-		lpHero = new Hero(i*20, i*20);
-		if (Heroes == 0) {
-			Heroes = lpHero;
-			Heroes->next = 0;
-		}
-		else {
-			lpHero->next = Heroes->next;
-			Heroes->next = lpHero;
-		}
-	}
+
 }
 
 /*
@@ -161,18 +151,9 @@ void Ingame::Init::newHeroes(const int iNumber) {
  *
  */
 void Ingame::Init::newUnits(int number) {
-	Worker* lpWorker;
-	for (int i = 0; i < number; i++) {
-			lpWorker = new Worker(10 + i , 10 + i);
-		if (Workers == 0) {
-			Workers = lpWorker;
-			Workers->next = 0;
-		}
-		else {
-			lpWorker->next = Workers->next;
-			Workers->next = lpWorker;
-		}
-	}
+	for (int i = 0; i < number; i++) 
+		Ingame::Workers.push_back(Worker(10 + i , 10 + i));
+
 }
 
 /*
