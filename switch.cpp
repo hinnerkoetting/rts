@@ -18,7 +18,7 @@
 #include "devil/include/IL/il.h"
 #include "devil/include/IL/ilut.h"
 #include "menue.h"
-
+#include "mainmenu.h"
 /*
  *
  * switch to main menu
@@ -26,8 +26,8 @@
  */
 void Switch::mainMenu() {
 	glutIdleFunc(Graphic::renderScene);
-	glutKeyboardFunc(Menu::MainMenu::input);
-	glutSpecialFunc(Menu::MainMenu::inputSp);
+	glutKeyboardFunc(MainMenu::input);
+	glutSpecialFunc(MainMenu::inputSp);
 }
 
 /*

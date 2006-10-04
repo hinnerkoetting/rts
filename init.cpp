@@ -190,6 +190,6 @@ void Ingame::Init::menu() {
 	MenuButton* m2 = new MenuButton(resX * 0.05/wid, resX * 0.1/wid, resY *0.1, resY*0.15, &IngameMenu::test);
 	menue.push_back(*m1);
 	menue.push_back(*m2);
-	Menu::menu = menue;
+	Menu::setMenuList(menue);
 	
 }
