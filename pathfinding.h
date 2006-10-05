@@ -18,7 +18,7 @@ class Node { // divide world into grid for pathfinding
 		int costs;
 		Node* next; 
 		Node* parent;
-		Node(int xPos, int yPos, int c, Node* p) { x = xPos; y = yPos; costs = c; parent = p; }
+		Node(int xPos, int yPos, int c, Node* p) { x = xPos; y = yPos; costs = c; parent = p; next = 0;}
 };
 
 
@@ -29,9 +29,11 @@ class Pathfinding {
 		static void clearLists();
 		static Node* addToList(Node* list, Node* node);
 		static Node* deleteFromList(Node* list, Node* node);
+		
 		static bool onList(Node* list, Node* node);
 		static Node* Pathfinding::findLowestCosts(Node* list, int desX, int desY);
 	public:
+		static void deleteList(Node* list);
 		static Node* findPath(float fromX, float fromY, float desX, float desY);
 };
 #endif
