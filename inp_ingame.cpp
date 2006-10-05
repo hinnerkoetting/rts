@@ -90,7 +90,7 @@ void Ingame::input(unsigned char key, int x, int y) {
 				GraIngame::zoom(1);
 				break;
 			case 'a':
-				Ingame::Workers.at(0).goTo(10, 20);				
+				Ingame::Workers.at(0).goTo(15, 1);				
 				break;	//testing purpose
 		}
 	}

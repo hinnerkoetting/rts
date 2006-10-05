@@ -54,5 +54,9 @@ void Field::calcType() {
 		this->type = 15;
 	else if (heigth[3] < heigth[0] && heigth[3] < heigth[1] && heigth[3] < heigth[2])
 		this->type = 16;
-	
+	if (this->type == 1)
+		this->costs = 99999;
+	else if (this->type == 2)
+		this->costs = 10;
+	else this->costs = 20;
 }
