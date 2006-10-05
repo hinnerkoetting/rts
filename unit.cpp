@@ -58,7 +58,7 @@ void Unit::move() {
 	double len = length(path->x - this->xPos,path->y - this->yPos);
 	double normX = (path->x - this->xPos)/len;
 	double normY = (path->y - this->yPos)/len;
-	this->xPos += normX*this->speed*deltaTime/50000;
-	this->yPos += normY*this->speed*deltaTime/50000;
+	this->xPos += normX*this->speed*deltaTime/20000;
+	this->yPos += normY*this->speed*deltaTime/20000;
 	timeSinceLastMove = t;
 }
