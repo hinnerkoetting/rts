@@ -45,9 +45,11 @@ void GraIngame::drawFields() {
 	bool leaveY = false;
 	while (x < Options::iNumberEdgesX != 0 && !leaveX) {
 		int y = 0;
+		glTranslatef(getLength(), 0,0);
 		if (Graphic::visible(Point(x * getLength(), getY() ))) { // better performance
 			vX = true;
 			while (y < Options::iNumberEdgesY && !leaveY) {
+				glTranslatef(0, getHeigth(), 0);
 				leaveY = false;
 				vY = false;
 				if (Graphic::visible(Point(x * getLength(), y * getHeigth(), 0))) { // better performance
@@ -61,13 +63,13 @@ void GraIngame::drawFields() {
 				}
 				else if (vY)		//  better performance
 					leaveY = true;
-				glTranslatef(0, getHeigth(), 0);
+				
 				y++;
 			}
 		}
 		else if (vX)  // there have been visible fields left from this, this is invisible so no need to check the rest: better performance
 			leaveX = true; 
-		glTranslatef(getLength(), -getHeigth() *y, 0);
+		glTranslatef(0, -getHeigth() *y, 0);
 		x++;
 	}
 	glTranslatef(-getLength()*x,0,0);
