@@ -45,6 +45,7 @@ namespace Ingame
 		void ClipBorders();
 		void Borders();
 	}
+
 	void draw();
 	void calc();
 	extern int iCurXPos;
@@ -52,6 +53,7 @@ namespace Ingame
 	extern std::vector<Hero> Heroes;
 	extern std::vector<Worker> Workers;
 	void moveAllWorker();
+	void findPathForAllWorker();
 	
 	void Input();
 	

@@ -10,7 +10,7 @@
 #define UNIT_H_DEF
 
 #include <string> 
-
+#include "pathfinding.h"
 #include "pathfinding.h"
 class  Unit  {
 	friend class Hero;	
@@ -22,13 +22,13 @@ class  Unit  {
 		int speed;
 		int timeSinceLastMove;
 		int belongTo;
-		Node* path;
+		Node* getPath() { return pf->getPath(); }
 		//Node* moveList;
-		void createPath(float desX, float desY);
-		void initPath(); //needs to be called in every constructor by classes which are derived by this one
+		Pathfinding* pf;
 	private:
 		
 	public:
+		Unit() { pf = new Pathfinding(xPos, yPos);}
 		float getX() { return xPos; }
 		float getY() { return yPos; }
 		void setHp(int h) { hp = h; }
@@ -38,6 +38,7 @@ class  Unit  {
 		std::string getName() { return name; }
 		virtual void draw() = 0;
 		void goTo(float x, float y);
+		void findPath();
 		//Unit* next;
 		void move();
 };

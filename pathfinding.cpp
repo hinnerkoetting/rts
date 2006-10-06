@@ -11,8 +11,8 @@
 #include "ingame.h"
 #include "errors.h"
 #include "mymath.h"
-Node* Pathfinding::openList = 0;
-Node* Pathfinding::closedList = 0;
+//Node* Pathfinding::openList = 0;
+//Node* Pathfinding::closedList = 0;
 /*
  *
  * resets open and closed list
@@ -111,7 +111,7 @@ Node* Pathfinding::findLowestCosts(Node* list, int desX, int desY) {
 	Node* resNode = list;
 	int lowestCosts = 99999;
 	while (lpNode != 0){
-		int costs = lpNode->costs + abs(desX - lpNode->x) * 40 + abs(desY - lpNode->y) * 40; // approx costs
+		int costs = lpNode->costs + abs(desX - lpNode->x) * 100 + abs(desY - lpNode->y) * 100; // approx costs
 		if (costs < lowestCosts) {
 			resNode = lpNode;
 			lowestCosts = costs;
@@ -130,9 +130,10 @@ Node* Pathfinding::giveOutResult(Node* n, float orX, float orY) {
 	if (n != 0) {
 		 res = new Node(n->x, n->y, n->costs, 0); //change direction
 		Node* tmp = res;
-		n->next = 0;
 		while (n->parent != 0) {
+			Node* temp = n;
 			n = n->parent;
+			temp->parent = 0;
 			tmp = new Node(n->x, n->y, n->costs, 0);
 			tmp->next = res;
 			res = tmp;
@@ -142,23 +143,44 @@ Node* Pathfinding::giveOutResult(Node* n, float orX, float orY) {
 		return new Node(orX, orY, 0, 0);
 	if (res->next != 0)
 		if (((orX - res->x) * (orX - res->next->x) < 0) || ((orY - res->y) * (orY - res->next->y)) < 0)	//first field is whrong direction
-			return res->next;
+		{
+			Node* tmp = res;
+			res =res->next;
+			res->parent = 0;
+			delete(tmp);
+		}
 	return res;
 	
+}
+
+/* 
+ *
+ * checks if unit has reached a field
+ *
+ */
+bool Pathfinding::atDestination(float x, float y, Node* n) {
+	if (abs(n->x - x) <=0.05 && abs(n->y - y) <= 0.05)
+		return true;
+	return false;
 }
 /* 
  *
  * returns a list of nodes from original position to destination
  * does a maximum of 50 steps every ????
  */
-Node* Pathfinding::findPath(float orX, float orY, float desX, float desY) {
+void Pathfinding::findPath(float orX, float orY) {
+	if (atDestination(orX, orY, path) && path->next != 0) {	//unit has reached next field 
+		Node* tmp = path;
+		path = path->next;
+		delete tmp;
+	}
+	if (atDestination(desX, desY, path))		// unit has reached its destination
+		return;
 	int x;
 	int y;
-	Node* actual = new Node(orX, orY, 0, 0);
-	Node* result = actual;
-	openList = actual;
 	int counter = 0;
-	while (openList != 0 && (abs(actual->x - desX) >0.05|| abs(actual->y-desY)>0.05) && counter < 5) { // openlist not empty and not at destinaton
+	while (openList != 0 && (abs(actual->x - desX) >0.05|| abs(actual->y-desY)>0.05) && counter < 50) { // openlist not empty and not at destinaton
+		
 		x = actual->x;
 		y = actual->y;
 		closedList = addToList(closedList, actual);
@@ -211,14 +233,34 @@ Node* Pathfinding::findPath(float orX, float orY, float desX, float desY) {
 					openList = addToList(openList, n);
 			}
 		actual = findLowestCosts(openList, desX, desY);
-		counter++;
+		counter++; //wenn ich eins rausgelöscht hab aus der acutal list rauslöschen!!!!!!!!!!!
 
 	}
-	actual->next = 0;
+	this->path = giveOutResult(actual, orX, orY);
+	openList = deleteFromList(openList, actual);
 	//deleteFromList(openList, actual);
-	Node* res = giveOutResult(actual, orX, orY);
+	//Node* res = giveOutResult(actual, orX, orY);
+	//if (abs(actual->x - desX) <=0.05 && abs(actual->y-desY)>0.05) { //path is found
+		openList = deleteList(openList);
+		closedList = deleteList(closedList);
+	//}
 	
-	openList = deleteList(openList);
-	closedList = deleteList(closedList);
-	return res;
+}
+
+void Pathfinding::setDestination(int x, int y) {
+	desX = x;
+	desY = y;
+}
+
+void Pathfinding::nextField() {
+	Node* tmp = path;
+	path = path->next;
+	delete(tmp);
+	tmp = actual;
+	if (tmp != 0)
+		if (tmp->parent != 0) {
+			while (tmp->parent->parent != 0)
+				tmp = tmp->parent;
+			tmp->parent = 0;
+		}
 }
