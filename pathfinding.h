@@ -32,8 +32,9 @@ class Pathfinding {
 		
 		static bool onList(Node* list, Node* node);
 		static Node* Pathfinding::findLowestCosts(Node* list, int desX, int desY);
+		static Node* giveOutResult(Node*, float orX, float orY);
 	public:
-		static void deleteList(Node* list);
+		static Node* deleteList(Node* list);
 		static Node* findPath(float fromX, float fromY, float desX, float desY);
 };
 #endif

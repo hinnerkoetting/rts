@@ -18,7 +18,7 @@
  *
  */
 void Unit::createPath(float desX, float desY) {
-	Pathfinding::deleteList(path);
+	path = Pathfinding::deleteList(path);
 	path = Pathfinding::findPath(this->getX(), this->getY(), desX, desY);
 }
 
@@ -43,11 +43,11 @@ float length(float x, float y) {
 }
 
 void Unit::move() {
-	if (abs(this->xPos - path->x) < 0.05  && abs(this->yPos - path->y) < 0.05) { // if unit has reached its destination and has further way
-		if (path->next == 0) {
+	if (abs(this->xPos - path->x) < 0.05  && abs(this->yPos - path->y) < 0.05) { // if unit has reached its destination
+		if (path->next == 0) {				// unit has no further way
+			this->timeSinceLastMove = glutGet(GLUT_ELAPSED_TIME); // so the unit doesnt make a big jump the next time it gets move order
 			return;
 		}
-		this->timeSinceLastMove = glutGet(GLUT_ELAPSED_TIME);	// pathfinding takes some time, else the unit would make a big jump after creating a path
 		Node* tmp = path;
 		path = path->next;
 		delete(tmp);		
@@ -55,9 +55,9 @@ void Unit::move() {
 
 	int t = glutGet(GLUT_ELAPSED_TIME);
 	int deltaTime = t - this->timeSinceLastMove;
-	double len = length(path->x - this->xPos,path->y - this->yPos);
-	double normX = (path->x - this->xPos)/len;
-	double normY = (path->y - this->yPos)/len;
+	float len = length(path->x - this->xPos,path->y - this->yPos);
+	float normX = (path->x - this->xPos)/len;
+	float normY = (path->y - this->yPos)/len;
 	this->xPos += normX*this->speed*deltaTime/20000;
 	this->yPos += normY*this->speed*deltaTime/20000;
 	timeSinceLastMove = t;

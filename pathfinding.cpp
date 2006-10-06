@@ -10,6 +10,7 @@
 #include "field.h"
 #include "ingame.h"
 #include "errors.h"
+#include "mymath.h"
 Node* Pathfinding::openList = 0;
 Node* Pathfinding::closedList = 0;
 /*
@@ -72,13 +73,14 @@ Node* Pathfinding::deleteFromList(Node* list, Node* node) {
 	return list;
 }
 
-void Pathfinding::deleteList(Node* list) {
+Node* Pathfinding::deleteList(Node* list) {
 	Node* lpNode = list;
 	while (list != 0 && lpNode->next != 0) {
 		lpNode = lpNode->next;
 		delete(list);
 		list = lpNode;
 	}
+	return 0;
 }
 /*
  *
@@ -109,7 +111,7 @@ Node* Pathfinding::findLowestCosts(Node* list, int desX, int desY) {
 	Node* resNode = list;
 	int lowestCosts = 99999;
 	while (lpNode != 0){
-		int costs = lpNode->costs + abs(desX - lpNode->x) * 30 + abs(desY - lpNode->y) * 30; // approx costs
+		int costs = lpNode->costs + abs(desX - lpNode->x) * 40 + abs(desY - lpNode->y) * 40; // approx costs
 		if (costs < lowestCosts) {
 			resNode = lpNode;
 			lowestCosts = costs;
@@ -119,92 +121,104 @@ Node* Pathfinding::findLowestCosts(Node* list, int desX, int desY) {
 	return resNode;
 }
 /* 
+ * list is in wrong direction and needs to be copied so its not deleted later
+ * due to the fact, that the unit may moving while its given another moveorder there is the following problem: the unit moves at first to the field nearest to its actual position
+ * and then moves the right way. so it can happen that the first field is wrong direction, this is here corrected 
+ */
+Node* Pathfinding::giveOutResult(Node* n, float orX, float orY) {
+	Node* res;
+	if (n != 0) {
+		 res = new Node(n->x, n->y, n->costs, 0); //change direction
+		Node* tmp = res;
+		n->next = 0;
+		while (n->parent != 0) {
+			n = n->parent;
+			tmp = new Node(n->x, n->y, n->costs, 0);
+			tmp->next = res;
+			res = tmp;
+		}
+	}
+	else 
+		return new Node(orX, orY, 0, 0);
+	if (res->next != 0)
+		if (((orX - res->x) * (orX - res->next->x) < 0) || ((orY - res->y) * (orY - res->next->y)) < 0)	//first field is whrong direction
+			return res->next;
+	return res;
+	
+}
+/* 
  *
- * returns list of nodes from given origin and destination
- * TODO free pointers
+ * returns a list of nodes from original position to destination
+ * does a maximum of 50 steps every ????
  */
 Node* Pathfinding::findPath(float orX, float orY, float desX, float desY) {
 	int x;
 	int y;
 	Node* actual = new Node(orX, orY, 0, 0);
 	Node* result = actual;
-	openList = actual;//addToList(openList, actual);
-	while (openList != 0 && (abs(actual->x - desX) >0.05|| abs(actual->y-desY)>0.05)) { // openlist not empty and not at destinaton
+	openList = actual;
+	int counter = 0;
+	while (openList != 0 && (abs(actual->x - desX) >0.05|| abs(actual->y-desY)>0.05) && counter < 5) { // openlist not empty and not at destinaton
 		x = actual->x;
 		y = actual->y;
 		closedList = addToList(closedList, actual);
 		openList = deleteFromList(openList, actual);
 		if (y < Options::iNumberEdgesY - 1) { // upper field
-			if(Ingame::fields[x][y+1].type != 1) {// no water field 
+			//if(Ingame::fields[x][y+1].type != 1) {// no water field 
 				Node* n = new Node(x, y+1, actual->costs + Ingame::fields[x, y+1]->getCosts() * 2, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList = addToList(openList, n);
-			}
-			if (x < Options::iNumberEdgesX - 1)  //upperright field
-				if(Ingame::fields[x+1][y+1].type != 1) {// no water field 
+			
+			if (x < Options::iNumberEdgesX - 1)  {//upperright field
+			//	if(Ingame::fields[x+1][y+1].type != 1) {// no water field 
 				Node* n = new Node(x+1, y+1, actual->costs + (Ingame::fields[x+1, y+1]->getCosts()) *3, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList = addToList(openList, n);
-				}
-			if (x > 0)							//upperleft
-				if(Ingame::fields[x-1][y+1].type != 1) {// no water field 
+			}
+			if (x > 0) {							//upperleft
+			//	if(Ingame::fields[x-1][y+1].type != 1) {// no water field 
 				Node* n = new Node(x-1, y+1, actual->costs + Ingame::fields[x-1, y+1]->getCosts() * 3, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList = addToList(openList, n);
 			}
 		}
 		if (y > 0) {
-			if(Ingame::fields[x][y-1].type != 1) {// no water field 
-				Node* n = new Node(x, y-1, actual->costs + Ingame::fields[x, y-1]->getCosts() * 2, actual);
-				if (!onList(closedList, n) && !onList(openList, n))
-					openList = addToList(openList, n);
-			}
-			if (x < Options::iNumberEdgesX - 1)  //upperright field
-				if(Ingame::fields[x+1][y-1].type != 1) {// no water field 
+			Node* n = new Node(x, y-1, actual->costs + Ingame::fields[x, y-1]->getCosts() * 2, actual);
+			if (!onList(closedList, n) && !onList(openList, n))
+				openList = addToList(openList, n);
+			
+			if (x < Options::iNumberEdgesX - 1)  {//upperright field
 					Node* n = new Node(x+1, y-1, actual->costs + Ingame::fields[x+1, y-1]->getCosts()*3, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList = addToList(openList, n);
-				}
-			if (x > 0)							//upperleft
-				if(Ingame::fields[x-1][y+1].type != 1) {// no water field 
+			}
+			if (x > 0) {							//upperleft
 				Node* n = new Node(x-1, y-1, actual->costs + Ingame::fields[x-1, y-1]->getCosts() * 3, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList = addToList(openList, n);
 			}
 		}
 		
-		if (x > 0)
-			if(Ingame::fields[x-1][y].type != 1) {// no water field 
+		if (x > 0) {
+
 				Node* n = new Node(x-1, y, actual->costs + Ingame::fields[x-1, y]->getCosts()*2, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList = addToList(openList, n);
 			}
-		if (x < Options::iNumberEdgesX)
-			if(Ingame::fields[x+1][y].type != 1) {// no water field 
+		if (x < Options::iNumberEdgesX) { 
 				Node* n = new Node(x+1, y, actual->costs + Ingame::fields[x+1, y]->getCosts()*2, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList = addToList(openList, n);
 			}
 		actual = findLowestCosts(openList, desX, desY);
+		counter++;
 
 	}
-	
+	actual->next = 0;
 	//deleteFromList(openList, actual);
-	Node* res;
-	if (actual != 0) {
-		 res = new Node(actual->x, actual->y, actual->costs, 0);
-		Node* tmp = res;
-		actual->next = 0;
-							// list is in wrong directin and needs to be copied so it is not deleted
-		while (actual->parent != 0) {
-			actual = actual->parent;
-			tmp = new Node(actual->x, actual->y, actual->costs, 0);
-			tmp->next = res;
-			res = tmp;
-			
-		}
-	}
-	deleteList(openList);
-	deleteList(closedList);
+	Node* res = giveOutResult(actual, orX, orY);
+	
+	openList = deleteList(openList);
+	closedList = deleteList(closedList);
 	return res;
 }
