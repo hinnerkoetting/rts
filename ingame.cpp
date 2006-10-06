@@ -75,6 +75,11 @@ void Ingame::moveAllWorker() {
 	for (unsigned i= 0; i < Ingame::Workers.size(); i++)
 		Ingame::Workers.at(i).move();
 }
+
+void Ingame::findPathForAllWorker() {
+	for (unsigned i= 0; i < Ingame::Workers.size(); i++)
+		Ingame::Workers.at(i).findPath();
+}
 /*
  *
  * computing positions etc.
@@ -82,6 +87,7 @@ void Ingame::moveAllWorker() {
  */
 void Ingame::calc() {
 	moveAllWorker();
+	findPathForAllWorker();
 }
 /*
  *

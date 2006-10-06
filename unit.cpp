@@ -17,22 +17,22 @@
  * create a list of fields describing the path of that unit
  *
  */
-void Unit::createPath(float desX, float desY) {
-	path = Pathfinding::deleteList(path);
-	path = Pathfinding::findPath(this->getX(), this->getY(), desX, desY);
+void Unit::findPath() {
+	//path = Pathfinding::deleteList(path);
+	if (pf->getPath()->next == 0)
+		pf->findPath(this->xPos, this->xPos);
 }
 
-void Unit::goTo(float x, float y) {
-	createPath(x, y);
-}
-/*
+/* 
  *
- * set path that unit needs to go to current position
+ * sets destination
  *
  */
-void Unit::initPath() {
-	path = new Node(this->getX(),this->getY(), 0,0);
+void Unit::goTo(float x, float y) {
+	pf->setDestination(x, y);
+	pf->findPath(this->xPos, this->yPos);
 }
+
 /*
  *
  * move unit
@@ -43,21 +43,24 @@ float length(float x, float y) {
 }
 
 void Unit::move() {
-	if (abs(this->xPos - path->x) < 0.05  && abs(this->yPos - path->y) < 0.05) { // if unit has reached its destination
-		if (path->next == 0) {				// unit has no further way
+	if (abs(this->xPos - pf->getPath()->x) < 0.05  && abs(this->yPos - pf->getPath()->y) < 0.05) { // if unit has reached its destination
+		if (pf->getPath()->next == 0) {				// unit has no further way
 			this->timeSinceLastMove = glutGet(GLUT_ELAPSED_TIME); // so the unit doesnt make a big jump the next time it gets move order
 			return;
 		}
-		Node* tmp = path;
-		path = path->next;
-		delete(tmp);		
+		else {
+			pf->nextField();
+		}
 	}
-
+	
 	int t = glutGet(GLUT_ELAPSED_TIME);
 	int deltaTime = t - this->timeSinceLastMove;
-	float len = length(path->x - this->xPos,path->y - this->yPos);
-	float normX = (path->x - this->xPos)/len;
-	float normY = (path->y - this->yPos)/len;
+	
+	float len = length(getPath()->x - this->xPos,getPath()->y - this->yPos);
+	if (len == 0)
+		return;
+	float normX = (getPath()->x - this->xPos)/len;
+	float normY = (getPath()->y - this->yPos)/len;
 	this->xPos += normX*this->speed*deltaTime/20000;
 	this->yPos += normY*this->speed*deltaTime/20000;
 	timeSinceLastMove = t;

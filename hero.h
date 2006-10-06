@@ -19,7 +19,7 @@ class Hero : public Unit{
 		float fMana;
 		Fireball* lpNextFireball;
 		void clearHero();
-		Hero(float x, float y) { xPos = x; yPos = y; path = 0;}
+		Hero(float x, float y) { xPos = x; yPos = y; }
 
 };
 
