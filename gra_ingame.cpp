@@ -20,6 +20,7 @@
 #include "field.h"
 #include "unit.h"
 #include "hero.h"
+#include "mymath.h"
 
 float GraIngame::xPos = 0.0f;
 float GraIngame::yPos = 0.0f;
@@ -114,13 +115,6 @@ void GraIngame::move(float x, float y) {
 }
 
 
-
-int round(float x)  {
-	if (x - (int)x >= 0.5)
-		x = (int)x + 1;
-	else x = (int)x;
-	return x;
-}
 /*
  *
  * find out which edge is clicked
@@ -128,8 +122,8 @@ int round(float x)  {
  */
 int GraIngame::whichClicked(bool bX) {
 	if (bX) {
-		return round(Graphic::rasterPos(true) / GraIngame::getLength());
+		return MyMath::round(Graphic::rasterPos(true) / GraIngame::getLength());
 	}
-	return round(Graphic::rasterPos(false) / GraIngame::getHeigth());
+	return MyMath::round(Graphic::rasterPos(false) / GraIngame::getHeigth());
 }
 

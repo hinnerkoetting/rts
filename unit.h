@@ -23,7 +23,7 @@ class  Unit  {
 		int timeSinceLastMove;
 		int belongTo;
 		Node* path;
-		Node* moveList;
+		//Node* moveList;
 		void createPath(float desX, float desY);
 		void initPath(); //needs to be called in every constructor by classes which are derived by this one
 	private:

@@ -327,6 +327,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\mymath.cpp"
+					>
+				</File>
+				<File
 					RelativePath="options.cpp"
 					>
 					<FileConfiguration
@@ -570,6 +574,10 @@
 			</File>
 			<File
 				RelativePath="ingame.h"
+				>
+			</File>
+			<File
+				RelativePath=".\mymath.h"
 				>
 			</File>
 			<File
