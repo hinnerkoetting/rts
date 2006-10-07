@@ -28,7 +28,7 @@ void IngameMenu::drawMenu() {
 	glLoadIdentity();
 	char buf[5];
 	_itoa_s(Ingame::iFPS, buf, 5, 10);
-	Graphic::drawString2d(5, 30, GLUT_BITMAP_TIMES_ROMAN_24, buf); //fps
+	Graphic::drastring2d(5, 30, GLUT_BITMAP_TIMES_ROMAN_24, buf); //fps
 	Graphic::drawLine2D(Point(Options::ResolutionX -1, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f), // rigth border
 							Point(Options::ResolutionX -1, Options::ResolutionY, 0.0f, 1.0f, 1.0f, 1.0f));
 	IngameMenu::drawMiniMap();

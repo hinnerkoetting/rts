@@ -82,7 +82,7 @@
 				OutputFile="Debug/multi.exe"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
-				IgnoreDefaultLibraryNames="libc.lib, libcmt.lib, msvcrt.lib, libcd.lib, msvcrtd.lib"
+				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile=".\Debug/multi.pdb"
 				SubSystem="2"
@@ -227,6 +227,14 @@
 			Name="Quellcodedateien"
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
+			<File
+				RelativePath=".\exception.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Util.cpp"
+				>
+			</File>
 			<Filter
 				Name="graphic"
 				>
@@ -268,6 +276,10 @@
 				>
 				<File
 					RelativePath=".\inp_ingame.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\WinProperties.cpp"
 					>
 				</File>
 			</Filter>
@@ -561,6 +573,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\exception.h"
+				>
+			</File>
+			<File
 				RelativePath=".\exit.h"
 				>
 			</File>
@@ -629,6 +645,18 @@
 				</File>
 				<File
 					RelativePath=".\input.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Properties.h"
+					>
+				</File>
+				<File
+					RelativePath=".\Util.h"
+					>
+				</File>
+				<File
+					RelativePath=".\WinProperties.h"
 					>
 				</File>
 			</Filter>

@@ -14,6 +14,16 @@
 
 
 #include "errors.h"
+#include <fstream>
+#include <map>
+#include <stdio.h>
+#include <sstream>
+#include "Util.h"
+#include "exception.h"
+#include <string>
+#include "WinProperties.h"
+
+using namespace std;
 namespace Options
 {
 	const char* filename = "config.cfg";
@@ -57,57 +67,30 @@ short Options::getRefreshRate()
  */
 bool Options::ReadCfg()
 {
-	InFile file(const_cast<char*>(filename));
-	if (!file.isOpen())
-		return false;
-	char* buffer = new char[80];
-	file >> buffer; //comment lines
-	file >> buffer;
-	file >> buffer;
-	file >> buffer;
-	ResolutionX =  atoi(buffer);
-
-	file >> buffer;
-	file >> buffer;
-	ResolutionY =  atoi(buffer);
-
-	file >> buffer;
-	file >> buffer;
-	BitsPerPixel = atoi(buffer);
-
-	file >> buffer;
-	file >> buffer;
-	iRefreshRate = atoi(buffer);
-	
-	file >> buffer;
-	file >> buffer;
-	CUR_LANG = atoi(buffer);
-	
-	file >> buffer;
-	file >> buffer;
-	bFPS = (bool)atoi(buffer);
-	
-	file >> buffer;
-	file >> buffer;
-	bCoords = (bool)atoi(buffer);
-
-	file >> buffer;
-	file >> buffer;
-	iRenderOnlyEveryFrame = atoi(buffer);
-
-	file >> buffer;
-	file >> buffer;
-	bBorders = (bool)atoi(buffer);
-
-	file >> buffer;
-	file >> buffer;
-	chIP = buffer;
-
-	file >> buffer;
-	file >> buffer;
-
-	iPort = atoi(buffer);
+	try{
+	WinProperties prop("SOFTWARE\\oetting\\");
+	ResolutionX	=StringToInteger ( 	prop.loadProperty("grafik","ResolutionX"));
+	ResolutionY	=StringToInteger ( 	prop.loadProperty("grafik","ResolutionY"));
+	BitsPerPixel=StringToInteger ( 	prop.loadProperty("grafik","BitsPerPixel"));
+	iRefreshRate =StringToInteger ( 	prop.loadProperty("grafik","iRefreshRate"));	
+	CUR_LANG = StringToInteger ( 	prop.loadProperty("grafik","CUR_LANG"));	
+	bFPS = StringToInteger ( 	prop.loadProperty("grafik","bFPS"));	
+	bCoords =StringToInteger ( 	prop.loadProperty("grafik","bCoords"));
+	iRenderOnlyEveryFrame = StringToInteger ( 	prop.loadProperty("grafik","iRenderOnlyEveryFrame"));
+	bBorders = StringToInteger ( 	prop.loadProperty("grafik","bBorders"));
+	//chIP IP wird nicht benötigt erstmal (gerade keine Lust auf char*, wenn möglich, bitte string verwenden
+	iPort = StringToInteger ( 	prop.loadProperty("grafik","Port"));
+	std::string s("Config gelesen");
+	log::log(s);
 	return true;
+	}
+	catch (GeneralGameException e){		
+		string error_msg="Please check the registry : "+e.Text();
+		
+		
+		MessageBox(NULL,error_msg.c_str(),"Error reading configuration. ", MB_ICONERROR);
+		exit (1);
+	}
 }
 
 /*

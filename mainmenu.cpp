@@ -33,7 +33,7 @@ void MainMenu::DrawVersion()
 {
 	/*char buffer[80] = "Multi sein Spiel,  V.";
 	strcat_s(buffer, Settings::cchVersionNumber);	
-	DrawString(Point(-1.0f, -1.0f, 0.0f, 0.5f, 0.5f, 0.5f) , buffer);*/
+	Drastring(Point(-1.0f, -1.0f, 0.0f, 0.5f, 0.5f, 0.5f) , buffer);*/
 }
 /*
  *
@@ -59,9 +59,9 @@ void MainMenu::DrawButtons()
 		case LANG_GERMAN:
 		{
 			/*Gra::g.DrawLine(Point(-0.25f, 0.5f, -0.1f, 0.5f, 0.5f, 0.5f), Point(-0.25f, 1.05f, 1.0f, 1.0f, 1.0f, 1.0f));
-			Gra::g.DrawString(Point(-0.25f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f),  "1  : Spielstart");
-			Gra::g.DrawString(Point(-0.25f, 0.25f, -0.2f, 0.5f, 0.5f, 0.5f), "2  : Optionen(disabled)");
-			Gra::g.DrawString(Point(-0.25f, 0.0f, 0.0f, 0.5f, 0.5f, 0.5f), "F12 : Beenden");*/
+			Gra::g.Drastring(Point(-0.25f, 0.5f, 0.5f, 0.5f, 0.5f, 0.5f),  "1  : Spielstart");
+			Gra::g.Drastring(Point(-0.25f, 0.25f, -0.2f, 0.5f, 0.5f, 0.5f), "2  : Optionen(disabled)");
+			Gra::g.Drastring(Point(-0.25f, 0.0f, 0.0f, 0.5f, 0.5f, 0.5f), "F12 : Beenden");*/
 		}
 		default:
 			return;	}

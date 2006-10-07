@@ -35,8 +35,8 @@ class Graphic {
 		static float rasterPos(bool bX);
 		static void Graphic::resolution(char c[16]);
 
-		static void drawString3d(float x, float y, float z, void *font, char *string);
-		static void drawString2d(float x, float y, void *font, char *string);
+		static void drastring3d(float x, float y, float z, void *font, char *string);
+		static void drastring2d(float x, float y, void *font, char *string);
 		static void resetColor(Point* p);
 		static void loadImage(char* fileName);
 		static GLuint texture[2];
