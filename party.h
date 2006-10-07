@@ -1,7 +1,7 @@
-//represent a party in the game.
+//represent a Party in the game.
 //Parties can be human or computer controlled
-//Every unit on the board owns to a party
-//Animals and other neutral units belong to the neutral party.
+//Every unit on the board owns to a Party
+//Animals and other neutral units belong to the neutral Party.
 
 
 
@@ -9,12 +9,14 @@
 #define PARTY
 
 #include <stdio.h>
+#include <vector>
 #include "unit.h"
 #include "refcnt_ptr.h"
+#include "gameressources.h"
 
-#include <vector>
 
-class party{
+
+class Party{
 
 	
 	bool computerplayer;
@@ -22,14 +24,18 @@ class party{
 	
 
 	//first we have two ressources: Gold  and wood
-	int amountOfGold;
-	int amountOfWood;
+	//int amountOfGold;
+	//int amountOfWood; now in the village
+
+	//a Party mainly consists of villages it controls
+	std::vector<Village> villages;
+
+	
 
 
 		typedef  refcnt_ptr<Unit> sm_unit;	//smart pointer to Unit 
 	//Smart Pointer care for destructing of elements. I hope this works
 	std::vector <sm_unit> units;
-
 
 };
 

@@ -11,6 +11,7 @@
 #include "gl/glut.h"
 #include "gra_ingame.h"
 #include "pathfinding.h"
+#include "Util.h"
 
 /*
  *
@@ -26,3 +27,20 @@ void Worker::draw() {
 	glCallList(20);
 	glPopMatrix();
 }
+
+void Worker::think(){
+	//TODO
+	log::log("worker thinks");
+	return;
+
+}
+
+
+
+void Worker::setNewGoal(int gola){
+	//TODO
+	log::log("worker should get new goal. TODO");
+	return;
+
+}
+

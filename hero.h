@@ -20,6 +20,8 @@ class Hero : public Unit{
 		Fireball* lpNextFireball;
 		void clearHero();
 		Hero(float x, float y) { xPos = x; yPos = y; }
+		void think(){};  //a hero doesn't need to think. The human behind does
+		void setNewGoal(int goal){}; //not under computer control
 
 };
 

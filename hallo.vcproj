@@ -704,6 +704,10 @@
 				Name="Game"
 				>
 				<File
+					RelativePath=".\gameressources.h"
+					>
+				</File>
+				<File
 					RelativePath="hero.h"
 					>
 				</File>

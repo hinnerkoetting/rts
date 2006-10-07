@@ -13,7 +13,7 @@
 #include "pathfinding.h"
 #include "pathfinding.h"
 class  Unit  {
-	friend class Hero;	//(warum brauchen wir hier friend?)
+	//friend class Hero;	//(warum brauchen wir hier friend?)
 	protected:
 		int hp;
 		std::string name;
@@ -41,6 +41,7 @@ class  Unit  {
 		void findPath();
 		//Unit* next;
 		void move();
-		//virtual void think()=0; //if a unit acts autonom, the decision proces is here
+		virtual void think()=0; //if a unit acts autonom, the decision proces is here
+		virtual void setNewGoal(int goal)=0; //sets general goal for a unit like mining
 };
 #endif
