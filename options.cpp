@@ -69,17 +69,17 @@ bool Options::ReadCfg()
 {
 	try{
 	WinProperties prop("SOFTWARE\\Oetting\\");
-	ResolutionX	=StringToInteger ( 	prop.loadProperty("Grafik","ResolutionX"));
-	ResolutionY	=StringToInteger ( 	prop.loadProperty("Grafik","ResolutionY"));
-	BitsPerPixel=StringToInteger ( 	prop.loadProperty("Grafik","BitsPerPixel"));
-	iRefreshRate =StringToInteger ( 	prop.loadProperty("Grafik","iRefreshRate"));	
-	CUR_LANG = StringToInteger ( 	prop.loadProperty("Grafik","CUR_LANG"));	
-	bFPS = StringToInteger ( 	prop.loadProperty("grafik","bFPS"));	
-	bCoords =StringToInteger ( 	prop.loadProperty("grafik","bCoords"));
-	iRenderOnlyEveryFrame = StringToInteger ( 	prop.loadProperty("grafik","iRenderOnlyEveryFrame"));
-	bBorders = StringToInteger ( 	prop.loadProperty("grafik","bBorders"));
+	ResolutionX	=stringToInteger ( 	prop.loadProperty("Grafik","ResolutionX"));
+	ResolutionY	=stringToInteger ( 	prop.loadProperty("Grafik","ResolutionY"));
+	BitsPerPixel=stringToInteger ( 	prop.loadProperty("Grafik","BitsPerPixel"));
+	iRefreshRate =stringToInteger ( 	prop.loadProperty("Grafik","iRefreshRate"));	
+	CUR_LANG = stringToInteger ( 	prop.loadProperty("Grafik","CUR_LANG"));	
+	bFPS = stringToInteger ( 	prop.loadProperty("grafik","bFPS"));	
+	bCoords =stringToInteger ( 	prop.loadProperty("grafik","bCoords"));
+	iRenderOnlyEveryFrame = stringToInteger ( 	prop.loadProperty("grafik","iRenderOnlyEveryFrame"));
+	bBorders = stringToInteger ( 	prop.loadProperty("grafik","bBorders"));
 	//chIP IP wird nicht benötigt erstmal (gerade keine Lust auf char*, wenn möglich, bitte string verwenden
-	iPort = StringToInteger ( 	prop.loadProperty("grafik","Port"));
+	iPort = stringToInteger ( 	prop.loadProperty("grafik","Port"));
 	std::string s("Config gelesen");
 	log::log(s);
 	return true;

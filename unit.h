@@ -13,7 +13,7 @@
 #include "pathfinding.h"
 #include "pathfinding.h"
 class  Unit  {
-	friend class Hero;	
+	friend class Hero;	//(warum brauchen wir hier friend?)
 	protected:
 		int hp;
 		std::string name;
@@ -41,5 +41,6 @@ class  Unit  {
 		void findPath();
 		//Unit* next;
 		void move();
+		//virtual void think()=0; //if a unit acts autonom, the decision proces is here
 };
 #endif
