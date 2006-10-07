@@ -26,7 +26,7 @@ WinProperties::loadProperty(const std::string& nspace, const std::string &key) c
 	completeKey.append(nspace);
 
 	HKEY hRegKey;
-	LONG OpenRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE, completeKey.c_str(), 0, KEY_QUERY_VALUE, &hRegKey);
+	LONG OpenRet = RegOpenKeyEx(HKEY_CURRENT_USER, completeKey.c_str(), 0, KEY_QUERY_VALUE, &hRegKey);
 
 	if (OpenRet != ERROR_SUCCESS)
 	{

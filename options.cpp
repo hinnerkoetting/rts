@@ -68,12 +68,12 @@ short Options::getRefreshRate()
 bool Options::ReadCfg()
 {
 	try{
-	WinProperties prop("SOFTWARE\\oetting\\");
-	ResolutionX	=StringToInteger ( 	prop.loadProperty("grafik","ResolutionX"));
-	ResolutionY	=StringToInteger ( 	prop.loadProperty("grafik","ResolutionY"));
-	BitsPerPixel=StringToInteger ( 	prop.loadProperty("grafik","BitsPerPixel"));
-	iRefreshRate =StringToInteger ( 	prop.loadProperty("grafik","iRefreshRate"));	
-	CUR_LANG = StringToInteger ( 	prop.loadProperty("grafik","CUR_LANG"));	
+	WinProperties prop("SOFTWARE\\Oetting\\");
+	ResolutionX	=StringToInteger ( 	prop.loadProperty("Grafik","ResolutionX"));
+	ResolutionY	=StringToInteger ( 	prop.loadProperty("Grafik","ResolutionY"));
+	BitsPerPixel=StringToInteger ( 	prop.loadProperty("Grafik","BitsPerPixel"));
+	iRefreshRate =StringToInteger ( 	prop.loadProperty("Grafik","iRefreshRate"));	
+	CUR_LANG = StringToInteger ( 	prop.loadProperty("Grafik","CUR_LANG"));	
 	bFPS = StringToInteger ( 	prop.loadProperty("grafik","bFPS"));	
 	bCoords =StringToInteger ( 	prop.loadProperty("grafik","bCoords"));
 	iRenderOnlyEveryFrame = StringToInteger ( 	prop.loadProperty("grafik","iRenderOnlyEveryFrame"));
