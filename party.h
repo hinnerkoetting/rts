@@ -13,7 +13,7 @@
 #include <vector>
 class party{
 
-	//std::vector <Unit> units;
+	//std::vector <Unit> units; dass muss doch irgendwie gehen...
 
 	bool computerplayer;
 	std::string name;

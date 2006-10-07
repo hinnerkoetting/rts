@@ -44,8 +44,8 @@ void NewGame::DrawButtons()
 	{
 		case LANG_GERMAN:
 		{
-			/*Gra::g.DrawString(Point(-1.0f, 0.5f, 0.0f, 0.5f, 0.5f, 0.5f), "1 : Quickstart");
-			Gra::g.DrawString(Point(-1.0f, 0.0f, 0.0f, 0.5f, 0.5f, 0.5f), "Escape : Zurück");*/
+			/*Gra::g.Drastring(Point(-1.0f, 0.5f, 0.0f, 0.5f, 0.5f, 0.5f), "1 : Quickstart");
+			Gra::g.Drastring(Point(-1.0f, 0.0f, 0.0f, 0.5f, 0.5f, 0.5f), "Escape : Zurück");*/
 		}
 		default:
 			return;

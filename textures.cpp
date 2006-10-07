@@ -5,6 +5,7 @@
 #include "devil/include/IL/il.h"
 #include "devil/include/IL/ilut.h"
 
+
 GLuint Graphic::texture[2];
 //ILuint ImageName;
 void Graphic::bindImage() {
