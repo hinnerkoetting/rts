@@ -1,3 +1,6 @@
+//Helper file with different functions as:
+//Conversion of data types
+
 
 #include "Util.h"
 #include <sstream>
@@ -7,7 +10,7 @@
 
 using namespace std;
 
-int WStringToInteger(const std::wstring& str)
+int wstringToInteger(const std::wstring& str)
 {
 	std::wstringstream StringStr(str);
 	int Integer;
@@ -17,7 +20,7 @@ int WStringToInteger(const std::wstring& str)
 }
 
 
-int StringToInteger(const std::string& str)
+int stringToInteger(const std::string& str)
 {
 	std::stringstream StringStr(str);
 	int Integer;
@@ -26,7 +29,7 @@ int StringToInteger(const std::string& str)
 	return Integer;
 }
 
-std::wstring IntegerToWString(int Integer)
+std::wstring integerToWString(int Integer)
 {
 	std::wstringstream StringStr;
 	StringStr << Integer;
@@ -43,7 +46,7 @@ std::string IntegerToString(int Integer)
 }
 
 
-std::wstring IntegerToHexWString(int Integer)
+std::wstring integerToHexWString(int Integer)
 {
 	std::wstringstream StringStr;
 	StringStr << uppercase << hex << Integer;

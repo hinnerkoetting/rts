@@ -10,15 +10,26 @@
 
 #include <stdio.h>
 #include "unit.h"
+#include "refcnt_ptr.h"
+
 #include <vector>
+
 class party{
 
-	//std::vector <Unit> units; dass muss doch irgendwie gehen...
-
+	
 	bool computerplayer;
 	std::string name;
 	
-	
+
+	//first we have two ressources: Gold  and wood
+	int amountOfGold;
+	int amountOfWood;
+
+
+		typedef  refcnt_ptr<Unit> sm_unit;	//smart pointer to Unit 
+	//Smart Pointer care for destructing of elements. I hope this works
+	std::vector <sm_unit> units;
+
 
 };
 

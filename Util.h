@@ -4,12 +4,12 @@
 
 #include <string>
 
-int				WStringToInteger(const std::wstring&);
-std::wstring	IntegerToWString(int);
-int				StringToInteger(const std::string&);
+int				wstringToInteger(const std::wstring&);
+std::wstring	integerToWString(int);
+int				stringToInteger(const std::string&);
 std::string		IntegerToString(int);
 
-std::wstring	IntegerToHexWString(int);
+std::wstring	integerToHexWString(int);
 //std::string		WStringToString(const std::wstring&);
 //std::wstring	StringToWString(const std::string&);
 

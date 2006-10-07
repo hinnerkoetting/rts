@@ -23,7 +23,7 @@ void Graphic::init(int argc, char **argv) {
 	glutInitWindowPosition(0, 0);
 	glutInitWindowSize(Options::ResolutionX, Options::ResolutionY);
 	glutInitDisplayMode(GLUT_RGBA |GLUT_DOUBLE | GLUT_DEPTH);
-	glutCreateWindow("Dem Hinni sein Spie");
+	glutCreateWindow("Arkoid- Next Generation strategy gaming");
 	glutDisplayFunc(Graphic::renderScene);			//MAYBE NEEDS TO BE ADDED TO SWITCH FUNCTION
 	glutIdleFunc(Graphic::renderScene);
 	glutReshapeFunc(Graphic::changeSize);

@@ -1,12 +1,10 @@
 #include "exception.h"
 
 ////////////////////////////////////////////////////////////////////////////
-// Ausnahmebehandlung
+// Exception handling
 
-// Ausnahmeklasse für Ausnahmen 
-// Kapselt nur einen String.
-
-// Konstruktor.
+// Encapsulate a string
+// Construktor.
 // message ist ein Meldungstext.
 GeneralGameException::GeneralGameException(const std::string& message)
 {

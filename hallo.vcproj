@@ -601,6 +601,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\refcnt_ptr.h"
+				>
+			</File>
+			<File
 				RelativePath="settings.h"
 				>
 			</File>
