@@ -74,6 +74,17 @@ void log::log(string msg){
 
 }
 
+void log::log(char* msg){
+#ifdef _DEBUG
+	DWORD len=strlen(msg);
+		
+	WriteFile(GetStdHandle(STD_OUTPUT_HANDLE),msg, len,&len, NULL);
+
+#endif
+
+
+}
+
 
 /*
 std::string WStringToString(const std::wstring& str)

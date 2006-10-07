@@ -1,3 +1,3 @@
-#include "party.h"
+#include "Party.h"
 
 //still TODO
