@@ -24,7 +24,7 @@ void Worker::draw() {
 	static float hig = GraIngame::getHeigth();
 	glTranslatef(this->xPos * len, this->yPos * hig, 0);
 	glScalef(len, hig, 1);
-	glCallList(20);
+	glCallList(UNIT_WORKER_ID);
 	glPopMatrix();
 }
 

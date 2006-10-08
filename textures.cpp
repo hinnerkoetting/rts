@@ -6,7 +6,8 @@
 #include "devil/include/IL/ilut.h"
 
 
-GLuint Graphic::texture[2];
+GLuint Graphic::texture[100];
+int Graphic::nrTextures = 0;
 //ILuint ImageName;
 void Graphic::bindImage() {
 	ILuint ImageName;
@@ -15,9 +16,8 @@ void Graphic::bindImage() {
 }
 
 void Graphic::loadImage(char* filename) {
-	static int i = 0;
 	ilLoadImage(filename);
-	Graphic::texture[i++] = ilutGLBindTexImage();
+	Graphic::texture[Graphic::nrTextures++] = ilutGLBindTexImage();
 }
 //GLuint Graphic::texture[1];
 /*AUX_RGBImageRec *LoadBMP(char *Filename) {
