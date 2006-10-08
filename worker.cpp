@@ -22,7 +22,7 @@ void Worker::draw() {
 	glPushMatrix();
 	static float len = GraIngame::getLength();
 	static float hig = GraIngame::getHeigth();
-	glTranslatef(this->xPos * len, this->yPos * hig, 0);
+	glTranslatef((float)this->getExactX()/getPosConst() * len, (float)this->getExactY()/getPosConst() * hig, 0);
 	glScalef(len, hig, 1);
 	glCallList(UNIT_WORKER_ID);
 	glPopMatrix();
