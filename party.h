@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <vector>
 #include "unit.h"
-#include "refcnt_ptr.h"
+/*#include "refcnt_ptr.h"
 #include "gameressources.h"
 
 
@@ -38,6 +38,6 @@ class Party{
 	std::vector <sm_unit> units;
 
 };
-
+*/
 
 #endif

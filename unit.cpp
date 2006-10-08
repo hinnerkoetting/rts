@@ -20,7 +20,7 @@
 void Unit::findPath() {
 	//path = Pathfinding::deleteList(path);
 	if (pf->getPath()->next == 0)
-		pf->findPath(this->xPos, this->xPos);
+		pf->findPath(this->getX(), this->getY());
 }
 
 /* 
@@ -28,9 +28,11 @@ void Unit::findPath() {
  * sets destination
  *
  */
-void Unit::goTo(float x, float y) {
+void Unit::goTo(int x, int y) {
+	pf->initPath(this->getX(), this->getY());
 	pf->setDestination(x, y);
-	pf->findPath(this->xPos, this->yPos);
+	
+	pf->findPath(this->getX(), this->getX());
 }
 
 /*
@@ -43,9 +45,10 @@ float length(float x, float y) {
 }
 
 void Unit::move() {
-	if (abs(this->xPos - pf->getPath()->x) < 0.05  && abs(this->yPos - pf->getPath()->y) < 0.05) { // if unit has reached its destination
+	if (abs(this->getExactX() - (int)(getPosConst()*pf->getPath()->x)) < posTolerance()  && abs(this->getExactY() - (int)(getPosConst()*pf->getPath()->y)) < posTolerance()) { // if unit has reached its destination
 		if (pf->getPath()->next == 0) {				// unit has no further way
 			this->timeSinceLastMove = glutGet(GLUT_ELAPSED_TIME); // so the unit doesnt make a big jump the next time it gets move order
+			this->roundPos();
 			return;
 		}
 		else {
@@ -56,12 +59,11 @@ void Unit::move() {
 	int t = glutGet(GLUT_ELAPSED_TIME);
 	int deltaTime = t - this->timeSinceLastMove;
 	
-	float len = length(getPath()->x - this->xPos,getPath()->y - this->yPos);
+	float len = length(getPath()->x*getPosConst() - this->getExactX(),getPath()->y*getPosConst() - this->getExactY());
 	if (len == 0)
 		return;
-	float normX = (getPath()->x - this->xPos)/len;
-	float normY = (getPath()->y - this->yPos)/len;
-	this->xPos += normX*this->speed*deltaTime/20000;
-	this->yPos += normY*this->speed*deltaTime/20000;
+	float normX = (getPath()->x*getPosConst() - this->getExactX())/len;
+	float normY = (getPath()->y*getPosConst() - this->getExactY())/len;
+	this->changePos(normX*this->speed*deltaTime/20000, normY*this->speed*deltaTime/20000);
 	timeSinceLastMove = t;
 }

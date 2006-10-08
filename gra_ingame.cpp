@@ -62,9 +62,9 @@ void GraIngame::drawFields() {
 					vY = true;
 					if (Ingame::fields[x][y].lt->getHeigth() == 0 || Ingame::fields[x][y].rt->getHeigth() == 0 ||
 						Ingame::fields[x][y].rb->getHeigth() == 0 || Ingame::fields[x][y].lb->getHeigth() == 0) // if a part of water field
-						glCallList(1);
+						glCallList(FIELD_WATER);
 					else 
-						glCallList(17);						// draw green field behind gradient
+						glCallList(FIELD_BEHINDGRAD);						// draw green field behind gradient
 					glCallList(Ingame::fields[x][y].type);				// draw field
 				}
 				else if (vY)		//  better performance

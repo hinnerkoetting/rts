@@ -125,7 +125,7 @@ Node* Pathfinding::findLowestCosts(Node* list, int desX, int desY) {
  * due to the fact, that the unit may moving while its given another moveorder there is the following problem: the unit moves at first to the field nearest to its actual position
  * and then moves the right way. so it can happen that the first field is wrong direction, this is here corrected 
  */
-Node* Pathfinding::giveOutResult(Node* n, float orX, float orY) {
+Node* Pathfinding::giveOutResult(Node* n, int orX, int orY) {
 	Node* res;
 	if (n != 0) {
 		 res = new Node(n->x, n->y, n->costs, 0); //change direction
@@ -158,8 +158,8 @@ Node* Pathfinding::giveOutResult(Node* n, float orX, float orY) {
  * checks if unit has reached a field
  *
  */
-bool Pathfinding::atDestination(float x, float y, Node* n) {
-	if (abs(n->x - x) <=0.05 && abs(n->y - y) <= 0.05)
+bool Pathfinding::atDestination(int x, int y, Node* n) {
+	if (abs(n->x*Unit::getPosConst() - x) <= Unit::posTolerance() && abs(n->y - y) <= Unit::posTolerance())
 		return true;
 	return false;
 }
@@ -168,18 +168,13 @@ bool Pathfinding::atDestination(float x, float y, Node* n) {
  * returns a list of nodes from original position to destination
  * does a maximum of 50 steps every ????
  */
-void Pathfinding::findPath(float orX, float orY) {
-	if (atDestination(orX, orY, path) && path->next != 0) {	//unit has reached next field 
-		Node* tmp = path;
-		path = path->next;
-		delete tmp;
-	}
+void Pathfinding::findPath(int orX, int orY) {
 	if (atDestination(desX, desY, path))		// unit has reached its destination
 		return;
 	int x;
 	int y;
 	int counter = 0;
-	while (openList != 0 && (abs(actual->x - desX) >0.05|| abs(actual->y-desY)>0.05) && counter < 50) { // openlist not empty and not at destinaton
+	while (openList != 0 && (abs(actual->x - desX) >= 1|| abs(actual->y-desY)>= 1) && counter < 50) { // openlist not empty and not at destinaton
 		
 		x = actual->x;
 		y = actual->y;

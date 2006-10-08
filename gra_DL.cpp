@@ -27,7 +27,7 @@ void GraIngame::drawBorders() {
 }
 
 void GraIngame::createDLFields(int start) {
-	float r = 0.2f;										// create DL of a plane water field
+	float r = 0.2f;										// create DL of a water field
 	float g = 0.05f;
 	float b = 1.0f;
 	Point P0 = Point(0					, -getHeigth(), 0, r, g, b);
@@ -39,7 +39,7 @@ void GraIngame::createDLFields(int start) {
 		drawBorders();
 	glEndList();
 
-	r = 0.6f;											// create DL of a plane field abover water
+	r = 0.6f;											// create DL of a plane field above water
 	g = 0.3f;
 	b = 0.1f;
 

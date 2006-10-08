@@ -32,18 +32,18 @@ class Pathfinding {
 		
 		bool onList(Node* list, Node* node);
 		Node* Pathfinding::findLowestCosts(Node* list, int desX, int desY);
-		Node* giveOutResult(Node*, float orX, float orY);
+		Node* giveOutResult(Node*, int orX, int orY);
 		int desX;
 		int desY;
 		
-		bool atDestination(float x, float y, Node*);
+		bool atDestination(int x, int y, Node*);
 		Node* actual;
 	public:
 		Node* path;
 		void nextField();
 		Node* getPath() { return path; }
 		Node* deleteList(Node* list);
-		void findPath(float fromX, float fromY);
+		void findPath(int fromX, int fromY);
 		void setDestination(int x, int y);
 		Pathfinding(int x, int y) {openList = 0; closedList = 0; desX = x; desY = y; path = 0;}
 		void initPath(int x, int y) { actual = new Node(x, y, 0,0); path = actual; openList = actual; desX = x; desY = y; closedList = 0; }
