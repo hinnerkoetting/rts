@@ -66,7 +66,7 @@ short Options::getRefreshRate()
  *
  */
 bool Options::ReadCfg()
-{
+{ 
 	try{
 	WinProperties prop("SOFTWARE\\Oetting\\");
 	ResolutionX	=stringToInteger ( 	prop.loadProperty("Grafik","ResolutionX"));
@@ -74,10 +74,10 @@ bool Options::ReadCfg()
 	BitsPerPixel=stringToInteger ( 	prop.loadProperty("Grafik","BitsPerPixel"));
 	iRefreshRate =stringToInteger ( 	prop.loadProperty("Grafik","iRefreshRate"));	
 	CUR_LANG = stringToInteger ( 	prop.loadProperty("Grafik","CUR_LANG"));	
-	bFPS = stringToInteger ( 	prop.loadProperty("grafik","bFPS"));	
-	bCoords =stringToInteger ( 	prop.loadProperty("grafik","bCoords"));
-	iRenderOnlyEveryFrame = stringToInteger ( 	prop.loadProperty("grafik","iRenderOnlyEveryFrame"));
-	bBorders = stringToInteger ( 	prop.loadProperty("grafik","bBorders"));
+	bFPS = (stringToInteger( 	prop.loadProperty("grafik","bFPS")) !=0);	
+	bCoords =(stringToInteger ( 	prop.loadProperty("grafik","bCoords"))!=0);
+	iRenderOnlyEveryFrame = (stringToInteger ( 	prop.loadProperty("grafik","iRenderOnlyEveryFrame"))!=0);
+	bBorders = (stringToInteger ( 	prop.loadProperty("grafik","bBorders")) != 0);
 	//chIP IP wird nicht benötigt erstmal (gerade keine Lust auf char*, wenn möglich, bitte string verwenden
 	iPort = stringToInteger ( 	prop.loadProperty("grafik","Port"));
 	std::string s("Config gelesen");

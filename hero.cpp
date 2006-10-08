@@ -19,8 +19,8 @@
  * TODO: rework
  */
 void Hero::draw() {
-	Graphic::drawLine3D(Point(this->xPos * GraIngame::getLength(), this->yPos * GraIngame::getHeigth(), 0.0f, 1.0f, 1.0f, 1.0f),
-						Point((this->xPos + 1 )* GraIngame::getLength(), this->yPos * GraIngame::getHeigth(), 0.0f, 1.0f, 1.0f, 1.0f));
+	//Graphic::drawLine3D(Point(this->xPos * GraIngame::getLength(), this->yPos * GraIngame::getHeigth(), 0.0f, 1.0f, 1.0f, 1.0f),
+	//					Point((this->xPos + 1 )* GraIngame::getLength(), this->yPos * GraIngame::getHeigth(), 0.0f, 1.0f, 1.0f, 1.0f));
 	/*
 	if ((xPos >= Ingame::iCurXPos - 20) && (xPos <= Ingame::iCurXPos + 20)
 		&& (yPos >= Ingame::iCurYPos - 20) && (yPos <= Ingame::iCurYPos + 20))
@@ -32,19 +32,19 @@ void Hero::draw() {
 							Point(x - 0.01f	, y	- 0.02f	, 0.02f, 1.0f),
 							Point(x - 0.01f	, y + 0.02f	, 0.02f, 1.0f));*/
 	//}
-	Unit* u;
+	//Unit* u;
 }
 
 
 /*
  *
  * sets Hero to default values
- *
+ * TODO: rework
  */
 void Hero::clearHero()
 {
-	xPos = 0.0f;
-	yPos = 0.0f;
-	fMana = Settings::HeroMana;
-	lpNextFireball = 0;
+	//xPos = 0.0f;
+	//yPos = 0.0f;
+	//fMana = Settings::HeroMana;
+	//lpNextFireball = 0;
 }
