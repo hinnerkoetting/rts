@@ -30,6 +30,11 @@ int GraIngame::mouseX = 0;
 int GraIngame::mouseY = 0;
 float GraIngame::menuX = 0.25f;
 	
+void GraIngame::init() {
+	loadImages();
+	createDL();
+}
+	
 void GraIngame::drawUnits() {
 	for (unsigned i= 0; i < Ingame::Workers.size();i++) 
 		Ingame::Workers.at(i).draw();

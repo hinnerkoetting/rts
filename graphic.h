@@ -39,7 +39,8 @@ class Graphic {
 		static void drastring2d(float x, float y, void *font, char *string);
 		static void resetColor(Point* p);
 		static void loadImage(char* fileName);
-		static GLuint texture[2];
+		static GLuint texture[100];
+		static int nrTextures;
 		static void bindImage();
 		static void drawLine3D(Point P0, Point P1);
 		static void drawLine2D(Point P0, Point P1);

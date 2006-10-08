@@ -247,6 +247,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\gra_images.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\gra_ingame.cpp"
 					>
 				</File>

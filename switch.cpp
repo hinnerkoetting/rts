@@ -61,7 +61,7 @@ void Switch::ingame() {
 	
 	
 	
-	GraIngame::createDL();
+	GraIngame::init();
 
 	glShadeModel(GL_SMOOTH);
 	glDepthFunc(GL_LEQUAL);

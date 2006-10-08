@@ -197,49 +197,35 @@ void GraIngame::createDLFields(int start) {
 	glEndList();
 }
 
-void GraIngame::createDLButtons(int start) {
+void GraIngame::createDLImages(int start) {
 	Point P0 = Point(0.0f, 0.0f, 0, 1.0f, 1.0f, 1.0f);
 	Point P1 = Point(1.0f, 0.0f, 0, 1.0f, 1.0f, 1.0f);
 	Point P2 = Point(1.0f, 1.0f, 0, 1.0f, 1.0f, 1.0f);
 	Point P3 = Point(0, 1.0f, 0, 1.0f, 1.0f, 1.0f);
-	ilInit();
-	Graphic::bindImage();
-	ilutRenderer(ILUT_OPENGL);
-	Graphic::loadImage("data/att.gif");
-	glNewList(start, GL_COMPILE);
-		Graphic::drawLine2D(P0, P1);
-		Graphic::drawLine2D(P1, P2);
-		Graphic::drawLine2D(P2, P3);
-		Graphic::drawLine2D(P3, P0);
-		glBindTexture(GL_TEXTURE_2D, Graphic::texture[0]);
+	for (int i = 0; i < Graphic::nrTextures; i++) {
+		glNewList(start + i, GL_COMPILE);
+		//Graphic::drawLine2D(P0, P1);
+		//Graphic::drawLine2D(P1, P2);
+		//Graphic::drawLine2D(P2, P3);
+		//Graphic::drawLine2D(P3, P0);
+		glBindTexture(GL_TEXTURE_2D, Graphic::texture[i]);
 		glEnable(GL_BLEND);
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		Graphic::drawQuad(	P0, P1, P2, P3);
 		glDisable(GL_BLEND);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	glEndList();
-	Graphic::loadImage("data/house.gif");
-	glNewList(start + 1, GL_COMPILE);
-		Graphic::drawLine2D(P0, P1);
-		Graphic::drawLine2D(P1, P2);
-		Graphic::drawLine2D(P2, P3);
-		Graphic::drawLine2D(P3, P0);
-		glBindTexture(GL_TEXTURE_2D, Graphic::texture[1]);
-		glEnable(GL_BLEND);
-		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		Graphic::drawQuad(P0, P1, P2, P3);			
-		glDisable(GL_BLEND);
-		glBindTexture(GL_TEXTURE_2D, 0);
-	glEndList();
+	}
+
 	
 }
 
-void GraIngame::createDLUnits(int start) {
+/*void GraIngame::createDLUnits(int start) {
 	Point P0 = Point(0.0f, 1.0f, 0, 1.0f, 1.0f, 1.0f);
 	Point P1 = Point(1.0f, 1.0f, 0, 1.0f, 1.0f, 1.0f);
 	Point P2 = Point(1.0f, 0.0f, 0, 1.0f, 1.0f, 1.0f);
 	Point P3 = Point(0.0f, 0.0f, 0, 1.0f, 1.0f, 1.0f);
-	Graphic::loadImage("data/worker2.gif");
+
 	glNewList(start, GL_COMPILE);
 		glBindTexture(GL_TEXTURE_2D, Graphic::texture[2]);
 		glEnable(GL_BLEND);
@@ -251,7 +237,7 @@ void GraIngame::createDLUnits(int start) {
 
 	
 
-}
+}/*
 /*
  *
  * create DLs
@@ -260,8 +246,8 @@ void GraIngame::createDLUnits(int start) {
 GLuint GraIngame::createDL() {
 	GLuint listNr = glGenLists(30);
 	GraIngame::createDLFields(listNr);
-	GraIngame::createDLButtons(listNr + 17);
-	GraIngame::createDLUnits(listNr + 19);
+	GraIngame::createDLImages(listNr + 17);
+	//GraIngame::createDLUnits(listNr + 19);
 	
 	return listNr;
 }
