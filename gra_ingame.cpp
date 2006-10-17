@@ -9,12 +9,9 @@
 
 #include <math.h>
 #include "gra_ingame.h"
-#include "map.h"
 #include "ingame.h"
 #include "options.h"
 #include "graphic.h"
-#include "gra_string.h"
-#include "map.h"
 #include "errors.h"
 #include "gl/glut.h"
 #include "field.h"
@@ -132,3 +129,6 @@ int GraIngame::whichClicked(bool bX) {
 	return MyMath::round(Graphic::rasterPos(false) / GraIngame::getHeigth());
 }
 
+float GraIngame::menuWidth() {
+	return GraIngame::getMenuWidth();
+}

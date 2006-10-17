@@ -30,21 +30,7 @@ namespace Ingame
 		void newUnits(int);
 		void menu();
 	}
-	namespace Draw
-	{
-		void RedPoint();
-		void Game();
-		void Gradient(const short iLeftTop, const short iRightTop, const short iLeftBottom, const short iRightBottom,
-							  int x, int y);
-		void Plane(const short, int x, int y);
-		void Fields();
-		void Coords();
-		void Margin();
-		void MiniMapMargin();
-		void MiniMap();
-		void ClipBorders();
-		void Borders();
-	}
+
 
 	void draw();
 	void calc();

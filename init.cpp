@@ -166,11 +166,11 @@ void Ingame::Init::menu() {
 	int resY = Options::ResolutionY;
 	float wid = GraIngame::getMenuWidth();
 	vector <MenuButton> menue;
-	MenuButton* m1= new MenuButton(0, resX * 0.05/wid, resY * 0.1, resY * 0.15, &IngameMenu::test);
+	MenuButton m1=  MenuButton(0, resX * 0.05/wid, resY * 0.1, resY * 0.15, &IngameMenu::test);
 
-	MenuButton* m2 = new MenuButton(resX * 0.05/wid, resX * 0.1/wid, resY *0.1, resY*0.15, &IngameMenu::test);
-	menue.push_back(*m1);
-	menue.push_back(*m2);
+	MenuButton m2 =  MenuButton(resX * 0.05/wid, resX * 0.1/wid, resY *0.1, resY*0.15, &IngameMenu::test);
+	menue.push_back(m1);
+	menue.push_back(m2);
 	Menu::setMenuList(menue);
 	
 }

@@ -34,11 +34,11 @@
 #define UNIT_WORKER_ID 20
 #include "gl/glut.h"
 #include "point.h"
-#include "map.h"
 #include "graphic.h"
 class GraIngame {
 	
 	public:
+		static float menuWidth();
 		static int whichClicked(bool bX);
 		static void drawFields();
 		static void drawUnits();
@@ -66,6 +66,7 @@ class GraIngame {
 		static GLuint createDL();
 		static void setCamera();
 		static void init();
+
 	private:
 		static void loadImages();
 		static void setMenuWidth(float x ) { menuX = x; }

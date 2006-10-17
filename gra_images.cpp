@@ -10,6 +10,8 @@
 #include "gra_ingame.h"
 #include "graphic.h"
 #include "devil/include/IL/ilut.h"
+#include "hero.h"
+#include "worker.h"
 void GraIngame::loadImages() {
 	ilInit();
 	Graphic::bindImage();

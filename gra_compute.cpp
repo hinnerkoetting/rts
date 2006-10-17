@@ -18,7 +18,7 @@
 
 /*
  *
- * returns resolution in gl format (ResX'x'ResY':'Bpp)
+ * returns resolution in gl format (ResX + 'x' + ResY + ':' + Bpp)
  *
  */
 void Graphic::resolution(char c[16]) {

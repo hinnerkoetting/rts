@@ -8,7 +8,6 @@
 ////////////////////////////////////////////////////////////////
 
 #include "graphic.h"
-#include "gra_string.h"
 #include "gl/glut.h"
 
 void Graphic::drastring3d(float x, float y, float z, void* font, char* string) {  

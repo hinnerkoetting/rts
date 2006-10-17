@@ -27,7 +27,7 @@ void Graphic::drawQuad(Point P0, Point P1, Point P2, Point P3) {
 	glEnd();
 }
 
-void Graphic::drawEmptyQuad(Point P0, Point P1, Point P2, Point P3) {
+/*void Graphic::drawEmptyQuad(Point P0, Point P1, Point P2, Point P3) {
 	glBegin(GL_LINE_LOOP);
 		glTexCoord2f(0.0f, 0.0f);	
 		glColor3f(P0.r, P0.g, P0.b);
@@ -42,7 +42,7 @@ void Graphic::drawEmptyQuad(Point P0, Point P1, Point P2, Point P3) {
 		glColor3f(P3.r, P3.g, P3.b);
 		glVertex3f(P3.x, P3.y, P3.z);
 	glEnd();
-}
+}*/
 
 void Graphic::drawTriangle(Point P0, Point P1, Point P2) { 	
 	glBegin(GL_TRIANGLES);

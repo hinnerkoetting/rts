@@ -113,16 +113,17 @@ void Ingame::mouse(int button, int state, int x, int y) {
 		if (!mouseButton[button].locked) {
 			mouseButton[button].iIntervallHold = 0;
 			mouseButton[button].locked = true;
-			switch (button) {
-				case GLUT_LEFT_BUTTON:
-					if (x <= Options::ResolutionX * GraIngame::getMenuWidth()) 
+			if (x <= Options::ResolutionX * GraIngame::getMenuWidth()) 
 						Ingame::mouseClick(button, state, x, y); //TODO
-					else
-						Spells::spIncrease();
-					break;
-				case GLUT_RIGHT_BUTTON:
-					Spells::spDecrease();
-					break;
+			else {
+				switch (button) {
+					case GLUT_LEFT_BUTTON:
+							Spells::spIncrease();
+						break;
+					case GLUT_RIGHT_BUTTON:
+						Spells::spDecrease();
+						break;
+				}
 			}
 		}
 	}

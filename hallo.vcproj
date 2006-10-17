@@ -267,6 +267,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\graphic_interface.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\point.cpp"
 					>
 				</File>
@@ -419,26 +423,6 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="map.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							PreprocessorDefinitions=""
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							PreprocessorDefinitions=""
-						/>
-					</FileConfiguration>
-				</File>
-				<File
 					RelativePath=".\pathfinding.cpp"
 					>
 				</File>
@@ -447,6 +431,10 @@
 					>
 					<File
 						RelativePath=".\button_functions.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\button_value.cpp"
 						>
 					</File>
 					<File
@@ -628,11 +616,11 @@
 					>
 				</File>
 				<File
-					RelativePath=".\gra_string.h"
+					RelativePath=".\graphic.h"
 					>
 				</File>
 				<File
-					RelativePath=".\graphic.h"
+					RelativePath=".\graphic_interface.h"
 					>
 				</File>
 				<File
@@ -679,14 +667,14 @@
 					RelativePath=".\field.h"
 					>
 				</File>
-				<File
-					RelativePath="map.h"
-					>
-				</File>
 			</Filter>
 			<Filter
 				Name="Menu"
 				>
+				<File
+					RelativePath=".\button_value.h"
+					>
+				</File>
 				<File
 					RelativePath=".\mainmenu.h"
 					>
