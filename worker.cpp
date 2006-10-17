@@ -21,14 +21,7 @@
  */
 
 void Worker::draw() {
-	glPushMatrix();
-	/*static float len = GraIngame::getLength();
-	static float hig = GraIngame::getHeigth();
-	glTranslatef((float)this->getExactX()/getPosConst() * len, (float)this->getExactY()/getPosConst() * hig, 0);
-	glScalef(len, hig, 1);
-	glCallList(UNIT_WORKER_ID);*/
 	GraphicInterface::drawGame(UNIT_WORKER_ID, (float)this->getExactX()/getPosConst(), (float)this->getExactY()/getPosConst(), 1, 1);
-	glPopMatrix();
 }
 
 void Worker::think(){
