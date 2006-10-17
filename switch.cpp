@@ -8,7 +8,6 @@
 /////////////////////////////////////////////////////////////////
 
 #include "switch.h"
-#include "graphic.h"
 #include "gl/glut.h"
 #include "ingame.h"
 #include "inp_ingame.h"

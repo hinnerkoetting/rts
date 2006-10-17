@@ -14,6 +14,7 @@
 
 class Fireball;
 class Hero : public Unit{
+	private:
 	public:
 		void draw();
 		float fMana;

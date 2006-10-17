@@ -11,8 +11,8 @@
 #include "errors.h"
 #include "ingame.h"
 #include "settings.h"
-#include "graphic.h"
-#include "gra_ingame.h"
+#include "graphic_interface.h"
+
 /*
  *
  * draws the hero

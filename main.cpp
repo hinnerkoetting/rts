@@ -13,7 +13,7 @@
 
 #include "errors.h"
 #include "options.h"
-#include "Graphic.h"
+#include "Graphic_Interface.h"
 #include "gl/glut.h"
 #include "switch.h"
 #include "Util.h"
@@ -23,7 +23,7 @@ void main(int argc, char **argv) {
 	if (!Options::ReadCfg())
 		if (Options::debug)
 			Error::MesBoxOk("File not found.\nDefault config will be created.", "Config error");
-	Graphic::init(argc, argv);
+	GraphicInterface::initGraphics(argc, argv);
 	Switch::ingame();
 	glutMainLoop();
 } 

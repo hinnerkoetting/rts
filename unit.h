@@ -33,12 +33,13 @@ class  Unit  {
 		int getExactY() { return yPos; }
 		void roundPos() { setPos(getX(), getY()); }// sets actual position to an "integer" (Pos%getPosConst=0)
 	private:
+		
 		int xPos;
 		int yPos;
 	public:
 		static int getPosConst() { return 10000; }
 		static int posTolerance() { return 500; }
-		Unit() { pf = new Pathfinding(xPos, yPos);}
+		Unit() { pf = new Pathfinding(xPos, yPos); }
 		
 		void setHp(int h) { hp = h; }
 		void changeHp(int c) { hp += c; }

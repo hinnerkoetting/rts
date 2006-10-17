@@ -22,20 +22,23 @@
  */
 bool Spells::spIncrease()
 {
-	/*int x = GraIngame::whichClicked(true);
+	int x = GraIngame::whichClicked(true);
 	if (x >= Options::iNumberEdgesX - 1)
 		return false;
 	int y = GraIngame::whichClicked(false);
 	if (y >= Options::iNumberEdgesY)
 		return false;
-	Field* lp = Ingame::firstField;
+	if (incEdge(x,y))
+		return true;
+	return false;
+	/*Field* lp = Ingame::firstField;
 	for (int i = 0; i <= x; i++)			// go to the edge which shall be increased
 		lp = lp->rigth;
 	for (int i = 0; i <= y; i++)
 		lp = lp->top;
 	if (incField(lp->lb, lp))
-		return true;*/
-	return false;
+		return true;
+	return false;*/
 }
 
 /*
@@ -65,53 +68,29 @@ bool Spells::spDecrease() {
  * increases an edge and others if needed
  *
  */
-bool Spells::incField(Edge* edge, Field* field) {	 //BUG: erhöht die höhe des drüberliegenden feldes auch wenn ein drunterliegendes feld nicht erhöht werden kann
-	/*if (edge->getHeigth() == 10)
-		return false;
-	if (field != 0 && field->left != 0 && field->bottom != 0) {// if not at the border of map
-		int heigth = edge->getHeigth();
-		Field* other = field->left;
-		if (other->lt->getHeigth() < heigth)	  // if size lower then increase
-			if(!incField(other->lt, other->top))
+bool Spells::incEdge(int x, int y) {	 //BUG: erhöht die höhe des drüberliegenden feldes auch wenn ein drunterliegendes feld nicht erhöht werden kann
+	using namespace Ingame;
+	if (x > 0 && y > 0 && x < Options::iNumberEdgesX && y < Options::iNumberEdgesY) {// if not at the border of map
+		int heigth = fields[x][y].lb->getHeigth();
+		if (fields[x+1][y].lb->getHeigth() < heigth)
+			if (!incEdge(x+1, y))
 				return false;
-
-		other = other->rigth;
-		if (other->lt->getHeigth() < heigth)	  // if size lower then increase
-			if(!incField(other->lt, other->top))
+		if (fields[x][y+1].lb->getHeigth() < heigth)
+			if (!incEdge(x, y+1))
 				return false;
-
-		if (other->rt->getHeigth() < heigth)	  // if size lower then increase
-			if(!incField(other->rt, other->top->rigth))
+		if (fields[x][y-1].lb->getHeigth() < heigth)
+			if (!incEdge(x, y-1))
 				return false;
-
-		other = other->bottom;
-		if (other->rt->getHeigth() < heigth)	  // if size lower then increase
-			if(!incField(other->rt, other->top->rigth))
+		if (fields[x-1][y].lb->getHeigth() < heigth)
+			if (!incEdge(x-1, y))
 				return false;
-
-		if (other->rb->getHeigth() < heigth)	  // if size lower then increase
-			if(!incField(other->rb, other->rigth))
-				return false;
-
-		if (other->lb->getHeigth() < heigth)	  // if size lower then increase
-			if(!incField(other->lb, other))
-				return false;
-
-		other = other->left;
-		if (other->lb->getHeigth() < heigth)	  // if size lower then increase
-			if(!incField(other->lb, other))
-				return false;
-		other = other->top;
-		if (other->lb->getHeigth() < heigth)	  // if size lower then increase
-			if(!incField(other->lb, other))
-				return false;
-		edge->inc();
-		field->calcType();
-		field->left->calcType();
-		field->bottom->calcType();
-		field->left->bottom->calcType();
+		fields[x][y].lb->inc();
+		fields[x][y].calcType();
+		fields[x-1][y].calcType();
+		fields[x][y-1].calcType();
+		fields[x-1][y-1].calcType();
 		return true;
-	}*/
+	}
 	return false;
 }
 
