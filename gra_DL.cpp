@@ -10,23 +10,24 @@
 #include "gra_ingame.h"
 #include "gl/glut.h"
 #include "devil/include/IL/ilut.h"
+#include "options.h"
 /*
  *
  * drawborders
  *
  */
 void GraIngame::drawBorders() {
-	Point PB0		 = Point(-getLength(), -getHeigth(), 0.0f, 0.1, 0.1, 0.1);
-	Point PB1		 = Point(0, -getHeigth(), 0.0f, 0.1, 0.1, 0.1);
-	Point PB2		 = Point(0, 0, 0.0f, 0.1, 0.1, 0.1);
-	Point PB3		 = Point(-getLength(), 0, 0.0f, 0.1, 0.1, 0.1);
-	Graphic::drawLine3D(PB0, PB1);
-	Graphic::drawLine3D(PB1, PB2);
-	Graphic::drawLine3D(PB2, PB3);
-	Graphic::drawLine3D(PB3, PB0);
+	if (Options::bBorders) {
+		Point PB0		 = Point(-getLength(), -getHeigth(), 0.0f, 0.1, 0.1, 0.1);
+		Point PB1		 = Point(0, -getHeigth(), 0.0f, 0.1, 0.1, 0.1);
+		Point PB2		 = Point(0, 0, 0.0f, 0.1, 0.1, 0.1);
+		Point PB3		 = Point(-getLength(), 0, 0.0f, 0.1, 0.1, 0.1);
+		Graphic::drawLineStrip(PB0, PB1, PB2, PB3);
+	}
 }
 
-void GraIngame::createDLFields(int start) {
+void GraIngame::createDLFields() {
+	GLuint start = glGenLists(17);
 	float r = 0.2f;										// create DL of a water field
 	float g = 0.05f;
 	float b = 1.0f;
@@ -197,13 +198,17 @@ void GraIngame::createDLFields(int start) {
 	glEndList();
 }
 
-void GraIngame::createDLImages(int start) {
+void GraIngame::createDLImages() {
+	int start = glGenLists(1+Graphic::nrTextures);
 	Point P0 = Point(0.0f, 0.0f, 0, 1.0f, 1.0f, 1.0f);
 	Point P1 = Point(1.0f, 0.0f, 0, 1.0f, 1.0f, 1.0f);
 	Point P2 = Point(1.0f, 1.0f, 0, 1.0f, 1.0f, 1.0f);
 	Point P3 = Point(0, 1.0f, 0, 1.0f, 1.0f, 1.0f);
+	glNewList(start, GL_COMPILE);
+		Graphic::drawLineStrip(P0, P1, P2, P3);
+	glEndList();
 	for (int i = 0; i < Graphic::nrTextures; i++) {
-		glNewList(start + i, GL_COMPILE);
+		glNewList(start + i + 1, GL_COMPILE);
 		//Graphic::drawLine2D(P0, P1);
 		//Graphic::drawLine2D(P1, P2);
 		//Graphic::drawLine2D(P2, P3);
@@ -243,11 +248,11 @@ void GraIngame::createDLImages(int start) {
  * create DLs
  *
  */
-GLuint GraIngame::createDL() {
-	GLuint listNr = glGenLists(30);
-	GraIngame::createDLFields(listNr);
-	GraIngame::createDLImages(listNr + 17);
+void GraIngame::createDL() {
+	
+	GraIngame::createDLFields();
+	GraIngame::createDLImages();
 	//GraIngame::createDLUnits(listNr + 19);
 	
-	return listNr;
+
 }

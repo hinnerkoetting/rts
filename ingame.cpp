@@ -116,13 +116,13 @@ void Ingame::mouseClick(int button, int state, int x, int y) {
 		if (y >= Options::ResolutionY - GraIngame::getMenuWidth() * Options::ResolutionX) //on minimap
 			IngameMenu::miniMapClick(button, state, x, y);
 		else {
-			std::vector<MenuButton> menueList=Menu::getMenuList();
+			std::vector<MenuButton*> menueList=Menu::getMenuList();
 
 			int mx = x / GraIngame::getMenuWidth();
 			for (unsigned int i=0;i<menueList.size();i++){				
-				MenuButton btn=menueList.at(i);				
-				if (  btn.x1 <= mx && btn.x2 >= mx && btn.y1 <= y && btn.y2 >= y)
-					btn.function(button);
+				MenuButton* btn=menueList.at(i);				
+				if (  btn->getX1() <= mx && btn->getX2() >= mx && btn->getY1() <= y && btn->getY2() >= y) //TODO: add this function local to class Menubutton, e.g. if u use button_value at the moment u cant click on the number
+					btn->function(button, btn);
 			}
 		}
 	}

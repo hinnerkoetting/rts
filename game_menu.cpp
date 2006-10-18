@@ -14,6 +14,7 @@
 #include "ingame.h"
 #include "errors.h"
 #include "menue.h"
+#include "graphic_interface.h"
 /*
  *
  * draws menu
@@ -28,7 +29,7 @@ void IngameMenu::drawMenu() {
 	glLoadIdentity();
 	char buf[5];
 	_itoa_s(Ingame::iFPS, buf, 5, 10);
-	Graphic::drastring2d(5, 30, GLUT_BITMAP_TIMES_ROMAN_24, buf); //fps
+	GraphicInterface::drastring2d(0.01, 0.03, GLUT_BITMAP_TIMES_ROMAN_24, buf); //fps
 	Graphic::drawLine2D(Point(Options::ResolutionX -1, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f), // rigth border
 							Point(Options::ResolutionX -1, Options::ResolutionY, 0.0f, 1.0f, 1.0f, 1.0f));
 
@@ -44,9 +45,9 @@ void IngameMenu::drawMenu() {
  *
  */
 void IngameMenu::drawButtons() { 
-	vector<MenuButton> menue=Menu::getMenuList();
+	vector<MenuButton*> menue=Menu::getMenuList();
 	for (unsigned i=0;i<menue.size();i++){		
-		menue.at(i).draw();
+		menue.at(i)->draw();
 	}
 }
 /*

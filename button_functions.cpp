@@ -24,6 +24,7 @@ void IngameMenu::test(int button) {
 		Error::MesBoxOk("rechete taste", "a");
 }
 
+
 /*
  *
  * check what to do if a mouse is clicked on menu
@@ -40,4 +41,4 @@ void IngameMenu::miniMapClick(int button, int state, int x, int y) {
 		GraIngame::setXPos(ratioX * Options::iNumberEdgesX *GraIngame::getLength() - GraIngame::getZ() * 2 * GraIngame::getLength());
 		GraIngame::setYPos(ratioY * Options::iNumberEdgesY*GraIngame::getHeigth());
 	}
-}//BIN DABEI alle öffentlichen graphic funktionen in die graphic interface zu packen
+}

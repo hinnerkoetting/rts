@@ -25,7 +25,7 @@
 		
 
 
-std::vector <MenuButton> Menu::menu;
+std::vector <MenuButton*> Menu::menu;
 
 
 

@@ -11,14 +11,16 @@
 #include "point.h"
 #include "ingame_menu.h"
 #include "graphic_interface.h"
+#include "gra_ingame.h"
 #include <vector>
+#include "options.h"
 
 
 
 
 
 int MenuButton::counter = 0 ;
-MenuButton::MenuButton(int x1, int x2, int y1, int y2, void (*function)(int)) {
+MenuButton::MenuButton(float x1, float x2, float y1, float y2, void (*function)(int, MenuButton*)) {
 	
 	this->x1 = x1;
 	this->x2 = x2;
@@ -34,5 +36,23 @@ MenuButton::MenuButton(int x1, int x2, int y1, int y2, void (*function)(int)) {
  *
  */
 void MenuButton::draw() {
-	GraphicInterface::drawMenu(18 + id, x1, y1, x2-x1, y2-y1);
+	float wid = GraIngame::getMenuWidth();
+	GraphicInterface::drawMenu(BUTTON_HOUSE_ID + id, x1 * Options::ResolutionX/wid, y1 *  Options::ResolutionY, (x2-x1)* Options::ResolutionX/wid, (y2-y1) * Options::ResolutionY);
+	drawBorders();
+}
+
+void MenuButton::drawBorders() {
+	GraphicInterface::drawLineStrip(x1, x2, 1, y2, 1.0f, 1.0f, 1.0f);
+}
+int MenuButton::getX1() {
+	return x1 * Options::ResolutionX / GraIngame::getMenuWidth();
+}
+int MenuButton::getX2() {
+	return x2 * Options::ResolutionX / GraIngame::getMenuWidth() ;
+}
+int MenuButton::getY1() {
+	return y1 * Options::ResolutionY;
+}
+int MenuButton::getY2() {
+	return y2 * Options::ResolutionY;
 }
