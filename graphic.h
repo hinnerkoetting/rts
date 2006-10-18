@@ -28,7 +28,7 @@ class Graphic {
 		static void Graphic::resolution(char c[16]);	
 		static GLuint texture[100];
 		static int nrTextures;
-		
+				static void drawLineStrip(Point P0, Point P1, Point P2, Point P3);
 		
 		//static void drawEmptyQuad(Point, Point, Point, Point);
 	private:
@@ -36,8 +36,7 @@ class Graphic {
 		static void bindImage();
 		static void drawLine3D(Point P0, Point P1);
 		static void drawLine2D(Point P0, Point P1);
-		static void drastring3d(float x, float y, float z, void *font, char *string);
-		static void drastring2d(float x, float y, void *font, char *string);
+
 		static void resetColor(Point* p);
 		static Point changeHeigth(Point, float z);
 		static float pixelToGl(int pos, float z, bool bX);

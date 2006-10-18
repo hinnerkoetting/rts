@@ -15,10 +15,10 @@
 
 class Menu {
 	private:
-		static std::vector<MenuButton> menu;	
+		static std::vector<MenuButton*> menu;	
 	public:		
-		static std::vector<MenuButton>	getMenuList() { return menu; }
-		static void		setMenuList(std::vector<MenuButton> btnmenue) { menu = btnmenue; };
+		static std::vector<MenuButton*>	getMenuList() { return menu; }
+		static void		setMenuList(std::vector<MenuButton*> btnmenue) { menu = btnmenue; };
 };
 
 

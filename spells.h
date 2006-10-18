@@ -19,7 +19,7 @@ namespace Spells {
 	bool spIncrease();
 	bool spDecrease();
 	bool incEdge(int x, int y);
-	bool decField(Edge*, Field*);
+	bool decEdge(int x, int y);
 }
 
 #endif

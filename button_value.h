@@ -9,12 +9,16 @@
 
 #include "menu_button.h"
 
-class ButtonValue : MenuButton {
+class ButtonValue : public MenuButton {
 	private:
-		int value;
-		int relativeX;  //position of value relative to original x position
-		int relativey;
+		float relativeX;  //position of value relative to original x position
+		float relativeY;
+		void drawBorders();
+		
 	public:
-		ButtonValue(int x1, int x2, int y1, int y2, int relX, int relY, void (*f)(int));
+		ButtonValue(float x1, float x2, float y1, float y2, float relX, float relY, void (*f)(int, MenuButton*));
 		void draw();
+		static void changeValue(int x, MenuButton*); //(value,pointer to itself)
+		static void click(int button, MenuButton*); //(button,pointer to itself)
+		
 };

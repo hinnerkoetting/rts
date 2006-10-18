@@ -44,6 +44,19 @@ void Graphic::drawQuad(Point P0, Point P1, Point P2, Point P3) {
 	glEnd();
 }*/
 
+void Graphic::drawLineStrip(Point P0, Point P1,Point P2, Point P3) {
+	glLineWidth(1.0f);
+	glBegin(GL_LINE_LOOP);
+		glColor3f(P0.r, P0.g, P0.b);
+		glVertex3f(P0.x, P0.y, P0.z);
+		glColor3f(P1.r, P1.g, P1.b);
+		glVertex3f(P1.x, P1.y, P1.z);
+		glColor3f(P2.r, P2.g, P2.b);
+		glVertex3f(P2.x, P2.y, P2.z);
+		glColor3f(P3.r, P3.g, P3.b);
+		glVertex3f(P3.x, P3.y, P3.z);
+	glEnd();
+}
 void Graphic::drawTriangle(Point P0, Point P1, Point P2) { 	
 	glBegin(GL_TRIANGLES);
 		glColor3f(P0.r, P0.g, P0.b);

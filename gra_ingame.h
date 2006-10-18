@@ -29,9 +29,10 @@
 #define	FIELD_GRAD13	15
 #define FIELD_GRAD14	16
 #define FIELD_BEHINDGRAD 17
-#define BUTTON_HOUSE_ID 18
-#define BUTTON_ATTACK_ID 19
-#define UNIT_WORKER_ID 20
+#define EMPTY_QUAD		18
+#define BUTTON_HOUSE_ID 19
+#define BUTTON_ATTACK_ID 20
+#define UNIT_WORKER_ID 21
 #include "gl/glut.h"
 #include "point.h"
 #include "graphic.h"
@@ -61,9 +62,9 @@ class GraIngame {
 		
 		static void setXPos(float x) { xPos = x; setCamera();}
 		static void setYPos(float y) { yPos = y; setCamera();}
-		static void createDLFields(int start);
-		static void createDLImages(int start);
-		static GLuint createDL();
+		static void createDLFields();
+		static void createDLImages();
+		static void createDL();
 		static void setCamera();
 		static void init();
 
