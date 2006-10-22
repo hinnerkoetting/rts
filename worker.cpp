@@ -21,7 +21,7 @@
  */
 
 void Worker::draw() {
-	GraphicInterface::drawGame(getID(), (float)this->getExactX()/getPosConst(), (float)this->getExactY()/getPosConst(), 1, 1);
+	GraphicInterface::drawObjectGame(getID(), (float)this->getExactX()/getPosConst(), (float)this->getExactY()/getPosConst(), 1, 1);
 }
 
 void Worker::think(){
