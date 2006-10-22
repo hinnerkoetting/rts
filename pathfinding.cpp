@@ -11,6 +11,7 @@
 #include "ingame.h"
 #include "errors.h"
 #include "mymath.h"
+#include <algorithm>
 
 /*
  *
@@ -29,16 +30,13 @@ bool Pathfinding::onList(std::list<Node*> list, Node* node) {
 	return -x;
 }*/
 
-std::list<Node*>::iterator Pathfinding::findNode(std::list<Node*> list, Node* n, std::list<Node*>::iterator& i) {
-	for (i = list.begin(); i != list.end(); i++)
-		if (*i == n) 
-			break;
-	return i;
-}
+
 
 int sqr(int i) {
 	return i * i;
 }
+
+
 /*
  *
  * looks for node with estimated lowest costs to destination
@@ -117,13 +115,7 @@ void Pathfinding::findPath(int orX, int orY) {
 		x = actual->x;
 		y = actual->y;
 		closedList.push_back(actual);
-		std::list<Node*>::iterator i;
-/*		for (i = openList.begin(); i != openList.end(); i++)
-			if (*i == actual)
-				break;
-		std::list<Node*>::iterator i;*/
-		i = findNode(openList, actual,i);
-		openList.erase(i);
+		openList.remove(actual);
 		if (y < Options::iNumberEdgesY - 1) { // upper field
 				Node* n = new Node(x, y+1, actual->costs + Ingame::fields[x, y+1]->getCosts() * 2, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
