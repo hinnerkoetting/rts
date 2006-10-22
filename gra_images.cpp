@@ -20,7 +20,6 @@ void GraIngame::loadImages() {
 	Graphic::loadImage("data/house.gif");
 	Graphic::loadImage("data/worker2.gif");
 	Graphic::loadImage("data/goldmine.bmp");
-	Graphic::loadImage("data/goldmine.bmp");
 	Graphic::loadImage("data/village.jpg");
 
 }
