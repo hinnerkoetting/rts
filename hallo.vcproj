@@ -555,6 +555,14 @@
 					</File>
 				</Filter>
 			</Filter>
+			<Filter
+				Name="ressources"
+				>
+				<File
+					RelativePath=".\goldmine.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header-Dateien"
@@ -705,6 +713,10 @@
 				</File>
 				<File
 					RelativePath=".\gameressources.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphical_entity.h"
 					>
 				</File>
 				<File
