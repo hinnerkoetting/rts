@@ -38,7 +38,7 @@ MenuButton::MenuButton(float x1, float x2, float y1, float y2, void (*function)(
  */
 void MenuButton::draw() {
 	float wid = GraIngame::getMenuWidth();
-	GraphicInterface::drawMenu(BUTTON_HOUSE_ID + id, x1 * Options::ResolutionX/wid, y1 *  Options::ResolutionY, (x2-x1)* Options::ResolutionX/wid, (y2-y1) * Options::ResolutionY);
+	GraphicInterface::drawObjectMenu(BUTTON_HOUSE_ID + id, x1 * Options::ResolutionX/wid, y1 *  Options::ResolutionY, (x2-x1)* Options::ResolutionX/wid, (y2-y1) * Options::ResolutionY);
 	drawBorders();
 }
 

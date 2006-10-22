@@ -24,7 +24,7 @@ void GraphicInterface::drawObjectGame(int dlIndex, float x, float y, float lenX,
 	glPopMatrix();
 }
 
-void GraphicInterface::drawMenu(int dlIndex, float x, float y, float lenX, float lenY) {
+void GraphicInterface::drawObjectMenu(int dlIndex, float x, float y, float lenX, float lenY) {
 	glPushMatrix();
 
 		glTranslatef(x , y , 0);

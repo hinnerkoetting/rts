@@ -30,7 +30,7 @@ ButtonValue::ButtonValue(float x1, float x2, float y1, float y2, float relX, flo
 
 void ButtonValue::draw() {
 	float wid = GraIngame::getMenuWidth();
-	GraphicInterface::drawMenu(BUTTON_HOUSE_ID + id, x1 * Options::ResolutionX/wid, y1 *  Options::ResolutionY, (x2-x1)* Options::ResolutionX/wid, (y2-y1) * Options::ResolutionY);
+	GraphicInterface::drawObjectMenu(BUTTON_HOUSE_ID + id, x1 * Options::ResolutionX/wid, y1 *  Options::ResolutionY, (x2-x1)* Options::ResolutionX/wid, (y2-y1) * Options::ResolutionY);
 	char buf[6];
 	_itoa_s(this->value, buf, 6, 10);
 	GraphicInterface::drastring2d(x1+relativeX, y1+relativeY, GLUT_BITMAP_TIMES_ROMAN_24, buf);
