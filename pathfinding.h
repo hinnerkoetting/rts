@@ -32,7 +32,6 @@ class Pathfinding {
 		
 		bool atDestination(int x, int y, Node*);
 		Node* actual;
-		std::list<Node*>::iterator findNode(std::list<Node*> list, Node* n, std::list<Node*>::iterator&);
 	public:
 		int desX;
 		int desY;
