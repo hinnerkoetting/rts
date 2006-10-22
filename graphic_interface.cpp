@@ -14,7 +14,7 @@
 #include "options.h"
 #include "point.h"
 
-void GraphicInterface::drawGame(int dlIndex, float x, float y, float lenX, float lenY) {
+void GraphicInterface::drawObjectGame(int dlIndex, float x, float y, float lenX, float lenY) {
 	glPushMatrix();
 		float len = GraIngame::getLength();
 		float hig = GraIngame::getHeigth();

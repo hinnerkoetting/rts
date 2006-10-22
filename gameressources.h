@@ -15,13 +15,13 @@
 
 
 
-class Goldmine: public graph_entry { //erstmal unit, wegen koordinaten und draw, vielleicht nochmal ne gemeinsame oberklasse machen
+class Goldmine: public GameObject { //erstmal unit, wegen koordinaten und draw, vielleicht nochmal ne gemeinsame oberklasse machen
 	
 	int amount; //amount of gold still inside
 	
 public:
 	Goldmine(int x, int y){
-		setNewPos(x,y);
+		setPos(x,y);
 	};
 
 	int getAmount(){ return amount;};
