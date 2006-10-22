@@ -39,7 +39,7 @@ class  Unit : public GameObject {
 		void setName(char* n) { name = n; }
 		int getHp() { return hp; }
 		std::string getName() { return name; }
-		virtual void draw() = 0;
+		
 		void goTo(int x, int y);
 		void findPath();
 		void move();

@@ -13,9 +13,6 @@
 
 
 
-#define GOLDMINE_ID 21
-#define VILLAGE_CENTER_ID 22
-
 #include "gl/glut.h"
 #include "point.h"
 #include "graphic.h"

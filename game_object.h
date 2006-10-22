@@ -21,7 +21,13 @@ class GameObject {
 		int getExactY() { return yPos; }
 		void setPos(int x, int y) { xPos = getPosConst() * x; yPos = y * getPosConst(); }
 		void setID(int i) { id = i; }
+		float lenX;
+		float lenY;
 	public:
+		void setLen(float x, float y) { lenX = x; lenY = y; }
+		float getLenX() { return lenX; }
+		float getLenY() { return lenY; }
+		virtual void draw() = 0;
 		int getID() { return id; }
 		static int getPosConst() { return 10000; }
 		int getX() { return MyMath::round((float)xPos/getPosConst()); }

@@ -13,7 +13,7 @@
 class GraphicInterface {
 	public:
 		static void drawMenu(int dlIndex, float x1, float x2, float lenX, float lenY); // draw an object in menu
-		static void drawGame(int dlIndex, float x1, float x2, float lenX, float lenY); // draw an object on the gamefield
+		static void drawObjectGame(int dlIndex, float x, float y, float lenX, float lenY); // draw an object on the gamefield
 		static void drastring3d(float x, float y, float z, void *font, char *string);
 		static void drastring2d(float x, float y, void *font, char *string);
 		static void drawLineStrip(float x1, float x2, float y1, float y2, float r = 1.0f, float g = 1.0f, float b = 1.0f);
