@@ -37,7 +37,7 @@ namespace Options
 	int ResolutionX = GetSystemMetrics(SM_CXSCREEN);
 	int ResolutionY = GetSystemMetrics(SM_CYSCREEN);
 	int BitsPerPixel = 16;
-	int iRenderOnlyEveryFrame =  1;
+	int iRenderOnlyEveryFrame =  2;
 	bool  bBorders = 1;
 	int iRefreshRate = getRefreshRate();
 	char* chIP = "localhost";

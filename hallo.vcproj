@@ -561,6 +561,10 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath=".\defines.h"
+				>
+			</File>
+			<File
 				RelativePath="errors.h"
 				>
 			</File>
@@ -695,6 +699,10 @@
 			<Filter
 				Name="Game"
 				>
+				<File
+					RelativePath=".\game_object.h"
+					>
+				</File>
 				<File
 					RelativePath=".\gameressources.h"
 					>

@@ -23,7 +23,6 @@
 
 using namespace std;
 void IngameMenu::drawMenu() {
-	
 	Graphic::changeTo2D();
 	
 	glLoadIdentity();

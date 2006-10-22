@@ -8,7 +8,7 @@
 /////////////////////////////////////////////////////////////////
 
 #include "field.h"
-#include "gra_ingame.h"
+#include "defines.h"
 /*
  *
  * calculated type of field(needed display lists)
@@ -54,9 +54,18 @@ void Field::calcType() {
 		else if (heigth[3] < heigth[0] && heigth[3] < heigth[1] && heigth[3] < heigth[2])		//(1,1,1,0)
 			this->type = FIELD_GRAD14;
 	}
-	if (this->type == FIELD_WATER)
+	if (this->blocked()) {
 		this->costs = 1048576;
-	else if (this->type == FIELD_PLAIN)
+		//this->costs = 20;
+		return;
+	}
+	if (this->type == FIELD_WATER) {
+		this->costs = 1048576;
+		return;
+	}
+	else if (this->type == FIELD_PLAIN) {
 		this->costs = 10;
+		return;
+	}
 	else this->costs = 20;
 }

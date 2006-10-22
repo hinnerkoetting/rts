@@ -116,6 +116,7 @@ void Ingame::Init::createWorld(int x, int y) {
 	createFields(Options::iNumberEdgesX, Options::iNumberEdgesY);
 	createEdges();
 	calcFields();
+	
 }
 
 
@@ -127,9 +128,8 @@ void Ingame::Init::createWorld(int x, int y) {
 void Ingame::initGame() {
 	Init::createWorld(Options::iNumberEdgesX, Options::iNumberEdgesY);
 	Init::newHeroes(2);
-	Init::newUnits(1);
+	Init::newUnits(4);
 	Init::menu();	
-
 	
 }
 
@@ -152,8 +152,9 @@ void Ingame::Init::newHeroes(const int iNumber) {
  *
  */
 void Ingame::Init::newUnits(int number) {
-	for (int i = 0; i < number; i++) 
-		Ingame::Workers.push_back(Worker(10 + i , 10 + i));
+	Ingame::Workers.push_back(Worker(14,13));
+	for (int i = 1; i < number; i++) 
+		Ingame::Workers.push_back(Worker(10 + 5* i , 10 + 5* i));
 
 }
 

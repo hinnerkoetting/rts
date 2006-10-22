@@ -12,6 +12,7 @@
 #include "gl/glut.h"
 #include "errors.h"
 #include "math.h"
+#include "ingame.h"
 /*
  *
  * create a list of fields describing the path of that unit
@@ -19,7 +20,7 @@
  */
 void Unit::findPath() {
 	//path = Pathfinding::deleteList(path);
-	if (pf->getPath()->next == 0)
+	if (pf->getPath().size() == 1)
 		pf->findPath(this->getX(), this->getY());
 }
 
@@ -32,7 +33,7 @@ void Unit::goTo(int x, int y) {
 	pf->initPath(this->getX(), this->getY());
 	pf->setDestination(x, y);
 	
-	pf->findPath(this->getX(), this->getX());
+	pf->findPath(this->getX(), this->getY());
 }
 
 /*
@@ -45,25 +46,36 @@ float length(float x, float y) {
 }
 
 void Unit::move() {
-	if (abs(this->getExactX() - (int)(getPosConst()*pf->getPath()->x)) < posTolerance()  && abs(this->getExactY() - (int)(getPosConst()*pf->getPath()->y)) < posTolerance()) { // if unit has reached its destination
-		if (pf->getPath()->next == 0) {				// unit has no further way
+	if (abs(this->getExactX() - (int)(getPosConst()*pf->getNextField()->x)) < posTolerance()  && abs(this->getExactY() - (int)(getPosConst()*pf->getNextField()->y)) < posTolerance()) { // if unit has reached its destination
+		if (pf->getPath().size() == 1) {				// unit has no further way
 			this->timeSinceLastMove = glutGet(GLUT_ELAPSED_TIME); // so the unit doesnt make a big jump the next time it gets move order
 			this->roundPos();
+			Ingame::fields[pf->getNextField()->x, pf->getNextField()->y]->setBlocked(this);
 			return;
 		}
 		else {
-			pf->nextField();
+			std::list<Node*>::value_type actual= *pf->getPath().begin();
+			std::list<Node*>::value_type next= *(++pf->getPath().begin());
+			if (!Ingame::fields[next->x, next->x]->blocked()) {
+				Ingame::fields[actual->x, actual->y]->setBlocked(0);
+				pf->nextField();
+				Ingame::fields[next->x, next->y]->setBlocked(this);
+			}
+			else {
+				pf->findPath(this->getX(), this->getY());
+				return;
+			}
 		}
 	}
 	
 	int t = glutGet(GLUT_ELAPSED_TIME);
 	int deltaTime = t - this->timeSinceLastMove;
 	
-	float len = length(getPath()->x*getPosConst() - this->getExactX(),getPath()->y*getPosConst() - this->getExactY());
+	float len = length(pf->getNextField()->x*getPosConst() - this->getExactX(),pf->getNextField()->y*getPosConst() - this->getExactY());
 	if (len == 0)
 		return;
-	float normX = (getPath()->x*getPosConst() - this->getExactX())/len;
-	float normY = (getPath()->y*getPosConst() - this->getExactY())/len;
+	float normX = (pf->getNextField()->x*getPosConst() - this->getExactX())/len;
+	float normY = (pf->getNextField()->y*getPosConst() - this->getExactY())/len;
 	this->changePos(normX*this->speed*deltaTime/20000, normY*this->speed*deltaTime/20000);
 	timeSinceLastMove = t;
 }

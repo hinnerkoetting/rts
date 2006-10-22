@@ -11,6 +11,7 @@
 #define MAX_FIELDS_X 512
 #define MAX_FIELDS_Y 512
 #include "edge.h"
+#include "game_object.h"
 
 class Field {
 	public:
@@ -22,7 +23,11 @@ class Field {
 		void calcType();
 		int type;		// water, field plane...
 		int getCosts() { return costs; }
+		void setBlocked(GameObject* g) { blockedByObject = g; this->calcType(); }
+		GameObject* blockedBy() { return blockedByObject; }
+		bool blocked() { return blockedByObject != 0; }
 	private:
+		GameObject* blockedByObject;	//0 not blocked, else pointer to object
 		int properties;
 		int costs;
 };
