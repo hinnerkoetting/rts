@@ -18,23 +18,6 @@
 
 /*
  *
- * returns smaller value
- *
- */
-int min(int a, int b) {
-	return a<b?a:b;
-}
-
-/*
- *
- * return bigger value
- *
- */
-int max(int a, int b) {
-	return a<b?b:a;
-}
-/*
- *
  * the spell "increase"
  *
  */
@@ -75,7 +58,9 @@ bool Spells::spDecrease() {
 bool Spells::incEdge(int x, int y) {	 //BUG: if at one position there is an error so higth can't be increased, all fields increased earlier will stay increased
 	using namespace Ingame;
 	if (x > 0 && y > 0 && x < Options::iNumberEdgesX && y < Options::iNumberEdgesY) {// if not at the border of map
-		int heigth = min(fields[x][y].lb->getHeigth(),9);
+		int heigth = fields[x][y].lb->getHeigth();
+		if (heigth > 10)
+			return false;
 		if (fields[x+1][y].lb->getHeigth() < heigth)
 			if (!incEdge(x+1, y))
 				return false;
@@ -114,7 +99,9 @@ bool Spells::incEdge(int x, int y) {	 //BUG: if at one position there is an erro
 bool Spells::decEdge(int x, int y) {
 	using namespace Ingame;
 	if (x > 0 && y > 0 && x < Options::iNumberEdgesX && y < Options::iNumberEdgesY) {// if not at the border of map
-		int heigth = max(fields[x][y].lb->getHeigth(),0);
+		int heigth = fields[x][y].lb->getHeigth();
+		if (heigth <= 0)
+			return false;
 		if (fields[x+1][y].lb->getHeigth() > heigth)
 			if (!decEdge(x+1, y))
 				return false;

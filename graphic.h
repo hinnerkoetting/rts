@@ -29,7 +29,7 @@ class Graphic {
 		static GLuint texture[100];
 		static int nrTextures;
 				static void drawLineStrip(Point P0, Point P1, Point P2, Point P3);
-		
+		static void drawQuad(Point P0, Point P1, Point P2, Point P3);
 		//static void drawEmptyQuad(Point, Point, Point, Point);
 	private:
 		static void loadImage(char* fileName);
@@ -48,7 +48,7 @@ class Graphic {
 		static bool visible(Point);
 		
 		
-		static void drawQuad(Point P0, Point P1, Point P2, Point P3);
+		
 		static void drawPixel(Point P0, float f);
 		static void drawTriangle(Point P0, Point P1, Point P2);		
 		

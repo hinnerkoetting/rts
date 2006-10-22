@@ -10,9 +10,11 @@
 #include "button_value.h"
 #include "graphic_interface.h"
 #include "gra_ingame.h"
+#include "defines.h"
 #include "options.h"
 #include "point.h"
 #include <string>
+
 
 ButtonValue::ButtonValue(float x1, float x2, float y1, float y2, float relX, float relY, void (*f)(int, MenuButton*)) {
 	this->x1 = x1;

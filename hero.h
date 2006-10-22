@@ -11,7 +11,7 @@
 #define HERO_H_DEF
 #include "unit.h"
 #include "spells.h"
-
+//#include "game_object.h"
 class Fireball;
 class Hero : public Unit{
 	private:

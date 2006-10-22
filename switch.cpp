@@ -73,8 +73,8 @@ void Switch::ingame() {
 	glutReshapeFunc(Graphic::changeSize);
 	glutPassiveMotionFunc(Ingame::mouseMove);
 	glutMotionFunc(Ingame::mouseMove);
-	glEnable(GL_LIGHTING);
-	glDisable(GL_LIGHT1);
+	//glEnable(GL_LIGHTING);
+	//glDisable(GL_LIGHT1);
 	
 	
 	

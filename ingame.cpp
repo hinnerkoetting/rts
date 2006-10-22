@@ -45,26 +45,20 @@ double sqr(const double d) {
  *
  */
 void Ingame::draw() {	
-	int time=glutGet(GLUT_ELAPSED_TIME);			
-	Ingame::incTimeHold(time);
-	IngameMenu::calcFPS(time);
-
-	mouse(mouseHold, -1, GraIngame::getMX(), GraIngame::getMY());
-	glLoadIdentity();
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	GraIngame::setCamera();
-	glEnable(GL_SCISSOR_TEST);
-	glEnable(GL_LIGHTING);
-	glDisable(GL_LIGHTING);
-	//glDisable(GL_LIGHTING);
-	GraIngame::drawFields();
-	GraIngame::drawUnits();
-	GraIngame::drawCursor();
 	
-	glDisable(GL_SCISSOR_TEST);
-	IngameMenu::drawMenu();
-	
-	glutSwapBuffers();
+	static int b = 0;
+	if (b <= 1) {
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		GraIngame::setCamera();
+		glEnable(GL_SCISSOR_TEST);		
+		GraIngame::drawFields();
+		GraIngame::drawUnits();
+		GraIngame::drawCursor();
+		glDisable(GL_SCISSOR_TEST);
+		IngameMenu::drawMenu();
+		glutSwapBuffers();
+	}
+	b= (b+1)%Options::iRenderOnlyEveryFrame;
 	glutPostRedisplay();
 }
 
@@ -83,6 +77,12 @@ void Ingame::findPathForAllWorker() {
  * 
  */
 void Ingame::calc() {
+	int time=glutGet(GLUT_ELAPSED_TIME);			
+	Ingame::incTimeHold(time);
+	
+	
+	IngameMenu::calcFPS(time);
+	mouse(mouseHold, -1, GraIngame::getMX(), GraIngame::getMY());
 	moveAllWorker();
 	findPathForAllWorker();
 }

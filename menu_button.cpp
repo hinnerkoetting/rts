@@ -14,6 +14,7 @@
 #include "gra_ingame.h"
 #include <vector>
 #include "options.h"
+#include "defines.h"
 
 
 
