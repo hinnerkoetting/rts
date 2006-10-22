@@ -16,6 +16,7 @@
 #include "worker.h"
 #include "field.h"
 #include "menu_button.h"
+#include "gameressources.h"
 
 
 namespace Ingame
@@ -28,6 +29,7 @@ namespace Ingame
 		void calcFields();
 		void newHeroes(const int);
 		void newUnits(int);
+		void newGoldMines();
 		void menu();
 	}
 
@@ -38,6 +40,7 @@ namespace Ingame
 	extern int iCurYPos;
 	extern std::vector<Hero> Heroes;
 	extern std::vector<Worker> Workers;
+	extern std::vector<Goldmine> goldmines;
 	void moveAllWorker();
 	void findPathForAllWorker();
 	

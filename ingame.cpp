@@ -30,6 +30,7 @@ namespace Ingame {
 	int iCurYPos = 0;
 	std::vector<Hero> Heroes;
 	std::vector<Worker> Workers;
+	std::vector<Goldmine> goldmines;
 	int iFPSCounter = 0;
 	int timeBaseFPS = 0;
 	int timeBaseKeys = 0;
