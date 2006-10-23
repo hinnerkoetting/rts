@@ -56,7 +56,6 @@ void Field::calcType() {
 	}
 	if (this->blocked()) {
 		this->costs = 1048576;
-		//this->costs = 20;
 		return;
 	}
 	if (this->type == FIELD_WATER) {

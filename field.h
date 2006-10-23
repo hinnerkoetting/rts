@@ -25,7 +25,7 @@ class Field {
 		int getCosts() { return costs; }
 		void setBlocked(GameObject* g) { blockedByObject = g; this->calcType(); }
 		GameObject* blockedBy() { return blockedByObject; }
-		bool blocked() { return blockedByObject != 0; }
+		bool blocked() { return (blockedByObject != 0); }
 	private:
 		GameObject* blockedByObject;	//0 not blocked, else pointer to object
 		int properties;
