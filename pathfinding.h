@@ -17,8 +17,9 @@ class Node { // divide world into grid for pathfinding
 		int x;
 		int y;
 		int costs; 
+		int approxCosts;
 		Node* parent;
-		Node(int xPos, int yPos, int c, Node* p) { x = xPos; y = yPos; costs = c; parent = p; }
+		Node(int xPos, int yPos, int c, Node* p) { x = xPos; y = yPos; costs = c; parent = p; approxCosts = 0; }
 };
 
 
@@ -31,17 +32,24 @@ class Pathfinding {
 		
 		
 		bool atDestination(int x, int y, Node*);
-		Node* actual;
+	
 	public:
 		int desX;
 		int desY;
+
+
+		std::list<Node*> getPath() { return path; }
 		std::list<Node*> path;
 		void nextField();
-		std::list<Node*> getPath() { return path; }
 		Node* getNextField() { std::list<Node*>::value_type tmp = *path.begin(); return tmp; }
+		void initPath(int x, int y) { path.clear(); 
+		path.push_front(new Node(x, y, 0,0)); 
+		desX = x; desY = y; }
 		void findPath(int fromX, int fromY);
+		
+		
 		void setDestination(int x, int y);
-		Pathfinding(int x, int y) {desX = x; desY = y; actual = new Node(x, y, 0, 0); }
-		void initPath(int x, int y) { actual = new Node(x, y, 0,0); path.push_back(actual); desX = x; desY = y; }
+		Pathfinding(int x, int y) {desX = x; desY = y; }
+		
 };
 #endif

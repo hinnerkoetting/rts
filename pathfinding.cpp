@@ -47,10 +47,11 @@ Node* Pathfinding::findLowestCosts(std::list<Node*> list, int desX, int desY) {
 	Node* result = 0;
 	for (std::list<Node*>::iterator i = list.begin(); i != list.end(); i++) {
 		std::list<Node*>::value_type tmp = *i;
-		int costs = tmp->costs + (desX - tmp->x) *100+ (desY - tmp->y) * 100; // approx costs
-		if (costs < lowestCosts) {
+		if (tmp->approxCosts == 0)
+			tmp->approxCosts = tmp->costs + abs(desX - tmp->x) *100 + abs(desY - tmp->y) * 100; // approx costs
+		if (tmp->approxCosts < lowestCosts) {
 			result = tmp;
-			lowestCosts = costs;
+			lowestCosts = tmp->approxCosts;
 		}
 	}
 	return result;
@@ -63,7 +64,7 @@ Node* Pathfinding::findLowestCosts(std::list<Node*> list, int desX, int desY) {
 std::list<Node*> Pathfinding::giveOutResult(Node* n, int orX, int orY) {
 	std::list<Node*> res;
 	if (n != 0) {
-		res.push_front(new Node(n->x, n->y, n->costs, 0)); //change direction  of list
+		//res.push_front(new Node(n->x, n->y, n->costs, 0)); //change direction  of list
 		while (n->parent != 0) {
 			
 			res.push_front(new Node(n->x, n->y, n->costs, 0));
@@ -105,6 +106,7 @@ bool Pathfinding::atDestination(int x, int y, Node* n) {
 void Pathfinding::findPath(int orX, int orY) {
 	if (atDestination(desX, desY, getNextField()))		// unit has reached its destination
 		return;
+	Node* actual = new Node(orX, orY, 0,0);
 	std::list<Node*> openList;
 	std::list<Node*> closedList;
 	int x;
@@ -117,33 +119,33 @@ void Pathfinding::findPath(int orX, int orY) {
 		closedList.push_back(actual);
 		openList.remove(actual);
 		if (y < Options::iNumberEdgesY - 1) { // upper field
-				Node* n = new Node(x, y+1, actual->costs + Ingame::fields[x, y+1]->getCosts() * 2, actual);
+				Node* n = new Node(x, y+1, actual->costs + Ingame::fields[x][ y+1].getCosts() * 2, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			
 			if (x < Options::iNumberEdgesX - 1)  {//upperright field
-				Node* n = new Node(x+1, y+1, actual->costs + (Ingame::fields[x+1, y+1]->getCosts()) *3, actual);
+				Node* n = new Node(x+1, y+1, actual->costs + (Ingame::fields[x+1][ y+1].getCosts()) *3, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			}
 			if (x > 0) {							//upperleft
-				Node* n = new Node(x-1, y+1, actual->costs + Ingame::fields[x-1, y+1]->getCosts() * 3, actual);
+				Node* n = new Node(x-1, y+1, actual->costs + Ingame::fields[x-1][ y+1].getCosts() * 3, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			}
 		}
 		if (y > 0) {
-			Node* n = new Node(x, y-1, actual->costs + Ingame::fields[x, y-1]->getCosts() * 2, actual);
+			Node* n = new Node(x, y-1, actual->costs + Ingame::fields[x][ y-1].getCosts() * 2, actual);
 			if (!onList(closedList, n) && !onList(openList, n))
 				openList.push_back(n);
 			
 			if (x < Options::iNumberEdgesX - 1)  {//upperright field
-					Node* n = new Node(x+1, y-1, actual->costs + Ingame::fields[x+1, y-1]->getCosts()*3, actual);
+					Node* n = new Node(x+1, y-1, actual->costs + Ingame::fields[x+1][ y-1].getCosts()*3, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			}
 			if (x > 0) {							//upperleft
-				Node* n = new Node(x-1, y-1, actual->costs + Ingame::fields[x-1, y-1]->getCosts() * 3, actual);
+				Node* n = new Node(x-1, y-1, actual->costs + Ingame::fields[x-1][ y-1].getCosts() * 3, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			}

@@ -9,6 +9,7 @@
 #ifndef GAME_OBJECT_H_DEF
 #define GAME_OBJECT_H_DEF
 #include "mymath.h"
+
 class GameObject {
 	private:
 		int id;
@@ -19,11 +20,12 @@ class GameObject {
 		void changePos(float x, float y) { xPos += (int)(x *getPosConst()); yPos += (int)(y *getPosConst()); }
 		int getExactX() { return xPos; } //just for graphical use
 		int getExactY() { return yPos; }
-		void setPos(int x, int y) { xPos = getPosConst() * x; yPos = y * getPosConst(); }
+		void setPos(int x, int y);
 		void setID(int i) { id = i; }
 		float lenX;
 		float lenY;
 	public:
+		GameObject() { lenX = 1; lenY =  1; }
 		void setLen(float x, float y) { lenX = x; lenY = y; }
 		float getLenX() { return lenX; }
 		float getLenY() { return lenY; }

@@ -127,7 +127,7 @@ void Ingame::Init::createWorld(int x, int y) {
 void Ingame::initGame() {
 	Init::createWorld(Options::iNumberEdgesX, Options::iNumberEdgesY);
 	Init::newHeroes(2);
-	Init::newUnits(3);
+	Init::newUnits(1);
 	Init::newGoldMines();
 	
 	Init::menu();	
