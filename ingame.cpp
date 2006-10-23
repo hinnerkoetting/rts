@@ -68,10 +68,7 @@ void Ingame::moveAllWorker() {
 		Ingame::Workers.at(i).move();
 }
 
-void Ingame::findPathForAllWorker() {
-	for (unsigned i= 0; i < Ingame::Workers.size(); i++)
-		Ingame::Workers.at(i).findPath();
-}
+
 /*
  *
  * computing positions etc.
@@ -85,7 +82,6 @@ void Ingame::calc() {
 	IngameMenu::calcFPS(time);
 	mouse(mouseHold, -1, GraIngame::getMX(), GraIngame::getMY());
 	moveAllWorker();
-	findPathForAllWorker();
 }
 
 

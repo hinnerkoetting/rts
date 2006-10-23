@@ -37,9 +37,10 @@ class Pathfinding {
 		int desX;
 		int desY;
 
-
+		void checkPath(int actualX, int actualY);
 		std::list<Node*> getPath() { return path; }
 		std::list<Node*> path;
+		bool finalFieldOnList(std::list<Node*> list);
 		void nextField();
 		Node* getNextField() { std::list<Node*>::value_type tmp = *path.begin(); return tmp; }
 		void initPath(int x, int y) { path.clear(); 

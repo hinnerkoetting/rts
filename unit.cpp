@@ -54,6 +54,12 @@ void Unit::move() {
 			return;
 		}
 		else {
+			this->pf->checkPath(this->getX(), this->getY());
+			//static int i = 0;
+			/*if (i > 1) {  //check all 2 fields for better path
+				this->goTo(pf->desX, pf->desY);
+				i = 0;
+			}*/
 			std::list<Node*>::value_type actual = *pf->getPath().begin();			
 			std::list<Node*>::value_type next= *(++pf->getPath().begin());
 			if (!Ingame::fields[next->x][next->y].blocked()) {
@@ -62,12 +68,24 @@ void Unit::move() {
 				Ingame::fields[next->x][next->y].setBlocked(this);
 			}
 			else {
-				this->goTo(pf->desX, pf->desY);
+				if (this->getPath().size() == 2)
+					this->getPath().pop_front();
+				else
+					this->goTo(pf->desX, pf->desY);
+				//this->move();
 				return;
 			}
+			//i++;
+
+		} }
+
+	int x = pf->getNextField()->x;
+	int i;
+	if (this->getX() == Ingame::Workers.at(0).getX())
+		if (x == 19) {
+		
+			i = 10;
 		}
-	}
-	
 	int t = glutGet(GLUT_ELAPSED_TIME);
 	int deltaTime = t - this->timeSinceLastMove;
 	
