@@ -42,7 +42,6 @@ namespace Ingame
 	extern std::vector<Worker> Workers;
 	extern std::vector<Goldmine> goldmines;
 	void moveAllWorker();
-	void findPathForAllWorker();
 	
 	void Input();
 	

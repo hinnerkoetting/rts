@@ -30,13 +30,24 @@ bool Pathfinding::onList(std::list<Node*> list, Node* node) {
 	return -x;
 }*/
 
-
+bool Pathfinding::finalFieldOnList(std::list<Node*> list) {
+	for (std::list<Node*>::iterator i = list.begin(); i != list.end(); i++) {
+		std::list<Node*>::value_type tmp = *i;
+		if (tmp->x == this->desX && tmp->y == this->desY)
+			return true;
+	}
+	return false;
+}
 
 int sqr(int i) {
 	return i * i;
 }
 
-
+int min(int a, int b) {
+	if ( a < b)
+		return a;
+	return b;
+}
 /*
  *
  * looks for node with estimated lowest costs to destination
@@ -48,7 +59,7 @@ Node* Pathfinding::findLowestCosts(std::list<Node*> list, int desX, int desY) {
 	for (std::list<Node*>::iterator i = list.begin(); i != list.end(); i++) {
 		std::list<Node*>::value_type tmp = *i;
 		if (tmp->approxCosts == 0)
-			tmp->approxCosts = tmp->costs + abs(desX - tmp->x) *100 + abs(desY - tmp->y) * 100; // approx costs
+			tmp->approxCosts = tmp->costs + abs(desX - tmp->x) *60 + abs(desY - tmp->y) * 60;
 		if (tmp->approxCosts < lowestCosts) {
 			result = tmp;
 			lowestCosts = tmp->approxCosts;
@@ -75,15 +86,7 @@ std::list<Node*> Pathfinding::giveOutResult(Node* n, int orX, int orY) {
 		res.push_back(new Node(orX, orY, 0, 0));
 		return res;
 	}
-	/*if (res->next != 0)
-		if (((orX - res->x) * (orX - res->next->x) < 0) || ((orY - res->y) * (orY - res->next->y)) < 0)	//first field is whrong direction
-		{
-			Node* tmp = res;
-			res =res->next;
-			res->parent = 0;
-			delete(tmp);
-		}*/
-	//Node* res = 0;
+	res.push_front(new Node(orX, orY, 0, 0));
 	return res;
 	
 }
@@ -98,6 +101,34 @@ bool Pathfinding::atDestination(int x, int y, Node* n) {
 		return true;
 	return false;
 }
+
+/*
+ *
+ * checks next 2 fields for barriers
+ *
+ */
+void Pathfinding::checkPath(int actX, int actY) {
+	if (this->getPath().size() > 2) { 
+		//std::list<Node*>::iterator i = getPath().begin(); // dont know why, but it doesnt work with an iterator
+		std::list<Node*>::value_type actual = *(++getPath().begin());	// its a little ugly, but shouldnt matter
+		std::list<Node*>::value_type next = *(++(++getPath().begin()));
+		int deltaX1 = actX - actual->x;
+		int deltaY1 = actY - actual->y;
+		int deltaX2 = actual->x - next->x;
+		int deltaY2 = actual->y - next->y;
+		int tmp = abs(deltaX1 * deltaX2) + abs(deltaY1 * deltaY2);
+		if (tmp == 1)   { //actual position and next two fields are not "in a line"
+			int a = 0;
+			if (!Ingame::fields[actual->x][actual->y].blocked()) {
+				int x = actual->x;
+				int y = actual->y;
+				this->path.pop_front();
+				this->path.push_front(new Node(x, y, 0,0));
+			}
+		}
+	}
+}
+
 /* 
  *
  * returns a list of nodes from original position to destination
@@ -107,6 +138,8 @@ void Pathfinding::findPath(int orX, int orY) {
 	if (atDestination(desX, desY, getNextField()))		// unit has reached its destination
 		return;
 	Node* actual = new Node(orX, orY, 0,0);
+	if (actual == 0) // dont know why but sometimes actual isnt created, so this is checked to avoid errors
+		return;
 	std::list<Node*> openList;
 	std::list<Node*> closedList;
 	int x;
@@ -114,6 +147,8 @@ void Pathfinding::findPath(int orX, int orY) {
 	int counter = 0;
 	openList.push_front(actual);
 	while (openList.size() != 0 && (abs(actual->x - desX) >= 1|| abs(actual->y-desY)>= 1) && counter < 100) { // openlist not empty and not at destinaton
+		if (finalFieldOnList(openList))
+			break;;
 		x = actual->x;
 		y = actual->y;
 		closedList.push_back(actual);
@@ -123,16 +158,12 @@ void Pathfinding::findPath(int orX, int orY) {
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			
-			if (x < Options::iNumberEdgesX - 1)  {//upperright field
-				Node* n = new Node(x+1, y+1, actual->costs + (Ingame::fields[x+1][ y+1].getCosts()) *3, actual);
-				if (!onList(closedList, n) && !onList(openList, n))
-					openList.push_back(n);
-			}
 			if (x > 0) {							//upperleft
 				Node* n = new Node(x-1, y+1, actual->costs + Ingame::fields[x-1][ y+1].getCosts() * 3, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			}
+			
 		}
 		if (y > 0) {
 			Node* n = new Node(x, y-1, actual->costs + Ingame::fields[x][ y-1].getCosts() * 2, actual);
@@ -149,16 +180,22 @@ void Pathfinding::findPath(int orX, int orY) {
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			}
+			
 		}
+		if (x < Options::iNumberEdgesX - 1 && y < Options::iNumberEdgesY - 1)  {//upperright field // this is supposed to be not in upper if (else units would cross their way)
+				Node* n = new Node(x+1, y+1, actual->costs + (Ingame::fields[x+1][ y+1].getCosts()) *3, actual);
+				if (!onList(closedList, n) && !onList(openList, n))
+					openList.push_back(n);
+			}
 		
 		if (x > 0) {
 
-				Node* n = new Node(x-1, y, actual->costs + Ingame::fields[x-1, y]->getCosts()*2, actual);
+				Node* n = new Node(x-1, y, actual->costs + Ingame::fields[x-1][ y].getCosts()*2, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			}
 		if (x < Options::iNumberEdgesX) { 
-				Node* n = new Node(x+1, y, actual->costs + Ingame::fields[x+1, y]->getCosts()*2, actual);
+				Node* n = new Node(x+1, y, actual->costs + Ingame::fields[x+1][ y].getCosts()*2, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			}

@@ -154,8 +154,12 @@ void Ingame::Init::newHeroes(const int iNumber) {
  *
  */
 void Ingame::Init::newUnits(int number) {
+	
 	for (int i = 0; i < number; i++) 
 		Ingame::Workers.push_back(Worker(10 + i , 10 + i));
+	Ingame::Workers.push_back(Worker(11,15));
+	Ingame::Workers.push_back(Worker(20,15));
+	Ingame::Workers.push_back(Worker(2, 2));
 
 }
 
