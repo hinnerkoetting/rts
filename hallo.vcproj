@@ -430,6 +430,10 @@
 					RelativePath=".\pathfinding.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\village.cpp"
+					>
+				</File>
 				<Filter
 					Name="Menu"
 					>

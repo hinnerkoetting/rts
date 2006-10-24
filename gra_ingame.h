@@ -23,6 +23,7 @@ class GraIngame {
 		static int whichClicked(bool bX);
 		static void drawFields();
 		static void drawUnits();
+		static void drawPartys();
 		static float getLength() { return fieldLength; }
 		static float getHeigth() { return fieldHeigth; }
 		static float getX() { return xPos; }

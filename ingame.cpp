@@ -56,6 +56,7 @@ void Ingame::draw() {
 		GraIngame::drawFields();
 		GraIngame::drawUnits();
 		GraIngame::drawCursor();
+		GraIngame::drawPartys();
 		glDisable(GL_SCISSOR_TEST);
 		IngameMenu::drawMenu();
 		glutSwapBuffers();
