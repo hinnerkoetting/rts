@@ -18,6 +18,7 @@
 #include "unit.h"
 #include "hero.h"
 #include "mymath.h"
+#include "party.h"
 
 float GraIngame::xPos = 0.0f;
 float GraIngame::yPos = 0.0f;
@@ -111,6 +112,17 @@ void GraIngame::drawCursor() {
 	Graphic::drawPixel(Point(x, y, 0.0f, 1.0f), 5.0f);
 }
 
+/* 
+ *
+ * draw partys
+ *
+ */
+void GraIngame::drawPartys() {
+	for (std::vector<Party>::iterator i = Ingame::partys.begin(); i != Ingame::partys.end(); i++) {
+		std::vector<Party>::value_type tmp = *i;
+		tmp.draw();
+	}
+}
 /*
  *
  * moves map

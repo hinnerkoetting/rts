@@ -126,9 +126,14 @@ void Ingame::Init::createWorld(int x, int y) {
  *
  */
 void Ingame::Init::newPartys(int number) {
-	for (int i = 0; i < number; i++)
-		Ingame::partys.push_back(Party());
+	std::vector<Party> p;
+	for (int i = 0; i < number; i++) {
+		p.push_back(Party());
+		p.at(p.size() -1 ).addVillage(new Village(10, 10));
+	}
+	Ingame::partys = p;
 }
+
 /* 
  *
  * creates villages
@@ -136,11 +141,11 @@ void Ingame::Init::newPartys(int number) {
  */
 
 void Ingame::Init::newVillages() {
-	std::vector<Party>* p = &Ingame::partys;
-	for (std::vector<Party>::iterator i = p->begin(); i != p->end(); i++) {
+	/*
+	for (std::vector<Party>::iterator i = Ingame::partys.begin(); i != Ingame::partys.end(); i++) {
 		std::vector<Party>::value_type tmp = *i;
 		tmp.addVillage(new Village(10, 10));
-	}
+	}*/
 }
 
 

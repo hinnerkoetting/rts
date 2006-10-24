@@ -32,6 +32,7 @@ class Party{
 	public:
 		void addVillage(Village*);
 		Party() { id = ++number; }
+		void draw();
 	
 
 

@@ -7,10 +7,6 @@
 #include "gameressources.h"
 class Village{ //vielleicht einiges in die cpp verschieben
 	int belongTo;
-	public:
-		Village(int x, int y) { /*hq = new HeadQuarter(x, y, this->belongTo);*/}
-		//~Village() {delete hq; }
-		void setBelongTo(int id) { belongTo = id; }
 	std::vector <Unit*> units;
 
 	//Goldmine* mine;
@@ -50,6 +46,12 @@ class Village{ //vielleicht einiges in die cpp verschieben
 	void orderAttackerToIdle();
 	
 	void moveAttackersToOtherVillage(Village goal);
+	public:
+		Village(int x, int y) { hq = new HeadQuarter(x, y, this->belongTo);}
+		//~Village() {delete hq; }
+		void setBelongTo(int id) { belongTo = id; }
+		void draw();
+	
 
 
 
