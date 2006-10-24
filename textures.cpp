@@ -13,9 +13,11 @@
 #include <gl\glaux.h>  
 #include "devil/include/IL/il.h"
 #include "devil/include/IL/ilut.h"
+#include "util.h"
+#include "defines.h"
 
 
-GLuint Graphic::texture[100];
+Tex Graphic::texture[100];
 int Graphic::nrTextures = 0;
 
 void Graphic::bindImage() {
@@ -24,7 +26,10 @@ void Graphic::bindImage() {
 	ilBindImage(ImageName);
 }
 
-void Graphic::loadImage(char* filename) {
+void Graphic::loadImage(char* filename, int id) {
+	if (id <= FIELD_PLAIN)
+		log::log("Fehler beim Laden eines Bildes. ID ist zu klein.");
 	ilLoadImage(filename);
-	Graphic::texture[Graphic::nrTextures++] = ilutGLBindTexImage();
+	Graphic::texture[nrTextures].texture = ilutGLBindTexImage();
+	Graphic::texture[nrTextures++].id = id;
 }

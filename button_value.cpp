@@ -16,7 +16,7 @@
 #include <string>
 
 
-ButtonValue::ButtonValue(float x1, float x2, float y1, float y2, float relX, float relY, void (*f)(int, MenuButton*)) {
+ButtonValue::ButtonValue(float x1, float x2, float y1, float y2, float relX, float relY, void (*f)(int, MenuButton*), int id) {
 	this->x1 = x1;
 	this->x2 = x2;
 	this->y1 = y1;
@@ -24,13 +24,13 @@ ButtonValue::ButtonValue(float x1, float x2, float y1, float y2, float relX, flo
 	this->relativeX = relX;
 	this->relativeY = relY;
 	this->function = f;
-	this->id = counter++;
 	this->value = 0;
+	this->id = id;
 }
 
 void ButtonValue::draw() {
 	float wid = GraIngame::getMenuWidth();
-	GraphicInterface::drawObjectMenu(BUTTON_HOUSE_ID + id, x1 * Options::ResolutionX/wid, y1 *  Options::ResolutionY, (x2-x1)* Options::ResolutionX/wid, (y2-y1) * Options::ResolutionY);
+	GraphicInterface::drawObjectMenu(id, x1 * Options::ResolutionX/wid, y1 *  Options::ResolutionY, (x2-x1)* Options::ResolutionX/wid, (y2-y1) * Options::ResolutionY);
 	char buf[6];
 	_itoa_s(this->value, buf, 6, 10);
 	GraphicInterface::drastring2d(x1+relativeX, y1+relativeY, GLUT_BITMAP_TIMES_ROMAN_24, buf);

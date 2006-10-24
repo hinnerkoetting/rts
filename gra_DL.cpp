@@ -27,7 +27,7 @@ void GraIngame::drawBorders() {
 }
 
 void GraIngame::createDLFields() {
-	GLuint start = glGenLists(17);
+	GLuint start = glGenLists(100);
 	float r = 0.2f;										// create DL of a water field
 	float g = 0.05f;
 	float b = 1.0f;
@@ -199,21 +199,17 @@ void GraIngame::createDLFields() {
 }
 
 void GraIngame::createDLImages() {
-	int start = glGenLists(1+Graphic::nrTextures);
+	
 	Point P0 = Point(0.0f, 0.0f, 0, 1.0f, 1.0f, 1.0f);
 	Point P1 = Point(1.0f, 0.0f, 0, 1.0f, 1.0f, 1.0f);
 	Point P2 = Point(1.0f, 1.0f, 0, 1.0f, 1.0f, 1.0f);
 	Point P3 = Point(0, 1.0f, 0, 1.0f, 1.0f, 1.0f);
-	glNewList(start, GL_COMPILE);
+	glNewList(18, GL_COMPILE);
 		Graphic::drawLineStrip(P0, P1, P2, P3);
 	glEndList();
 	for (int i = 0; i < Graphic::nrTextures; i++) {
-		glNewList(start + i + 1, GL_COMPILE);
-		//Graphic::drawLine2D(P0, P1);
-		//Graphic::drawLine2D(P1, P2);
-		//Graphic::drawLine2D(P2, P3);
-		//Graphic::drawLine2D(P3, P0);
-		glBindTexture(GL_TEXTURE_2D, Graphic::texture[i]);
+		glNewList(Graphic::texture[i].id, GL_COMPILE);
+		glBindTexture(GL_TEXTURE_2D, Graphic::texture[i].texture);
 		glEnable(GL_BLEND);
 		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		Graphic::drawQuad(	P0, P1, P2, P3);

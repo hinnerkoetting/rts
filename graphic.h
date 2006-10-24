@@ -16,7 +16,10 @@
 
 #ifndef DEF_GRAPHIK_H
 #define DEF_GRAPHIK_H
-
+struct Tex {
+	GLuint texture;
+	int id;
+};
 class Graphic {
 	friend class GraIngame;
 	friend class IngameMenu;
@@ -26,13 +29,13 @@ class Graphic {
 		static void changeSize(int w, int h);	
 		static float rasterPos(bool bX);
 		static void Graphic::resolution(char c[16]);	
-		static GLuint texture[100];
+		static Tex texture[100];
 		static int nrTextures;
 				static void drawLineStrip(Point P0, Point P1, Point P2, Point P3);
 		static void drawQuad(Point P0, Point P1, Point P2, Point P3);
 		//static void drawEmptyQuad(Point, Point, Point, Point);
 	private:
-		static void loadImage(char* fileName);
+		static void loadImage(char* fileName, int id);
 		static void bindImage();
 		static void drawLine3D(Point P0, Point P1);
 		static void drawLine2D(Point P0, Point P1);

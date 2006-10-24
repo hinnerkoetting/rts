@@ -16,6 +16,7 @@
 #include "menue.h"
 #include "button_value.h"
 #include "party.h"
+#include "defines.h"
 //test
 /*
  *
@@ -207,8 +208,8 @@ void Ingame::Init::menu() {
 	int resY = Options::ResolutionY;
 	float wid = GraIngame::getMenuWidth();
 	vector <MenuButton*> menue;
-	MenuButton* m1 = new ButtonValue(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, &ButtonValue::click);
-	MenuButton* m2 = new ButtonValue(0.05	, 0.1	, 0.1, 0.15, 0.02, 0.08, &ButtonValue::click);
+	MenuButton* m1 = new ButtonValue(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, &ButtonValue::click, BUTTON_ATTACK_ID);
+	MenuButton* m2 = new ButtonValue(0.05	, 0.1	, 0.1, 0.15, 0.02, 0.08, &ButtonValue::click, BUTTON_HOUSE_ID);
 	menue.push_back(m1);
 	menue.push_back(m2);
 	Menu::setMenuList(menue);
