@@ -13,29 +13,30 @@
 #include "unit.h"
 #include "refcnt_ptr.h"
 #include "gameressources.h"
-
+#include "village.h"
 
 
 class Party{
-
-	
-	bool computerplayer;
-	std::string name;
-	
+	private:
+		static int number;
+		int id;
+		bool computerplayer;
+		std::string name;
+		std::vector<Village*> villages;
 
 	//first we have two ressources: Gold  and wood
 	//int amountOfGold;
 	//int amountOfWood; now in the village
 
 	//a Party mainly consists of villages it controls
-	std::vector<Village> villages;
-
+	public:
+		void addVillage(Village*);
+		Party() { id = ++number; }
 	
 
 
-		typedef  refcnt_ptr<Unit> sm_unit;	//smart pointer to Unit 
-	//Smart Pointer care for destructing of elements. I hope this works
-	std::vector <sm_unit> units;
+	
+	std::vector <Unit*> units;
 
 };
 

@@ -17,7 +17,7 @@ class Worker : public Unit {
 
 	public: 
 		void draw();
-		Worker(int x, int y) { setPos(x,y); timeSinceLastMove = 0; speed = 100; pf->initPath(x,y); setID(UNIT_WORKER_ID);}
+		Worker(int x, int y) { setPos(x,y); timeSinceLastMove = 0; speed = 100; pf->initPath(x,y); setID(UNIT_WORKER_ID); this->setLen(1, 1); }
 		void think();
 		void setNewGoal(int goal);
 

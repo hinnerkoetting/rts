@@ -14,7 +14,7 @@
 #include "options.h"
 #include "point.h"
 
-void GraphicInterface::drawObjectGame(int dlIndex, float x, float y, float lenX, float lenY) {
+void GraphicInterface::drawObjectGame(int dlIndex, float x, float y, int lenX, int lenY) {
 	glPushMatrix();
 		float len = GraIngame::getLength();
 		float hig = GraIngame::getHeigth();
@@ -24,11 +24,11 @@ void GraphicInterface::drawObjectGame(int dlIndex, float x, float y, float lenX,
 	glPopMatrix();
 }
 
-void GraphicInterface::drawObjectMenu(int dlIndex, float x, float y, float lenX, float lenY) {
+void GraphicInterface::drawObjectMenu(int dlIndex, float x, float y, int lenX, int lenY) {
 	glPushMatrix();
 
 		glTranslatef(x , y , 0);
-		glScalef(lenX , lenY, 0);
+		glScalef((float)lenX , (float)lenY, 0);
 		glCallList(dlIndex);
 	glPopMatrix();
 }

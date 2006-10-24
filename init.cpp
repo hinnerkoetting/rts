@@ -15,6 +15,7 @@
 #include <vector>
 #include "menue.h"
 #include "button_value.h"
+#include "party.h"
 //test
 /*
  *
@@ -118,6 +119,29 @@ void Ingame::Init::createWorld(int x, int y) {
 	calcFields();
 }
 
+/* 
+ *
+ * creates partys
+ *
+ */
+void Ingame::Init::newPartys(int number) {
+	for (int i = 0; i < number; i++)
+		Ingame::partys.push_back(Party());
+}
+/* 
+ *
+ * creates villages
+ *
+ */
+
+void Ingame::Init::newVillages() {
+	std::vector<Party>* p = &Ingame::partys;
+	for (std::vector<Party>::iterator i = p->begin(); i != p->end(); i++) {
+		std::vector<Party>::value_type tmp = *i;
+		tmp.addVillage(new Village(10, 10));
+	}
+}
+
 
 /*
  *
@@ -126,10 +150,11 @@ void Ingame::Init::createWorld(int x, int y) {
  */
 void Ingame::initGame() {
 	Init::createWorld(Options::iNumberEdgesX, Options::iNumberEdgesY);
+	Init::newPartys(1);
 	Init::newHeroes(2);
 	Init::newUnits(1);
 	Init::newGoldMines();
-	
+	Init::newVillages();
 	Init::menu();	
 
 	
@@ -161,9 +186,7 @@ void Ingame::Init::newUnits(int number) {
 	Ingame::Workers.push_back(Worker(20,15));
 	Ingame::Workers.push_back(Worker(2, 2));
 
-}
-
-/**
+}/**
  * create some goldmines
  */
 void Ingame::Init::newGoldMines() {	
