@@ -47,7 +47,7 @@ class Village{ //vielleicht einiges in die cpp verschieben
 	
 	void moveAttackersToOtherVillage(Village goal);
 	public:
-		Village(int x, int y) { hq = new HeadQuarter(x, y, this->belongTo);}
+		Village(int x, int y);
 		//~Village() {delete hq; }
 		void setBelongTo(int id) { belongTo = id; }
 		void draw();

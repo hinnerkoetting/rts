@@ -19,8 +19,11 @@ void GraIngame::loadImages() {
 	ilutRenderer(ILUT_OPENGL);
 	Graphic::loadImage("data/att.gif",BUTTON_ATTACK_ID);
 	Graphic::loadImage("data/house.gif", BUTTON_HOUSE_ID);
+	Graphic::loadImage("data/goldmine_button.jpg", BUTTON_GOLDMINE_ID);
+
 	Graphic::loadImage("data/worker2.gif", WORKER_ID);
 	Graphic::loadImage("data/goldmine.bmp", GOLDMINE_ID);
 	Graphic::loadImage("data/village.jpg", VILLAGE_ID);
 	Graphic::loadImage("data/headquarter.gif", HEADQUARTER_ID);
+	
 }

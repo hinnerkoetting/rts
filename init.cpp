@@ -215,8 +215,10 @@ void Ingame::Init::menu() {
 	vector <MenuButton*> menue;
 	MenuButton* m1 = new ButtonValue(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, &ButtonValue::click, BUTTON_ATTACK_ID);
 	MenuButton* m2 = new ButtonValue(0.05	, 0.1	, 0.1, 0.15, 0.02, 0.08, &ButtonValue::click, BUTTON_HOUSE_ID);
+	MenuButton* m3 = new ButtonValue(0		, 0.1	, 0.2, 0.25, 0.02, 0.08, &ButtonValue::click, BUTTON_GOLDMINE_ID);
 	menue.push_back(m1);
 	menue.push_back(m2);
+	menue.push_back(m3);
 	Menu::setMenuList(menue);
 	
 }
