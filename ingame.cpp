@@ -28,6 +28,7 @@ namespace Ingame {
 	
 	int iCurXPos = 0;	//map position
 	int iCurYPos = 0;
+	std::vector<Party> partys;
 	std::vector<Hero> Heroes;
 	std::vector<Worker> Workers;
 	std::vector<Goldmine> goldmines;

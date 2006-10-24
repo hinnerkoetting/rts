@@ -17,7 +17,7 @@
 #include "field.h"
 #include "menu_button.h"
 #include "gameressources.h"
-
+#include "party.h"
 
 namespace Ingame
 { 
@@ -30,6 +30,8 @@ namespace Ingame
 		void newHeroes(const int);
 		void newUnits(int);
 		void newGoldMines();
+		void newVillages();
+		void newPartys(int);
 		void menu();
 	}
 
@@ -38,6 +40,7 @@ namespace Ingame
 	void calc();
 	extern int iCurXPos;
 	extern int iCurYPos;
+	extern std::vector<Party> partys;
 	extern std::vector<Hero> Heroes;
 	extern std::vector<Worker> Workers;
 	extern std::vector<Goldmine> goldmines;

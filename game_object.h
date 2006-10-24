@@ -13,6 +13,7 @@
 class GameObject {
 	private:
 		int id;
+		
 	protected:
 		int xPos;
 		int yPos;
@@ -20,15 +21,17 @@ class GameObject {
 		void changePos(float x, float y) { xPos += (int)(x *getPosConst()); yPos += (int)(y *getPosConst()); }
 		int getExactX() { return xPos; } //just for graphical use
 		int getExactY() { return yPos; }
-		void setPos(int x, int y);
+		
 		void setID(int i) { id = i; }
-		float lenX;
-		float lenY;
+		int lenX; 
+		int lenY;
+		void setPos(int x, int y);
 	public:
-		GameObject() { lenX = 1; lenY =  1; }
-		void setLen(float x, float y) { lenX = x; lenY = y; }
-		float getLenX() { return lenX; }
-		float getLenY() { return lenY; }
+		
+		GameObject() { }
+		void setLen(int x, int y) { lenX = x; lenY = y; }
+		int getLenX() { return lenX; }
+		int getLenY() { return lenY; }
 		virtual void draw() = 0;
 		int getID() { return id; }
 		static int getPosConst() { return 10000; }

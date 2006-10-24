@@ -423,6 +423,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\party.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\pathfinding.cpp"
 					>
 				</File>
@@ -519,44 +523,52 @@
 					</File>
 				</Filter>
 				<Filter
-					Name="units"
+					Name="Objects"
 					>
-					<File
-						RelativePath=".\gameobject.cpp"
+					<Filter
+						Name="units"
 						>
-					</File>
-					<File
-						RelativePath="hero.cpp"
-						>
-						<FileConfiguration
-							Name="Debug|Win32"
+						<File
+							RelativePath=".\gameobject.cpp"
 							>
-							<Tool
-								Name="VCCLCompilerTool"
-								PreprocessorDefinitions=""
-							/>
-						</FileConfiguration>
-						<FileConfiguration
-							Name="Release|Win32"
+						</File>
+						<File
+							RelativePath="hero.cpp"
 							>
-							<Tool
-								Name="VCCLCompilerTool"
-								PreprocessorDefinitions=""
-							/>
-						</FileConfiguration>
-					</File>
-					<File
-						RelativePath=".\party.cpp"
+							<FileConfiguration
+								Name="Debug|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									PreprocessorDefinitions=""
+								/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32"
+								>
+								<Tool
+									Name="VCCLCompilerTool"
+									PreprocessorDefinitions=""
+								/>
+							</FileConfiguration>
+						</File>
+						<File
+							RelativePath=".\unit.cpp"
+							>
+						</File>
+						<File
+							RelativePath=".\worker.cpp"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="Buildings"
 						>
-					</File>
-					<File
-						RelativePath=".\unit.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\worker.cpp"
-						>
-					</File>
+						<File
+							RelativePath=".\headquarter.cpp"
+							>
+						</File>
+					</Filter>
 				</Filter>
 			</Filter>
 			<Filter
@@ -593,10 +605,6 @@
 				>
 			</File>
 			<File
-				RelativePath="fireball.h"
-				>
-			</File>
-			<File
 				RelativePath="ingame.h"
 				>
 			</File>
@@ -617,37 +625,9 @@
 				>
 			</File>
 			<File
-				RelativePath="spells.h"
-				>
-			</File>
-			<File
 				RelativePath=".\switch.h"
 				>
 			</File>
-			<Filter
-				Name="Graphic"
-				>
-				<File
-					RelativePath=".\gra_ingame.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphic.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphic_interface.h"
-					>
-				</File>
-				<File
-					RelativePath=".\ingame_menu.h"
-					>
-				</File>
-				<File
-					RelativePath=".\point.h"
-					>
-				</File>
-			</Filter>
 			<Filter
 				Name="Input"
 				>
@@ -712,22 +692,6 @@
 				Name="Game"
 				>
 				<File
-					RelativePath=".\game_object.h"
-					>
-				</File>
-				<File
-					RelativePath=".\gameressources.h"
-					>
-				</File>
-				<File
-					RelativePath=".\graphical_entity.h"
-					>
-				</File>
-				<File
-					RelativePath="hero.h"
-					>
-				</File>
-				<File
 					RelativePath=".\party.h"
 					>
 				</File>
@@ -736,11 +700,87 @@
 					>
 				</File>
 				<File
-					RelativePath=".\unit.h"
+					RelativePath=".\village.h"
+					>
+				</File>
+				<Filter
+					Name="Objects"
+					>
+					<Filter
+						Name="Units"
+						>
+						<File
+							RelativePath=".\game_object.h"
+							>
+						</File>
+						<File
+							RelativePath="hero.h"
+							>
+						</File>
+						<File
+							RelativePath=".\unit.h"
+							>
+						</File>
+						<File
+							RelativePath=".\worker.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="Ressources"
+						>
+						<File
+							RelativePath=".\gameressources.h"
+							>
+						</File>
+					</Filter>
+					<Filter
+						Name="Buildings"
+						>
+						<File
+							RelativePath=".\building.h"
+							>
+						</File>
+						<File
+							RelativePath=".\headquarter.h"
+							>
+						</File>
+					</Filter>
+				</Filter>
+				<Filter
+					Name="Spells"
+					>
+					<File
+						RelativePath="fireball.h"
+						>
+					</File>
+					<File
+						RelativePath="spells.h"
+						>
+					</File>
+				</Filter>
+			</Filter>
+			<Filter
+				Name="Graphic"
+				>
+				<File
+					RelativePath=".\gra_ingame.h"
 					>
 				</File>
 				<File
-					RelativePath=".\worker.h"
+					RelativePath=".\graphic.h"
+					>
+				</File>
+				<File
+					RelativePath=".\graphic_interface.h"
+					>
+				</File>
+				<File
+					RelativePath=".\ingame_menu.h"
+					>
+				</File>
+				<File
+					RelativePath=".\point.h"
 					>
 				</File>
 			</Filter>
