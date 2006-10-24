@@ -12,7 +12,6 @@
 
 class MenuButton {
 	protected:
-		static int counter;
 		float x1;			// window coordinates
 		float x2;
 		float y1;
@@ -24,7 +23,7 @@ class MenuButton {
 			
 	public:
 		int value;
-		MenuButton(float x1, float x2, float y1, float y2, void (*function)(int,MenuButton*));
+		MenuButton(float x1, float x2, float y1, float y2, void (*function)(int,MenuButton*), int id);
 		MenuButton() { };
 		void (*function)(int button, MenuButton*);		// what to do on mouseclick
 		virtual void draw();

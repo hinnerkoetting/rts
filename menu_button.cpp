@@ -20,15 +20,14 @@
 
 
 
-int MenuButton::counter = 0 ;
-MenuButton::MenuButton(float x1, float x2, float y1, float y2, void (*function)(int, MenuButton*)) {
+MenuButton::MenuButton(float x1, float x2, float y1, float y2, void (*function)(int, MenuButton*), int id) {
 	
 	this->x1 = x1;
 	this->x2 = x2;
 	this->y1 = y1;
 	this->y2 = y2;
 	this->function = function;
-	this->id = counter++;
+	this->id = id;
 }
 
 /*
@@ -38,7 +37,7 @@ MenuButton::MenuButton(float x1, float x2, float y1, float y2, void (*function)(
  */
 void MenuButton::draw() {
 	float wid = GraIngame::getMenuWidth();
-	GraphicInterface::drawObjectMenu(BUTTON_HOUSE_ID + id, x1 * Options::ResolutionX/wid, y1 *  Options::ResolutionY, (x2-x1)* Options::ResolutionX/wid, (y2-y1) * Options::ResolutionY);
+	GraphicInterface::drawObjectMenu(id, x1 * Options::ResolutionX/wid, y1 *  Options::ResolutionY, (x2-x1)* Options::ResolutionX/wid, (y2-y1) * Options::ResolutionY);
 	drawBorders();
 }
 
