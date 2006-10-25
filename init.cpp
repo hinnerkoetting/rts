@@ -113,11 +113,6 @@ void Init::newPartys(int number) {
  */
 
 void Init::newVillages() {
-	/*
-	for (std::vector<Party>::iterator i = Ingame::partys.begin(); i != Ingame::partys.end(); i++) {
-		std::vector<Party>::value_type tmp = *i;
-		tmp.addVillage(new Village(10, 10));
-	}*/
 }
 
 
@@ -126,9 +121,9 @@ void Init::newVillages() {
 void Init::start() {
 	Init::createWorld(Options::iNumberEdgesX, Options::iNumberEdgesY);
 	Init::newPartys(1);
-	//Init::newHeroes(2);
-	//Init::newUnits(1);
-	//Init::newGoldMines();
+	Init::newHeroes(2);
+	Init::newUnits(1);
+	Init::newGoldMines();
 	Init::newVillages();
 	Init::menu();	
 }
@@ -151,19 +146,14 @@ void Init::newHeroes(const int iNumber) {
  *
  */
 void Init::newUnits(int number) {
-	
-	for (int i = 0; i < number; i++) 
-		Ingame::Workers.push_back(Worker(10 + i , 10 + i));
-	Ingame::Workers.push_back(Worker(11,15));
-	Ingame::Workers.push_back(Worker(20,15));
-	Ingame::Workers.push_back(Worker(2, 2));
 
-}/**
+
+}
+/*
+ *
  * create some goldmines
  */
 void Init::newGoldMines() {	
-		Ingame::goldmines.push_back(Goldmine(15, 20));
-		Ingame::goldmines.push_back(Goldmine(35, 40));
 
 }
 

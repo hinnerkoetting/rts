@@ -533,13 +533,13 @@
 				<Filter
 					Name="Objects"
 					>
+					<File
+						RelativePath=".\gameobject.cpp"
+						>
+					</File>
 					<Filter
 						Name="units"
 						>
-						<File
-							RelativePath=".\gameobject.cpp"
-							>
-						</File>
 						<File
 							RelativePath="hero.cpp"
 							>

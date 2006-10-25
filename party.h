@@ -32,11 +32,12 @@ class Party{
 	public:
 		void addVillage(Village*);
 		Party() { id = ++number; }
+		Village* getVillage(int nr) { if ((unsigned)nr < villages.size()) return villages.at(nr); return 0; }
+		int nrVillages() { return villages.size(); }
 		void draw();
-		Village* getVillage(int nr) { if ((unsigned)nr < villages.size()) return villages.at(nr); }
-		static Village* getVillage(int party, int village); // not lucky about this but otherwise u cant create pointer to instantiated villages
-
-
+		static Party* getParty(int nr);
+		void calc(); //calculating ressources, units movement...
+		
 	
 	
 
