@@ -805,6 +805,14 @@
 				</File>
 			</Filter>
 		</Filter>
+		<Filter
+			Name="calculation"
+			>
+			<File
+				RelativePath=".\calculation.h"
+				>
+			</File>
+		</Filter>
 	</Files>
 	<Globals>
 	</Globals>

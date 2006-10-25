@@ -36,11 +36,11 @@ class Village{ //vielleicht einiges in die cpp verschieben
 		int cur_defenders;
 		int cur_attackers;
 
-		//players wish
-		int wish_goldminingUnits;
-		int wish_idleWorkers;
-		int wish_defenders;
-		int wish_attackers;
+		//players wish  (not needed anymore?)
+		//int wish_goldminingUnits;
+		//int wish_idleWorkers;
+		//int wish_defenders;
+		//int wish_attackers;
 
 		void orderIdleToGoldMiner();
 		void orderIdleToDefender();
@@ -58,10 +58,10 @@ class Village{ //vielleicht einiges in die cpp verschieben
 		void addUnit(int x, int y);
 
 		//get units
-		int getAllUnits() { return allUnits.size(); }
-		int getIdleUnits() { return idleUnits.size(); }
-		int getSoldiers() { return soldiers.size(); }
-		int getGoldMiner() { return goldMiner.size(); }
+		int getNrOfAllUnits() { return allUnits.size(); }
+		int getNrOfIdleUnits() { return idleUnits.size(); }
+		int getNrOfSoldiers() { return soldiers.size(); }
+		int getNrOfGoldMiner() { return goldMiner.size(); }
 
 		//inc units
 		void incAllUnits(int number);

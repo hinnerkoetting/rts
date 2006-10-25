@@ -13,10 +13,10 @@ Village::Village(int x, int y){
 	addUnit(15, 13);
 	addUnit(15, 9);
 	//players wish
-	wish_goldminingUnits=0;
-	wish_idleWorkers=0;
-	wish_defenders=0;
-	wish_attackers=0;			
+//	wish_goldminingUnits=0;
+//	wish_idleWorkers=0;
+//	wish_defenders=0;
+//	wish_attackers=0;			
 	hq = new HeadQuarter(x, y, this->belongTo);
 		
 }
@@ -46,27 +46,27 @@ void Village::addUnit(int x, int y) {
 int Village::getAllUnitsIn(int party, int village) {
 	Village* vil = getVillage(party, village);
 	if (vil != 0)
-		return vil->getAllUnits();
+		return vil->getNrOfAllUnits();
 	return -1;
 }
 
 int Village::getSoldiersIn(int party, int village) {
 	Village* vil = getVillage(party, village);
 	if (vil != 0)
-		return vil->getSoldiers();
+		return vil->getNrOfSoldiers();
 	return -1;
 }
 
 int Village::getGoldMinerIn(int party, int village) {
 	Village* vil = getVillage(party, village);
 	if (vil != 0)
-		return vil->getGoldMiner();
+		return vil->getNrOfGoldMiner();
 	return -1;
 }
 int Village::getIdleUnitsIn(int party, int village) {
 	Village* vil = getVillage(party, village);
 	if (vil != 0)
-		return vil->getIdleUnits();
+		return vil->getNrOfIdleUnits();
 	return -1;
 }
 
