@@ -26,6 +26,7 @@ class  Unit : public GameObject {
 		std::list<Node*> getPath() { return pf->getPath(); }
 		Pathfinding* pf;
 		void roundPos() { setPos(getX(), getY()); }// sets actual position to an "integer" (Pos%getPosConst=0)
+		bool nextToBuilding(int buildingID);
 	private:
 		
 		

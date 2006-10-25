@@ -16,6 +16,7 @@
 #include <string>
 
 
+
 ButtonValueInc::ButtonValueInc(float x1, float x2, float y1, float y2, float relX, float relY, int id, int (*get)(int, int), void (*inc)(int, int, int ),int party, int village) {
 	this->x1 = x1;
 	this->x2 = x2;
@@ -30,7 +31,7 @@ ButtonValueInc::ButtonValueInc(float x1, float x2, float y1, float y2, float rel
 	this->party = party;
 	this->village = village;
 }
-
+/*
 void ButtonValueInc::draw() {
 	float wid = GraIngame::getMenuWidth();
 	GraphicInterface::drawObjectMenu(id, x1 * Options::ResolutionX/wid, y1 *  Options::ResolutionY, (x2-x1)* Options::ResolutionX/wid, (y2-y1) * Options::ResolutionY);
@@ -38,7 +39,7 @@ void ButtonValueInc::draw() {
 	_itoa_s(this->getValue(), buf, 6, 10);
 	GraphicInterface::drastring2d(x1+relativeX, y1+relativeY, GLUT_BITMAP_TIMES_ROMAN_24, buf);
 	drawBorders();
-}
+}*/
 
 
 

@@ -50,16 +50,11 @@ void Unit::move() {
 		if (pf->getPath().size() == 1) {				// unit has no further way
 			this->timeSinceLastMove = glutGet(GLUT_ELAPSED_TIME); // so the unit doesnt make a big jump the next time it gets move order
 			this->roundPos();
-			Ingame::fields[pf->getNextField()->x, pf->getNextField()->y]->setBlocked(this);
+			//Ingame::fields[pf->getNextField()->x, pf->getNextField()->y]->setBlocked(this);
 			return;
 		}
 		else {
 			this->pf->checkPath(this->getX(), this->getY());
-			//static int i = 0;
-			/*if (i > 1) {  //check all 2 fields for better path
-				this->goTo(pf->desX, pf->desY);
-				i = 0;
-			}*/
 			std::list<Node*>::value_type actual = *pf->getPath().begin();			
 			std::list<Node*>::value_type next= *(++pf->getPath().begin());
 			if (!Ingame::fields[next->x][next->y].blocked()) {
@@ -79,13 +74,6 @@ void Unit::move() {
 
 		} }
 
-	int x = pf->getNextField()->x;
-	int i;
-	if (this->getX() == Ingame::Workers.at(0).getX())
-		if (x == 19) {
-		
-			i = 10;
-		}
 	int t = glutGet(GLUT_ELAPSED_TIME);
 	int deltaTime = t - this->timeSinceLastMove;
 	
@@ -96,4 +84,59 @@ void Unit::move() {
 	float normY = (pf->getNextField()->y*getPosConst() - this->getExactY())/len;
 	this->changePos(normX*this->speed*deltaTime/20000, normY*this->speed*deltaTime/20000);
 	timeSinceLastMove = t;
+}
+
+bool Unit::nextToBuilding(int buildingID) {
+	int x = this->getX();
+	int y = this->getY();
+	GameObject* g;
+	if (y > 0) {
+		g = Ingame::fields[x][y-1].blockedBy();
+		if (g != 0)
+			if (g->getID() == buildingID)
+				return true;
+		if (x > 0) {
+			g = Ingame::fields[x-1][y-1].blockedBy();
+			if (g != 0)
+				if (g->getID() == buildingID)
+					return true;
+		}
+		if (x < Options::iNumberEdgesX) {
+			g = Ingame::fields[x+1][y-1].blockedBy();
+			if (g != 0)
+				if (g->getID() == buildingID)
+					return true;
+		}
+	}
+	if (y < Options::iNumberEdgesY) {
+		if (x > 0) {
+			g = Ingame::fields[x-1][y+1].blockedBy();
+			if (g != 0)
+				if (g->getID() == buildingID)
+					return true;
+		}
+		g = Ingame::fields[x][y+1].blockedBy();
+		if (g != 0)
+			if (g->getID() == buildingID)
+				return true;
+		if (x > 0) {
+			g = Ingame::fields[x+1][y+1].blockedBy();
+			if (g != 0)
+				if (g->getID() == buildingID)
+					return true;
+		}
+	}
+	if (x > 0) {
+		GameObject* g = Ingame::fields[x-1][y].blockedBy();
+		if (g != 0)
+			if (g->getID() == buildingID)
+				return true;
+	}
+	if (x < 0) {
+		GameObject* g = Ingame::fields[x+1][y].blockedBy();
+		if (g != 0)
+			if (g->getID() == buildingID)
+				return true;
+	}
+	return false;
 }

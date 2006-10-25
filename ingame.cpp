@@ -30,17 +30,14 @@ namespace Ingame {
 	int iCurXPos = 0;	//map position
 	int iCurYPos = 0;
 	std::vector<Party> partys;
-	std::vector<Hero> Heroes;
-	std::vector<Worker> Workers;
-	std::vector<Goldmine> goldmines;
 	int iFPSCounter = 0;
 	int timeBaseFPS = 0;
 	int timeBaseKeys = 0;
 	int iFPS = 0;
 }
-Party* Ingame::getParty(int nr) {
-	if ((unsigned)nr < partys.size()) 
-		return &partys.at(nr); 
+Party* Party::getParty(int nr) {
+	if ((unsigned)nr < Ingame::partys.size()) 
+		return &Ingame::partys.at(nr); 
 	return 0;
 }
 double sqr(const double d) {
@@ -59,7 +56,6 @@ void Ingame::draw() {
 		GraIngame::setCamera();
 		glEnable(GL_SCISSOR_TEST);		
 		GraIngame::drawFields();
-		GraIngame::drawUnits();
 		GraIngame::drawCursor();
 		GraIngame::drawPartys();
 		glDisable(GL_SCISSOR_TEST);
@@ -70,10 +66,6 @@ void Ingame::draw() {
 	glutPostRedisplay();
 }
 
-void Ingame::moveAllWorker() {
-	for (unsigned i= 0; i < Ingame::Workers.size(); i++)
-		Ingame::Workers.at(i).move();
-}
 
 
 /*
@@ -84,11 +76,13 @@ void Ingame::moveAllWorker() {
 void Ingame::calc() {
 	int time=glutGet(GLUT_ELAPSED_TIME);			
 	Ingame::incTimeHold(time);
-	
-	
 	IngameMenu::calcFPS(time);
 	mouse(mouseHold, -1, GraIngame::getMX(), GraIngame::getMY());
-	moveAllWorker();
+	for (std::vector<Party>::iterator i = Ingame::partys.begin(); i != partys.end(); i++) {
+		std::vector<Party>::value_type tmp = *i;
+		tmp.calc();
+	}
+
 }
 
 

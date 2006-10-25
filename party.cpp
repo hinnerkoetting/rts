@@ -18,11 +18,11 @@ void Party::draw() {
 
 }
 
-Village* Party::getVillage(int party, int village) {
-	Party* p = Ingame::getParty(party);
-	if (p != 0) {
-		if ((unsigned)village < p->villages.size()) 
-			return p->villages.at(village);
+
+
+void Party::calc() {
+	for (std::vector<Village*>::iterator i = this->villages.begin(); i != villages.end(); i++) {
+		std::vector<Village*>::value_type tmp = *i;
+		tmp->calc();
 	}
-	return 0;
 }

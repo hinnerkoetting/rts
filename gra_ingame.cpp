@@ -32,18 +32,7 @@ void GraIngame::init() {
 	loadImages();
 	createDL();
 }
-	
-void GraIngame::drawUnits() {
-	for (unsigned i= 0; i < Ingame::Workers.size();i++) 
-		Ingame::Workers.at(i).draw();
 
-	for (unsigned i= 0; i < Ingame::goldmines.size();i++) 
-		Ingame::goldmines.at(i).draw();
-
-	for (unsigned i= 0; i < Ingame::Heroes.size();i++) 
-		Ingame::Heroes.at(i).draw();
-
-}
 
 void GraIngame::drawFields() {
 	

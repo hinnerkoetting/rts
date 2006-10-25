@@ -10,7 +10,8 @@ Village::Village(int x, int y){
 	cur_idleWorkers=0;
 	cur_defenders=0;
 	cur_attackers=0;
-	addUnit();
+	addUnit(15, 13);
+	addUnit(15, 9);
 	//players wish
 	wish_goldminingUnits=0;
 	wish_idleWorkers=0;
@@ -27,9 +28,15 @@ void Village::draw() {
 	}
 }
 
+void Village::calc() {
+	for (std::vector<Unit*>::iterator i = this->allUnits.begin(); i != allUnits.end(); i++) {
+		std::vector<Unit*>::value_type tmp = *i;
+		tmp->move();
+	}
+}
 
-void Village::addUnit() {
-	Worker* w =new Worker(15, 15);
+void Village::addUnit(int x, int y) {
+	Worker* w =new Worker(x, y);
 	allUnits.push_back(w);
 	idleUnits.push_back(w);
 }
@@ -37,27 +44,27 @@ void Village::addUnit() {
 
 
 int Village::getAllUnitsIn(int party, int village) {
-	Village* vil = Party::getVillage(party, village);
+	Village* vil = getVillage(party, village);
 	if (vil != 0)
 		return vil->getAllUnits();
 	return -1;
 }
 
 int Village::getSoldiersIn(int party, int village) {
-	Village* vil = Party::getVillage(party, village);
+	Village* vil = getVillage(party, village);
 	if (vil != 0)
 		return vil->getSoldiers();
 	return -1;
 }
 
 int Village::getGoldMinerIn(int party, int village) {
-	Village* vil = Party::getVillage(party, village);
+	Village* vil = getVillage(party, village);
 	if (vil != 0)
 		return vil->getGoldMiner();
 	return -1;
 }
 int Village::getIdleUnitsIn(int party, int village) {
-	Village* vil = Party::getVillage(party, village);
+	Village* vil = getVillage(party, village);
 	if (vil != 0)
 		return vil->getIdleUnits();
 	return -1;
@@ -71,13 +78,13 @@ void Village::incAllUnits(int number) {
 
 
 void Village::incSoldiersIn(int party, int village, int number) {
-	Village* vil = Party::getVillage(party, village);
+	Village* vil = getVillage(party, village);
 	if (vil != 0)
 		vil->incSoldiers(number);
 }
 
 void Village::incGoldMinerIn(int party, int village, int number) {
-	Village* vil = Party::getVillage(party, village);
+	Village* vil = getVillage(party, village);
 	if (vil != 0)
 		vil->incGoldMiner(number);
 }
@@ -111,4 +118,14 @@ void Village::incGoldMiner(int number) {
 
 void Village::incIdleUnits(int number) {
 	//TODO
+}
+
+
+Village* Village::getVillage(int party, int village) {
+	Party* p = Party::getParty(party);
+	if (p != 0) {
+		if (village < p->nrVillages()) 
+			return p->getVillage(village);
+	}
+	return 0;
 }

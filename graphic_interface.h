@@ -12,6 +12,7 @@
 
 class GraphicInterface {
 	public:
+		// coordinates given are position of top left corner of that object
 		static void drawObjectMenu(int dlIndex, float x1, float x2, int lenX, int lenY); // draw an object in menu
 		static void drawObjectGame(int dlIndex, float x, float y, int lenX, int lenY); // draw an object on the gamefield
 		static void drastring3d(float x, float y, float z, void *font, char *string);

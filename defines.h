@@ -7,6 +7,7 @@
 //
 /////////////////////////////////////////////////////////////////
 
+#include "gl/glut.h"
 #define FIELD_WATER		1
 #define FIELD_PLAIN		2
 #define FIELD_GRAD1		3
@@ -35,3 +36,4 @@
 #define HEADQUARTER_ID 24
 #define VILLAGE_ID 25
 #define BUTTON_UNIT_ID 21 //change later to other id
+#define BUTTON_VALUE_FONT GLUT_BITMAP_TIMES_ROMAN_24

@@ -15,6 +15,7 @@ class GameObject {
 		int id;
 		
 	protected:
+		void setBlocked();	// blocks all fields this object stands on
 		int xPos;
 		int yPos;
 		int belongTo;
@@ -26,9 +27,10 @@ class GameObject {
 		int lenX; 
 		int lenY;
 		void setPos(int x, int y);
+		GameObject();
 	public:
 		
-		GameObject() { }
+		
 		void setLen(int x, int y) { lenX = x; lenY = y; }
 		int getLenX() { return lenX; }
 		int getLenY() { return lenY; }

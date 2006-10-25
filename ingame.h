@@ -29,11 +29,7 @@ namespace Ingame
 	extern int iCurXPos;
 	extern int iCurYPos;
 	extern std::vector<Party> partys;
-	Party* getParty(int nr);
-	extern std::vector<Hero> Heroes;
-	extern std::vector<Worker> Workers;
-	extern std::vector<Goldmine> goldmines;
-	void moveAllWorker();
+	
 	
 	void Input();
 	
