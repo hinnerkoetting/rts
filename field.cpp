@@ -6,9 +6,9 @@
 //					
 //
 /////////////////////////////////////////////////////////////////
-
+ 
 #include "field.h"
-#include "defines.h"
+#include "defines.h" 
 /*
  *
  * calculated type of field(needed display lists)

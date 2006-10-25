@@ -6,49 +6,73 @@
 #include "unit.h"
 #include "gameressources.h"
 class Village{ //vielleicht einiges in die cpp verschieben
-	int belongTo;
-	std::vector <Unit*> units;
+	private:	
+		int belongTo;
+		std::vector<Unit*> allUnits;
+		std::vector<Unit*> idleUnits;
+		std::vector<Unit*> soldiers;
+		std::vector<Unit*> goldMiner;
 
-	//Goldmine* mine;
-	//weitere Ressourcen
+		//Goldmine* mine;
+		//weitere Ressourcen
 
-	int amountOfMoney;
-	int amountOfWood;
+		int amountOfMoney;
+		int amountOfWood;
 
-	int levelOfVillage;
+		int levelOfVillage;
 
-	//buildings
-	HeadQuarter* hq;
-	//Research Goal, and state
-	//Researched done
+		//buildings
+		HeadQuarter* hq;
+		//Research Goal, and state
+		//Researched done
 
-	int totalUnits;
+		int totalUnits;
 
-	
+		
 
-	//current state
-	int cur_goldminingUnits;
-	int cur_idleWorkers;
-	int cur_defenders;
-	int cur_attackers;
+		//current state
+		int cur_goldminingUnits;
+		int cur_idleWorkers;
+		int cur_defenders;
+		int cur_attackers;
 
-	//players wish
-	int wish_goldminingUnits;
-	int wish_idleWorkers;
-	int wish_defenders;
-	int wish_attackers;
+		//players wish
+		int wish_goldminingUnits;
+		int wish_idleWorkers;
+		int wish_defenders;
+		int wish_attackers;
 
-	void orderIdleToGoldMiner();
-	void orderIdleToDefender();
-	void orderIdleToAttacker();
-	void orderGoldMinerToIdle();
-	void orderDefenderToIdle();
-	void orderAttackerToIdle();
-	
-	void moveAttackersToOtherVillage(Village goal);
+		void orderIdleToGoldMiner();
+		void orderIdleToDefender();
+		void orderIdleToAttacker();
+		void orderGoldMinerToIdle();
+		void orderDefenderToIdle();
+		void orderAttackerToIdle();
+		
+		void moveAttackersToOtherVillage(Village goal);
+
+		// unit methods
+		void incUnitsJob(std::vector<Unit*>*, int);
 	public:
+		void addUnit();
+		int getAllUnits() { return allUnits.size(); }
+		int getIdleUnits() { return idleUnits.size(); }
+		int getSoldiers() { return soldiers.size(); }
+		int getGoldMiner() { return goldMiner.size(); }
+		void incAllUnits(int number);
+		void incIdleUnits(int number);
+		void incSoldiers(int number);
+		void incGoldMiner(int number);
+		static int getAllUnitsIn(int party, int village);
+		static int getIdleUnitsIn(int party, int village);
+		static int getSoldiersIn(int party, int village);
+		static int getGoldMinerIn(int party, int village);
+		static void incAllUnitsIn(int party, int village, int number);
+		static void incIdleUnitsIn(int party, int village, int number);
+		static void incSoldiersIn(int party, int village, int number);
+		static void incGoldMinerIn(int party, int village, int number);
 		Village(int x, int y);
-		//~Village() {delete hq; }
+		~Village() {delete hq; /* TODO: delete all units*/}
 		void setBelongTo(int id) { belongTo = id; }
 		void draw();
 	

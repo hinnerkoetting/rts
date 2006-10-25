@@ -22,6 +22,7 @@
 #include <math.h>
 #include "inp_ingame.h"
 #include "ingame_menu.h"
+#include "init.h"
 
 namespace Ingame {
 	Field fields[MAX_FIELDS_X][MAX_FIELDS_Y];
@@ -37,7 +38,11 @@ namespace Ingame {
 	int timeBaseKeys = 0;
 	int iFPS = 0;
 }
-
+Party* Ingame::getParty(int nr) {
+	if ((unsigned)nr < partys.size()) 
+		return &partys.at(nr); 
+	return 0;
+}
 double sqr(const double d) {
 	return d*d;
 }
@@ -121,8 +126,16 @@ void Ingame::mouseClick(int button, int state, int x, int y) {
 			for (unsigned int i=0;i<menueList.size();i++){				
 				MenuButton* btn=menueList.at(i);				
 				if (  btn->getX1() <= mx && btn->getX2() >= mx && btn->getY1() <= y && btn->getY2() >= y) //TODO: add this function local to class Menubutton, e.g. if u use button_value at the moment u cant click on the number
-					btn->function(button, btn);
+					btn->click(button);
 			}
 		}
 	}
+}
+/*
+ *
+ * initialises world
+ *
+ */
+void Ingame::initGame() {
+	Init::start();	
 }

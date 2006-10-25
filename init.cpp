@@ -15,8 +15,10 @@
 #include <vector>
 #include "menue.h"
 #include "button_value.h"
+#include "button_value_inc.h"
 #include "party.h"
 #include "defines.h"
+#include "init.h"
 //test
 /*
  *
@@ -24,7 +26,7 @@
  * *NOTE: need to create world before calling
  */
 using namespace std;
-void Ingame::Init::createEdges() {
+void Init::createEdges() {
 	int x = 0;
 	int y = 0;
 	while (x < Options::iNumberEdgesX) {
@@ -68,43 +70,14 @@ void Ingame::Init::createEdges() {
 	}
 }
 			
-/*
- *
- * creates the fields
- *
- */
-void Ingame::Init::createFields(int x, int y) {
-/*	Field* f;
-	for (int i = 0; i < x; i++) {
-		f = firstField;
-		firstField = new Field();
-		if (f != 0) {
-			firstField->rigth = f;
-			f->left = firstField;		
-		}
-		for (int j = 0; j < y; j++) {
-			f = firstField;
-			firstField = new Field();
-			firstField->bottom = f;
-			f->top = firstField;
-			if (i != 0) {
-				Field* lp = firstField->bottom->rigth->top;
-				firstField->rigth = lp;
-				lp->left = firstField;
-			}
-			
 
-		}
-		while (firstField->bottom != 0)
-			firstField = firstField->bottom;
-	}*/
-}
+
 /*
  *
  * calcs all fields
  *
  */
-void Ingame::Init::calcFields() {
+void Init::calcFields() {
 	for (int i = 0; i< Options::iNumberEdgesX; i++)
 		for (int j = 0; j < Options::iNumberEdgesY; j++) 
 			Ingame::fields[i][j].calcType();
@@ -114,8 +87,7 @@ void Ingame::Init::calcFields() {
  * creates world with x * y fields
  * returns field in bottom left edge
  */
-void Ingame::Init::createWorld(int x, int y) {
-	createFields(Options::iNumberEdgesX, Options::iNumberEdgesY);
+void Init::createWorld(int x, int y) {
 	createEdges();
 	calcFields();
 }
@@ -125,7 +97,7 @@ void Ingame::Init::createWorld(int x, int y) {
  * creates partys
  *
  */
-void Ingame::Init::newPartys(int number) {
+void Init::newPartys(int number) {
 	std::vector<Party> p;
 	for (int i = 0; i < number; i++) {
 		p.push_back(Party());
@@ -140,7 +112,7 @@ void Ingame::Init::newPartys(int number) {
  *
  */
 
-void Ingame::Init::newVillages() {
+void Init::newVillages() {
 	/*
 	for (std::vector<Party>::iterator i = Ingame::partys.begin(); i != Ingame::partys.end(); i++) {
 		std::vector<Party>::value_type tmp = *i;
@@ -149,23 +121,17 @@ void Ingame::Init::newVillages() {
 }
 
 
-/*
- *
- * initialises world
- *
- */
-void Ingame::initGame() {
+
+
+void Init::start() {
 	Init::createWorld(Options::iNumberEdgesX, Options::iNumberEdgesY);
 	Init::newPartys(1);
-	Init::newHeroes(2);
-	Init::newUnits(1);
-	Init::newGoldMines();
+	//Init::newHeroes(2);
+	//Init::newUnits(1);
+	//Init::newGoldMines();
 	Init::newVillages();
 	Init::menu();	
-
-	
 }
-
 
 	
 
@@ -175,7 +141,7 @@ void Ingame::initGame() {
  * creates new heroes
  * TODO
  */
-void Ingame::Init::newHeroes(const int iNumber) {
+void Init::newHeroes(const int iNumber) {
 
 }
 
@@ -184,7 +150,7 @@ void Ingame::Init::newHeroes(const int iNumber) {
  * create new workers
  *
  */
-void Ingame::Init::newUnits(int number) {
+void Init::newUnits(int number) {
 	
 	for (int i = 0; i < number; i++) 
 		Ingame::Workers.push_back(Worker(10 + i , 10 + i));
@@ -195,7 +161,7 @@ void Ingame::Init::newUnits(int number) {
 }/**
  * create some goldmines
  */
-void Ingame::Init::newGoldMines() {	
+void Init::newGoldMines() {	
 		Ingame::goldmines.push_back(Goldmine(15, 20));
 		Ingame::goldmines.push_back(Goldmine(35, 40));
 
@@ -208,17 +174,21 @@ void Ingame::Init::newGoldMines() {
  * init menu button
  *
  */
-void Ingame::Init::menu() {
+void Init::menu() {
 	int resX = Options::ResolutionX;
 	int resY = Options::ResolutionY;
 	float wid = GraIngame::getMenuWidth();
 	vector <MenuButton*> menue;
-	MenuButton* m1 = new ButtonValue(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, &ButtonValue::click, BUTTON_ATTACK_ID);
-	MenuButton* m2 = new ButtonValue(0.05	, 0.1	, 0.1, 0.15, 0.02, 0.08, &ButtonValue::click, BUTTON_HOUSE_ID);
-	MenuButton* m3 = new ButtonValue(0		, 0.1	, 0.2, 0.25, 0.02, 0.08, &ButtonValue::click, BUTTON_GOLDMINE_ID);
+	MenuButton* m1;
+	m1 = new ButtonValue	(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, BUTTON_UNIT_ID		, &Village::getAllUnitsIn	, 0, 0);
 	menue.push_back(m1);
-	menue.push_back(m2);
-	menue.push_back(m3);
+	m1 = new ButtonValue	(0		, 0.05	, 0.2, 0.25, 0.02, 0.08, BUTTON_HOUSE_ID	, &Village::getIdleUnitsIn	, 0 ,0);
+	menue.push_back(m1);
+	m1 = new ButtonValueInc (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, &Village::getSoldiersIn	, &Village::incSoldiersIn,  0,0);
+	menue.push_back(m1);
+	m1 = new ButtonValueInc (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, &Village::getGoldMinerIn	, &Village::incGoldMinerIn,  0,0);
+	menue.push_back(m1);
+	
 	Menu::setMenuList(menue);
 	
 }

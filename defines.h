@@ -34,3 +34,4 @@
 #define VILLAGE_CENTER_ID 23
 #define HEADQUARTER_ID 24
 #define VILLAGE_ID 25
+#define BUTTON_UNIT_ID 21 //change later to other id
