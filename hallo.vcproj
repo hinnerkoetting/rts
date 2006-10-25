@@ -181,7 +181,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="WS2_32.LIB odbc32.lib odbccp32.lib OpenGL32.lib GLaux.lib gl\GLut32.lib gl\DevIL.lib gl\ILU.lib gl\ILUT.lib"
+				AdditionalDependencies="WS2_32.LIB odbc32.lib odbccp32.lib OpenGL32.lib GLaux.lib gl\GLut32.lib Devil\include\IL\DevIL.lib Devil\include\IL\ILU.lib Devil\include\IL\ILUT.lib"
 				OutputFile=".\Release/hallo.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -446,6 +446,10 @@
 						>
 					</File>
 					<File
+						RelativePath=".\button_value_inc.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\game_menu.cpp"
 						>
 					</File>
@@ -588,50 +592,6 @@
 			Name="Header-Dateien"
 			Filter="h;hpp;hxx;hm;inl"
 			>
-			<File
-				RelativePath=".\defines.h"
-				>
-			</File>
-			<File
-				RelativePath="errors.h"
-				>
-			</File>
-			<File
-				RelativePath=".\exception.h"
-				>
-			</File>
-			<File
-				RelativePath=".\exit.h"
-				>
-			</File>
-			<File
-				RelativePath=".\file.h"
-				>
-			</File>
-			<File
-				RelativePath="ingame.h"
-				>
-			</File>
-			<File
-				RelativePath=".\mymath.h"
-				>
-			</File>
-			<File
-				RelativePath="options.h"
-				>
-			</File>
-			<File
-				RelativePath=".\refcnt_ptr.h"
-				>
-			</File>
-			<File
-				RelativePath="settings.h"
-				>
-			</File>
-			<File
-				RelativePath=".\switch.h"
-				>
-			</File>
 			<Filter
 				Name="Input"
 				>
@@ -676,6 +636,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\button_value_inc.h"
+					>
+				</File>
+				<File
 					RelativePath=".\mainmenu.h"
 					>
 				</File>
@@ -695,6 +659,14 @@
 			<Filter
 				Name="Game"
 				>
+				<File
+					RelativePath="ingame.h"
+					>
+				</File>
+				<File
+					RelativePath=".\init.h"
+					>
+				</File>
 				<File
 					RelativePath=".\party.h"
 					>
@@ -785,6 +757,50 @@
 				</File>
 				<File
 					RelativePath=".\point.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="sonstiges"
+				>
+				<File
+					RelativePath=".\defines.h"
+					>
+				</File>
+				<File
+					RelativePath="errors.h"
+					>
+				</File>
+				<File
+					RelativePath=".\exception.h"
+					>
+				</File>
+				<File
+					RelativePath=".\exit.h"
+					>
+				</File>
+				<File
+					RelativePath=".\file.h"
+					>
+				</File>
+				<File
+					RelativePath=".\mymath.h"
+					>
+				</File>
+				<File
+					RelativePath="options.h"
+					>
+				</File>
+				<File
+					RelativePath=".\refcnt_ptr.h"
+					>
+				</File>
+				<File
+					RelativePath="settings.h"
+					>
+				</File>
+				<File
+					RelativePath=".\switch.h"
 					>
 				</File>
 			</Filter>

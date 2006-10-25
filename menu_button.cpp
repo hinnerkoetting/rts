@@ -56,3 +56,7 @@ int MenuButton::getY1() {
 int MenuButton::getY2() {
 	return y2 * Options::ResolutionY;
 }
+
+void MenuButton::click(int button) {
+	this->function(button, this);
+}

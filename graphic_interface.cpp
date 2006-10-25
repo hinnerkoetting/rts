@@ -19,7 +19,7 @@ void GraphicInterface::drawObjectGame(int dlIndex, float x, float y, int lenX, i
 		float len = GraIngame::getLength();
 		float hig = GraIngame::getHeigth();
 		glTranslatef(x * len, y * hig, 0);
-		glScalef(lenX * len, lenY * hig, 0);
+		glScalef(lenX * len, -lenY * hig, 0);
 		glCallList(dlIndex);
 	glPopMatrix();
 }

@@ -33,11 +33,12 @@ class Party{
 		void addVillage(Village*);
 		Party() { id = ++number; }
 		void draw();
-	
+		Village* getVillage(int nr) { if ((unsigned)nr < villages.size()) return villages.at(nr); }
+		static Village* getVillage(int party, int village); // not lucky about this but otherwise u cant create pointer to instantiated villages
 
 
 	
-	std::vector <Unit*> units;
+	
 
 };
 

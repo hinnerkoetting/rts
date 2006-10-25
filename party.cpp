@@ -1,5 +1,6 @@
 #include "village.h"
 #include "party.h"
+#include "ingame.h"
 #include <vector>
 int Party::number = 0;
 
@@ -15,4 +16,13 @@ void Party::draw() {
 		tmp->draw();
 	}
 
+}
+
+Village* Party::getVillage(int party, int village) {
+	Party* p = Ingame::getParty(party);
+	if (p != 0) {
+		if ((unsigned)village < p->villages.size()) 
+			return p->villages.at(village);
+	}
+	return 0;
 }
