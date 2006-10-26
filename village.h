@@ -28,13 +28,15 @@ class Village{ //vielleicht einiges in die cpp verschieben
 
 		int totalUnits;
 
-		
+				
 
 		//current state
 		int cur_goldminingUnits;
 		int cur_idleWorkers;
 		int cur_defenders;
 		int cur_attackers;
+
+		float grownups;  //new population
 
 		//players wish  (not needed anymore?)
 		//int wish_goldminingUnits;
@@ -48,6 +50,7 @@ class Village{ //vielleicht einiges in die cpp verschieben
 		void orderGoldMinerToIdle();
 		void orderDefenderToIdle();
 		void orderAttackerToIdle();
+		void createNewIdlePersonAtVillage();
 		
 		void moveAttackersToOtherVillage(Village goal);
 
