@@ -47,6 +47,8 @@ class Pathfinding {
 		path.push_front(new Node(x, y, 0,0)); 
 		desX = x; desY = y; }
 		void findPath(int fromX, int fromY);
+
+		
 		
 		
 		void setDestination(int x, int y);
@@ -54,3 +56,9 @@ class Pathfinding {
 		
 };
 #endif
+
+
+//finds free position near defined position
+		//x: INOUT x in:X-Position, where to find. out:X-where free
+		//y: INOUT y in:Y-Position, where to find. out:Y-where free
+		void findFreePlace(int& x, int& y);

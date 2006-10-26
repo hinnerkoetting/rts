@@ -223,3 +223,9 @@ void Pathfinding::setDestination(int x, int y) {
 void Pathfinding::nextField() {
 	path.pop_front();
 }
+
+
+ void findFreePlace(int& x, int& y){
+	//TODO
+	
+}

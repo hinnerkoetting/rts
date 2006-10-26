@@ -1,6 +1,10 @@
 #include "village.h"
 #include "worker.h"
 #include "party.h"
+#include "pathfinding.h"
+#include "Windows.h"
+#include "Util.h"
+
 //Constructor
 //initializes member variables to default values
 Village::Village(int x, int y){
@@ -10,6 +14,7 @@ Village::Village(int x, int y){
 	cur_idleWorkers=0;
 	cur_defenders=0;
 	cur_attackers=0;
+	grownups=0;
 	addUnit(15, 13);
 	addUnit(15, 9);
 	//players wish
@@ -32,6 +37,14 @@ void Village::calc() {
 	for (std::vector<Unit*>::iterator i = this->allUnits.begin(); i != allUnits.end(); i++) {
 		std::vector<Unit*>::value_type tmp = *i;
 		tmp->move();
+	}
+	grownups+=((float)getNrOfIdleUnits())*0.003; //should be in seperate thread
+	log::log(".");
+	if (grownups>=1){
+		//semaphore necessary with thread
+		log::log("Wachse");
+		grownups-=1;
+		createNewIdlePersonAtVillage();
 	}
 }
 
@@ -128,4 +141,14 @@ Village* Village::getVillage(int party, int village) {
 			return p->getVillage(village);
 	}
 	return 0;
+}
+
+
+void Village::createNewIdlePersonAtVillage(){
+	int x=this->hq->getX();
+	int y=this->hq->getY();
+	findFreePlace(x,y);
+	addUnit(x,y);
+	
+
 }
