@@ -17,7 +17,7 @@
 #include "point.h"
 #include "graphic.h"
 class GraIngame {
-	
+
 	public:
 		static float menuWidth();
 		static int whichClicked(bool bX);

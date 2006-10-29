@@ -18,10 +18,10 @@ Village::Village(int x, int y){
 	addUnit(15, 13);
 	addUnit(15, 9);
 	//players wish
-//	wish_goldminingUnits=0;
-//	wish_idleWorkers=0;
-//	wish_defenders=0;
-//	wish_attackers=0;			
+	wish_goldminingUnits=0;
+	wish_idleWorkers=0;
+	wish_defenders=0;
+	wish_attackers=0;			
 	hq = new HeadQuarter(x, y, this->belongTo);
 		
 }
@@ -37,8 +37,12 @@ void Village::calc() {
 	for (std::vector<Unit*>::iterator i = this->allUnits.begin(); i != allUnits.end(); i++) {
 		std::vector<Unit*>::value_type tmp = *i;
 		tmp->move();
+		
 	}
-	grownups+=((float)getNrOfIdleUnits())*0.003; //should be in seperate thread
+
+	//folgender Teil alle 1 Sekunden
+
+	//grownups+=((float)getNrOfIdleUnits())*0.003; //should be in seperate thread
 	log::log(".");
 	if (grownups>=1){
 		//semaphore necessary with thread
@@ -46,6 +50,8 @@ void Village::calc() {
 		grownups-=1;
 		createNewIdlePersonAtVillage();
 	}
+
+	//current and wish anpassen
 }
 
 void Village::addUnit(int x, int y) {

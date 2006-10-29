@@ -33,9 +33,8 @@ void GraIngame::init() {
 	createDL();
 }
 
-
 void GraIngame::drawFields() {
-	
+
 
 
 	int x = 0;

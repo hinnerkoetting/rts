@@ -573,6 +573,10 @@
 						Name="Buildings"
 						>
 						<File
+							RelativePath=".\bulding.cpp"
+							>
+						</File>
+						<File
 							RelativePath=".\headquarter.cpp"
 							>
 						</File>
@@ -804,14 +808,14 @@
 					>
 				</File>
 			</Filter>
-		</Filter>
-		<Filter
-			Name="calculation"
-			>
-			<File
-				RelativePath=".\calculation.h"
+			<Filter
+				Name="calculation"
 				>
-			</File>
+				<File
+					RelativePath=".\calculation.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

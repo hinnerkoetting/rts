@@ -92,6 +92,7 @@ void Ingame::input(unsigned char key, int x, int y) {
 			case 'a':
 					Village* vil = Village::getVillage(0,0);
 					vil->allUnits.at(1)->goTo(1,9);
+					vil->allUnits.at(0)->goTo(5,2);
 				break;	//testing purpose
 		}
 	}
