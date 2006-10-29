@@ -39,10 +39,10 @@ class Village{ //vielleicht einiges in die cpp verschieben
 		float grownups;  //new population
 
 		//players wish  (not needed anymore?)
-		//int wish_goldminingUnits;
-		//int wish_idleWorkers;
-		//int wish_defenders;
-		//int wish_attackers;
+		int wish_goldminingUnits;
+		int wish_idleWorkers;
+		int wish_defenders;
+		int wish_attackers;
 
 		void orderIdleToGoldMiner();
 		void orderIdleToDefender();
