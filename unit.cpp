@@ -40,6 +40,12 @@ float length(float x, float y) {
 	return sqrt(x*x + y*y);
 }
 
+	void Unit::setType(Unit_Type typeOfUnit){
+	this->unitType=typeOfUnit;
+}
+
+	
+
 /*
  *
  * move unit
