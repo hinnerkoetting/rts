@@ -14,6 +14,7 @@ Village::Village(int x, int y){
 	cur_idleWorkers=0;
 	cur_defenders=0;
 	cur_attackers=0;
+	lastTimeForThinking=0;
 	grownups=0;
 	addUnit(15, 13);
 	addUnit(15, 9);
@@ -33,6 +34,38 @@ void Village::draw() {
 	}
 }
 
+
+/**
+	executed every second
+	growing of new persons
+	decision about moving person to a new category
+	*/
+
+void Village::midTermThink(){
+	grownups+=((float)getNrOfIdleUnits())*0.05; //should be in seperate thread
+		log::log(".");
+		if (grownups>=1){			
+			log::log("Wachse");
+			grownups-=1;
+			createNewIdlePersonAtVillage();
+		}
+
+	//adopt current numbers of workers with wished numbers
+		if (wish_goldminingUnits>cur_goldminingUnits){
+			if (getNrOfIdleUnits()>0){
+				Worker* changingWorker=static_cast<Worker*>(idleUnits.front());
+
+				idleUnits.erase(idleUnits.begin());
+
+				(*changingWorker).setType(GOLDMINER);
+				goldMiner.push_back(changingWorker);
+				
+			}
+		}
+}
+
+
+
 void Village::calc() {
 	for (std::vector<Unit*>::iterator i = this->allUnits.begin(); i != allUnits.end(); i++) {
 		std::vector<Unit*>::value_type tmp = *i;
@@ -40,17 +73,14 @@ void Village::calc() {
 		
 	}
 
-	//folgender Teil alle 1 Sekunden
 
-	//grownups+=((float)getNrOfIdleUnits())*0.003; //should be in seperate thread
-	log::log(".");
-	if (grownups>=1){
-		//semaphore necessary with thread
-		log::log("Wachse");
-		grownups-=1;
-		createNewIdlePersonAtVillage();
+	int time=glutGet(GLUT_ELAPSED_TIME);
+	if ((time-lastTimeForThinking)>1000){
+		lastTimeForThinking=time;
+		//folgender Teil alle 1 Sekunden
+		midTermThink();
+		
 	}
-
 	//current and wish anpassen
 }
 

@@ -8,6 +8,8 @@
 class Village{ //vielleicht einiges in die cpp verschieben
 	private:	
 		int belongTo;
+
+		int lastTimeForThinking;
 		
 		std::vector<Unit*> idleUnits;
 		std::vector<Unit*> soldiers;
@@ -43,6 +45,8 @@ class Village{ //vielleicht einiges in die cpp verschieben
 		int wish_idleWorkers;
 		int wish_defenders;
 		int wish_attackers;
+
+		void midTermThink();
 
 		void orderIdleToGoldMiner();
 		void orderIdleToDefender();
