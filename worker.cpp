@@ -40,3 +40,15 @@ void Worker::setNewGoal(int gola){
 
 }
 
+void RessourceCollector::think(){
+	log::log("Ressource Collector thinks\n");
+
+	switch(currentStatus){
+		case START :	log::log("Start");
+
+				break;
+
+		default: log::log("Error...default status reached");
+
+	};
+};

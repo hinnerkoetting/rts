@@ -95,13 +95,18 @@ void Init::createWorld(int x, int y) {
 /* 
  *
  * creates partys
- *
+ *	should be much more individual...
  */
 void Init::newPartys(int number) {
 	std::vector<Party> p;
 	for (int i = 0; i < number; i++) {
 		p.push_back(Party());
-		p.at(p.size() -1 ).addVillage(new Village(10, 10));
+		Goldmine* g=new Goldmine(15,15);
+		Village* v=new Village(10,10);
+		v->setGoldMine(g);
+		
+		p.at(p.size() -1 ).addVillage(v);
+		
 	}
 	Ingame::partys = p;
 }

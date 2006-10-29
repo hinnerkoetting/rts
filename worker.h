@@ -21,14 +21,25 @@ class Worker : public Unit {
 		}
 		void draw();
 		Worker(int x, int y) { setPos(x,y); timeSinceLastMove = 0; speed = 100; pf->initPath(x,y); setID(WORKER_ID); this->setLen(1, 1); setBlocked(); }
-		void think();
-		void setNewGoal(int goal);
+		virtual void think();
+		virtual void setNewGoal(int goal);
 		
 
 };
 
+class RessourceCollector : public Worker{
+	enum workingStatus { START, GOING_TO_RESSOURCE, INSIDE_RESSOURCE, WAY_BACK};
 
-class GoldMiner : public Worker {};
+	workingStatus currentStatus;	
+
+	RessourceCollector(){
+		currentStatus=START;
+	}
+
+	virtual void think();	
+};
+
+class GoldMiner : public RessourceCollector {};
 
 
 class IdleWorker : public Worker {};

@@ -32,6 +32,7 @@ void Village::draw() {
 		std::vector<Unit*>::value_type tmp = *i;
 		tmp->draw();
 	}
+	gmine->draw();
 }
 
 
@@ -59,9 +60,15 @@ void Village::midTermThink(){
 
 				(*changingWorker).setType(GOLDMINER);
 				goldMiner.push_back(changingWorker);
+				cur_goldminingUnits=goldMiner.size();
 				
 			}
 		}
+		//all units of the village may now think about the next step to do
+for (std::vector<Unit*>::iterator i = this->allUnits.begin(); i != allUnits.end(); i++) {
+		std::vector<Unit*>::value_type tmp = *i;
+		tmp->think();
+	}
 }
 
 
