@@ -24,20 +24,7 @@ bool Pathfinding::onList(std::list<Node*> list, Node* node) {
 			return true;
 	return false;
 }
-/*int abs(int x) {
-	if (x >= 0)
-		return x;
-	return -x;
-}*/
 
-bool Pathfinding::finalFieldOnList(std::list<Node*> list) {
-	for (std::list<Node*>::iterator i = list.begin(); i != list.end(); i++) {
-		std::list<Node*>::value_type tmp = *i;
-		if (tmp->x == this->desX && tmp->y == this->desY)
-			return true;
-	}
-	return false;
-}
 
 int sqr(int i) {
 	return i * i;
@@ -69,8 +56,8 @@ Node* Pathfinding::findLowestCosts(std::list<Node*> list, int desX, int desY) {
 }
 /* 
  * list is in wrong direction and needs to be copied so its not deleted later
- * due to the fact, that the unit may moving while its given another moveorder there is the following problem: the unit moves at first to the field nearest to its actual position
- * and then moves the right way. so it can happen that the first field is wrong direction, this is here corrected 
+ *  
+ *
  */
 std::list<Node*> Pathfinding::giveOutResult(Node* n, int orX, int orY) {
 	std::list<Node*> res;
@@ -122,6 +109,7 @@ void Pathfinding::checkPath(int actX, int actY) {
 			if (!Ingame::fields[actual->x][actual->y].blocked()) {
 				int x = actual->x;
 				int y = actual->y;
+				delete(this->path.front());
 				this->path.pop_front();
 				this->path.push_front(new Node(x, y, 0,0));
 			}
@@ -138,19 +126,18 @@ void Pathfinding::findPath(int orX, int orY) {
 	if (atDestination(desX, desY, getNextField()))		// unit has reached its destination
 		return;
 	Node* actual = new Node(orX, orY, 0,0);
-	if (actual == 0) // dont know why but sometimes actual isnt created, so this is checked to avoid errors
-		return;
 	std::list<Node*> openList;
 	std::list<Node*> closedList;
 	int x;
 	int y;
 	int counter = 0;
 	openList.push_front(actual);
+	bool leaveNextLoop = false;
 	while (openList.size() != 0 && (abs(actual->x - desX) >= 1|| abs(actual->y-desY)>= 1) && counter < 100) { // openlist not empty and not at destinaton
-		if (finalFieldOnList(openList))
-			break;;
 		x = actual->x;
 		y = actual->y;
+		if (abs(actual->x - desX) <= 1 && abs(actual->y - desY) <= 1)
+			leaveNextLoop = true;
 		closedList.push_back(actual);
 		openList.remove(actual);
 		if (y < Options::iNumberEdgesY - 1) { // upper field
@@ -200,6 +187,10 @@ void Pathfinding::findPath(int orX, int orY) {
 					openList.push_back(n);
 			}
 		actual = findLowestCosts(openList, desX, desY);
+		if (actual == 0)
+			break;
+		if (leaveNextLoop)
+			break;
 		counter++; 
 
 	}
@@ -209,8 +200,8 @@ void Pathfinding::findPath(int orX, int orY) {
 	//deleteFromList(openList, actual);
 	//Node* res = giveOutResult(actual, orX, orY);
 	//if (abs(actual->x - desX) <=0.05 && abs(actual->y-desY)>0.05) { //path is found
-	openList.clear();
-	closedList.clear();
+	Node::deletePointer(&openList);
+	Node::deletePointer(&closedList);
 	//}
 	
 }
@@ -221,7 +212,19 @@ void Pathfinding::setDestination(int x, int y) {
 }
 
 void Pathfinding::nextField() {
+	delete(path.front());
 	path.pop_front();
+}
+
+
+
+void Node::deletePointer(std::list<Node*>* n) {
+	std::list<Node*>::iterator i = n->begin();
+	while (i!= n->end()) {
+		delete(*i);
+		n->pop_front();
+		i = n->begin();
+	}
 }
 
 
