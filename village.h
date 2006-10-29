@@ -15,7 +15,7 @@ class Village{ //vielleicht einiges in die cpp verschieben
 		std::vector<Unit*> soldiers;
 		std::vector<Unit*> goldMiner;
 
-		//Goldmine* mine;
+		Goldmine* gmine;
 		//weitere Ressourcen
 
 		int amountOfMoney;
@@ -94,6 +94,10 @@ class Village{ //vielleicht einiges in die cpp verschieben
 		void draw(); // draw all units, buildings etc which belong to this village
 		void calc(); // unit movement...
 		static Village* getVillage(int party, int village);
+
+		void setGoldMine(Goldmine* goldmine){
+			this->gmine=goldmine;
+		}
 	
 
 
