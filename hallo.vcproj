@@ -232,6 +232,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\oetting_strat.rc"
+				>
+			</File>
+			<File
 				RelativePath=".\Util.cpp"
 				>
 			</File>
@@ -596,6 +600,10 @@
 			Name="Header-Dateien"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\resource1.h"
+				>
+			</File>
 			<Filter
 				Name="Input"
 				>
@@ -816,6 +824,14 @@
 					>
 				</File>
 			</Filter>
+		</Filter>
+		<Filter
+			Name="Design"
+			>
+			<File
+				RelativePath=".\design\popDesign.zargo"
+				>
+			</File>
 		</Filter>
 	</Files>
 	<Globals>
