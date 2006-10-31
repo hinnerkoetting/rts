@@ -30,7 +30,7 @@ ButtonValue::ButtonValue(float x1, float x2, float y1, float y2, float relX, flo
 	this->village = village;
 }
 
-void ButtonValue::draw() {
+	void ButtonValue::draw() {
 	float wid = GraIngame::getMenuWidth();
 	GraphicInterface::drawObjectMenu(id, x1 * Options::ResolutionX/wid, y1 *  Options::ResolutionY, (x2-x1)* Options::ResolutionX/wid, (y2-y1) * Options::ResolutionY);
 	char buf[6];
