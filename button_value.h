@@ -24,7 +24,7 @@ class ButtonValue : public MenuButton {
 		ButtonValue(float x1, float x2, float y1, float y2, float relX, float relY, int id, int (*get)(int, int), int party, int village);	
 		virtual void draw();
 		virtual void click(int button);
-		int getValue() { return get(village, party); }
+		int getValue() { return get(village, party); }//if wish and current, wished values
 
 };
 #endif

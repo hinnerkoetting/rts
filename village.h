@@ -40,11 +40,11 @@ class Village{ //vielleicht einiges in die cpp verschieben
 
 		float grownups;  //new population
 
-		//players wish  (not needed anymore?)
+		//players wish  
 		int wish_goldminingUnits;
 		int wish_idleWorkers;
 		int wish_defenders;
-		int wish_attackers;
+		int wish_soldiers;
 
 		void midTermThink();
 
@@ -67,8 +67,25 @@ class Village{ //vielleicht einiges in die cpp verschieben
 		//get units
 		int getNrOfAllUnits() { return allUnits.size(); }
 		int getNrOfIdleUnits() { return idleUnits.size(); }
-		int getNrOfSoldiers() { return soldiers.size(); }
-		int getNrOfGoldMiner() { return goldMiner.size(); }
+		int getNrOfWishedSoldiers() { return wish_soldiers; }
+		int getNrOfWishedGoldMiner() { return wish_goldminingUnits; }
+
+		int getNrOfCurrentSoldiers() { return soldiers.size(); }
+		int getNrOfCurrentGoldMiner() { return goldMiner.size(); }
+
+		static void changeValueOfWishedGoldMiner(int party, int village, int number) { 
+			Village* vil = getVillage(party, village);
+			if (vil != 0){
+				vil->incWishGoldMiner(number);
+			};
+		};
+
+		static void changeValueOfWishedSoldiers (int party, int village, int number) { 
+			Village* vil = getVillage(party, village);
+			if (vil != 0){
+				vil->incWishSoldiers(number);
+			};
+		};
 
 		//inc units
 		void incAllUnits(int number);
@@ -76,16 +93,24 @@ class Village{ //vielleicht einiges in die cpp verschieben
 		void incSoldiers(int number);
 		void incGoldMiner(int number);
 
+
+		void incWishSoldiers(int number) {wish_soldiers+=number;};
+		void incWishGoldMiner(int number) {wish_goldminingUnits+=number;};
+
+
 		//button functions
 		static int getAllUnitsIn(int party, int village);
 		static int getIdleUnitsIn(int party, int village);
-		static int getSoldiersIn(int party, int village);
-		static int getGoldMinerIn(int party, int village);
+		static int getWishedSoldiersIn(int party, int village);
+		static int getWishedGoldMinerIn(int party, int village);
 		static void incAllUnitsIn(int party, int village, int number);
 		static void incIdleUnitsIn(int party, int village, int number);
 		static void incSoldiersIn(int party, int village, int number);
 		static void incGoldMinerIn(int party, int village, int number);
 
+		static int getCurrentSoldiersIn(int party, int village);
+		static int getCurrentGoldMinerIn(int party, int village);
+		
 
 
 		Village(int x, int y);

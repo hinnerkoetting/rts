@@ -22,7 +22,7 @@ Village::Village(int x, int y){
 	wish_goldminingUnits=0;
 	wish_idleWorkers=0;
 	wish_defenders=0;
-	wish_attackers=0;			
+	wish_soldiers=0;			
 	hq = new HeadQuarter(x, y, this->belongTo);
 		
 }
@@ -106,19 +106,37 @@ int Village::getAllUnitsIn(int party, int village) {
 	return -1;
 }
 
-int Village::getSoldiersIn(int party, int village) {
+int Village::getWishedSoldiersIn(int party, int village) {
 	Village* vil = getVillage(party, village);
 	if (vil != 0)
-		return vil->getNrOfSoldiers();
+		return vil->getNrOfWishedSoldiers();
 	return -1;
 }
 
-int Village::getGoldMinerIn(int party, int village) {
+int Village::getCurrentSoldiersIn(int party, int village) {
 	Village* vil = getVillage(party, village);
 	if (vil != 0)
-		return vil->getNrOfGoldMiner();
+		return vil->getNrOfCurrentSoldiers();
 	return -1;
 }
+
+
+int Village::getWishedGoldMinerIn(int party, int village) {
+	Village* vil = getVillage(party, village);
+	if (vil != 0)
+		return vil->getNrOfWishedGoldMiner();
+	return -1;
+}
+
+
+int Village::getCurrentGoldMinerIn(int party, int village) {
+	Village* vil = getVillage(party, village);
+	if (vil != 0)
+		return vil->getNrOfCurrentGoldMiner();
+	return -1;
+}
+
+
 int Village::getIdleUnitsIn(int party, int village) {
 	Village* vil = getVillage(party, village);
 	if (vil != 0)
@@ -169,6 +187,7 @@ void Village::incSoldiers(int number) {
 }
 
 void Village::incGoldMiner(int number) {
+	
 	incUnitsJob(&this->goldMiner, number);
 }
 
