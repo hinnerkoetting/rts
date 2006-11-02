@@ -4,8 +4,8 @@
 #include "pathfinding.h"
 #include "Windows.h"
 #include "Util.h"
-#include "button_value.h"
-#include "button_value_inc.h"
+#include "button_display.h"
+#include "button_change.h"
 #include "exception.h"
 #include <string>
 
@@ -15,10 +15,10 @@ using namespace std;
 Village::Village(int x, int y){
 
 	//current state
-	cur_goldminingUnits=0;
-	cur_idleWorkers=0;
-	cur_defenders=0;
-	cur_attackers=0;
+	//cur_goldminingUnits=0;
+	//cur_idleWorkers=0;
+	//cur_defenders=0;
+	//cur_attackers=0;
 	lastTimeForThinking=0;
 	grownups=0;
 	addUnit(15, 13);
@@ -58,7 +58,7 @@ void Village::midTermThink(){
 		}
 
 	//adopt current numbers of workers with wished numbers
-		if (wish_goldminingUnits>cur_goldminingUnits){
+		if (wish_goldminingUnits>getNrOfCurrentGoldMiner()){
 			if (getNrOfIdleUnits()>0){
 				Worker* changingWorker=static_cast<Worker*>(idleUnits.front());
 
@@ -66,7 +66,7 @@ void Village::midTermThink(){
 
 				(*changingWorker).setType(GOLDMINER);
 				goldMiner.push_back(changingWorker);
-				cur_goldminingUnits=goldMiner.size();
+				//cur_goldminingUnits=goldMiner.size();
 				
 			}
 		}
@@ -151,7 +151,7 @@ int Village::getIdleUnitsIn(int party, int village) {
 }
 
 
-void Village::incAllUnits(int number) {
+/*void Village::incAllUnits(int number) {
 	//TODO
 }
 
@@ -168,7 +168,7 @@ void Village::incGoldMinerIn(int party, int village, int number) {
 	if (vil != 0)
 		vil->incGoldMiner(number);
 }
-
+*/
 void Village::incUnitsJob(std::vector<Unit*>* u, int number) {
 	if (number >= 0) {
 		for (int i = 0; i < number; i++) {
@@ -233,13 +233,18 @@ void Village::initMenu(){
 
 	MenuList menue;
 	MenuButton* m1;
-	m1 = new ButtonValue	(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, BUTTON_UNIT_ID		, &Village::getAllUnitsIn	, 0, 0);
+	m1 = new ButtonDisplay	(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, BUTTON_UNIT_ID		, this, display::TOTAL_UNITS);
+	
 	menue.push_back(m1);
-	m1 = new ButtonValue	(0		, 0.05	, 0.2, 0.25, 0.02, 0.08, BUTTON_HOUSE_ID	, &Village::getIdleUnitsIn	, 0 ,0);
+
+	m1 = new ButtonDisplay	(0		, 0.05	, 0.2, 0.25, 0.02, 0.08, BUTTON_HOUSE_ID	, this, display::IDLEWORKER);
  	menue.push_back(m1);
-	m1 = new ButtonValueInc (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, &Village::getWishedSoldiersIn	, &Village::getCurrentSoldiersIn, &Village::changeValueOfWishedSoldiers,  0,0);
+
+	m1 = new ButtonChangeValue (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, this, display::SOLDIER);
+	
 	menue.push_back(m1);
-	m1 = new ButtonValueInc (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, &Village::getWishedGoldMinerIn	, &Village::getCurrentGoldMinerIn, &Village::changeValueOfWishedGoldMiner,  0,0);
+	
+	m1 = new ButtonChangeValue (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, this, display::GOLDMINER);
 	menue.push_back(m1);
 	
 	Menu::setMenuList(menue);
@@ -269,5 +274,57 @@ void Village::changeNrOfWorkers(string ressourcename, int change){
 
 		throw new GeneralGameException("Ressource derzeit nicht definiert");
 	}
+
+};
+
+
+int Village::getDisplayButtonValue(display::display_ID display_Item){
+	switch(display_Item)
+	{
+		case display::IDLEWORKER:
+			return getNrOfIdleUnits();
+		case display::TOTAL_UNITS:
+			return getNrOfAllUnits();
+		default: throw GeneralGameException("Display type not implemented yet");
+	};
+}
+
+
+		
+
+int Village::getCurrentValue(display::change_ID ch_id){ 
+	switch (ch_id){
+		case display::SOLDIER:
+			return getNrOfCurrentSoldiers();
+		case display::GOLDMINER:
+			return getNrOfCurrentGoldMiner();
+		default: 
+			throw GeneralGameException("Display type not implemented yet");
+	};
+};
+
+int Village::getWishedValue(display::change_ID ch_id){
+switch (ch_id){
+		case display::SOLDIER:
+			return getNrOfWishedSoldiers();
+		case display::GOLDMINER:
+			return getNrOfWishedGoldMiner();
+		default: 
+			throw GeneralGameException("Display type not implemented yet");	
+	};
+};
+
+void Village::changeValue(display::change_ID ch_id, int change){
+	switch (ch_id){
+		case display::SOLDIER:
+			wish_soldiers+=change;
+			return;			
+		case display::GOLDMINER:
+			wish_goldminingUnits+=change;
+			return;
+		default: 
+			throw GeneralGameException("Display type not implemented yet");	
+
+	};
 
 };

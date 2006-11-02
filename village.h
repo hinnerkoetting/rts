@@ -1,3 +1,10 @@
+//==========================================00
+//represents a village in the game
+//central element in the world
+//all units belongs to a village
+//all resources to
+//=====================================
+
 #ifndef VILLAGE_DEF_H
 #define VILLAGE_DEF_H
 
@@ -7,26 +14,35 @@
 #include "gameressources.h"
 #include "menue.h"
 #include <string>
+#include "button_display.h"
+#include "button_change.h"
+
 
 using namespace std;
 
-class Village{ //vielleicht einiges in die cpp verschieben
+class Village: public ButtonValueReader, public ButtonValueChangerHandler { 
 	private:	
+
+		//player
 		int belongTo;
 
-		int lastTimeForThinking;
 		
+
+
+		//Units
 		std::vector<Unit*> idleUnits;
 		std::vector<Unit*> soldiers;
 		std::vector<Unit*> goldMiner;
 
+		//Ressources (in Map
+
 		Goldmine* gmine;
 		//weitere Ressourcen
 
+		//harvested ressources (also into map)
 		int amountOfMoney;
 		int amountOfWood;
 
-		int levelOfVillage;
 
 		//buildings
 		HeadQuarter* hq;
@@ -37,11 +53,14 @@ class Village{ //vielleicht einiges in die cpp verschieben
 
 				
 
-		//current state
-		int cur_goldminingUnits;
-		int cur_idleWorkers;
-		int cur_defenders;
-		int cur_attackers;
+		//units inside the villagecurrent state
+		//int cur_goldminingUnits;
+		//int cur_idleWorkers;
+		//int cur_defenders;
+		//int cur_attackers;
+
+////////////////////////////////////////////
+
 
 		float grownups;  //new population
 
@@ -54,10 +73,14 @@ class Village{ //vielleicht einiges in die cpp verschieben
 		//GUI
 		Menu villageMenu;
 
-		void initMenu();
-
+		int levelOfVillage;
+	
 
 		void midTermThink();
+	int lastTimeForThinking;
+	
+
+		void initMenu();
 
 		void orderIdleToGoldMiner();
 		void orderIdleToDefender();
@@ -71,6 +94,9 @@ class Village{ //vielleicht einiges in die cpp verschieben
 
 		// unit methods
 		void incUnitsJob(std::vector<Unit*>*, int);
+
+
+
 	public:
 		std::vector<Unit*> allUnits;
 		void addUnit(int x, int y);
@@ -84,7 +110,7 @@ class Village{ //vielleicht einiges in die cpp verschieben
 		int getNrOfCurrentSoldiers() { return soldiers.size(); }
 		int getNrOfCurrentGoldMiner() { return goldMiner.size(); }
 
-		static void changeValueOfWishedGoldMiner(int party, int village, int number) { 
+		/*static void changeValueOfWishedGoldMiner(int party, int village, int number) { 
 			Village* vil = getVillage(party, village);
 			if (vil != 0){
 				vil->incWishGoldMiner(number);
@@ -98,8 +124,9 @@ class Village{ //vielleicht einiges in die cpp verschieben
 			};
 		};
 
+*/
 		//inc units
-		void incAllUnits(int number);
+	//	void incAllUnits(int number);
 		void incIdleUnits(int number);
 		void incSoldiers(int number);
 		void incGoldMiner(int number);
@@ -116,8 +143,11 @@ class Village{ //vielleicht einiges in die cpp verschieben
 		int getNumberOfCurrentWorkers(string ressourcename);
 		int getNumberOfWishedWorkers(string ressourcename);
 		void changeNrOfWorkers(string ressourcename, int change);
-
-
+		int getDisplayButtonValue(display::display_ID);
+	
+		virtual int getCurrentValue(display::change_ID);
+		virtual int getWishedValue(display::change_ID);
+		virtual void changeValue(display::change_ID, int change);
 		
 
 
