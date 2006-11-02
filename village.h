@@ -5,6 +5,11 @@
 #include "headquarter.h"
 #include "unit.h"
 #include "gameressources.h"
+#include "menue.h"
+#include <string>
+
+using namespace std;
+
 class Village{ //vielleicht einiges in die cpp verschieben
 	private:	
 		int belongTo;
@@ -45,6 +50,12 @@ class Village{ //vielleicht einiges in die cpp verschieben
 		int wish_idleWorkers;
 		int wish_defenders;
 		int wish_soldiers;
+
+		//GUI
+		Menu villageMenu;
+
+		void initMenu();
+
 
 		void midTermThink();
 
@@ -94,6 +105,7 @@ class Village{ //vielleicht einiges in die cpp verschieben
 		void incGoldMiner(int number);
 
 
+
 		void incWishSoldiers(int number) {if (wish_soldiers+number >= 0)
 			wish_soldiers+=number; }
 		void incWishGoldMiner(int number) {if (wish_goldminingUnits+number >= 0 )
@@ -101,6 +113,14 @@ class Village{ //vielleicht einiges in die cpp verschieben
 
 
 		//button functions
+		int getNumberOfCurrentWorkers(string ressourcename);
+		int getNumberOfWishedWorkers(string ressourcename);
+		void changeNrOfWorkers(string ressourcename, int change);
+
+
+		
+
+
 		static int getAllUnitsIn(int party, int village);
 		static int getIdleUnitsIn(int party, int village);
 		static int getWishedSoldiersIn(int party, int village);

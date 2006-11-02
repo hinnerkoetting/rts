@@ -130,7 +130,7 @@ void Init::start() {
 	Init::newUnits(1);
 	Init::newGoldMines();
 	Init::newVillages();
-	Init::menu();	
+	//Init::menu();	
 }
 
 	
@@ -176,11 +176,11 @@ void Init::menu() {
 	vector <MenuButton*> menue;
 	MenuButton* m1;
 	m1 = new ButtonValue	(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, BUTTON_UNIT_ID		, &Village::getAllUnitsIn	, 0, 0);
-	menue.push_back(m1);
+	//menue.push_back(m1);
 	m1 = new ButtonValue	(0		, 0.05	, 0.2, 0.25, 0.02, 0.08, BUTTON_HOUSE_ID	, &Village::getIdleUnitsIn	, 0 ,0);
  	menue.push_back(m1);
 	m1 = new ButtonValueInc (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, &Village::getWishedSoldiersIn	, &Village::getCurrentSoldiersIn, &Village::changeValueOfWishedSoldiers,  0,0);
-	menue.push_back(m1);
+	//menue.push_back(m1);
 	m1 = new ButtonValueInc (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, &Village::getWishedGoldMinerIn	, &Village::getCurrentGoldMinerIn, &Village::changeValueOfWishedGoldMiner,  0,0);
 	menue.push_back(m1);
 	
