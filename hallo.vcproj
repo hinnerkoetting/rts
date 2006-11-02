@@ -438,15 +438,15 @@
 					Name="Menu"
 					>
 					<File
+						RelativePath=".\button_change.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\button_functions.cpp"
 						>
 					</File>
 					<File
 						RelativePath=".\button_value.cpp"
-						>
-					</File>
-					<File
-						RelativePath=".\button_value_inc.cpp"
 						>
 					</File>
 					<File
@@ -636,11 +636,11 @@
 				Name="Menu"
 				>
 				<File
-					RelativePath=".\button_value.h"
+					RelativePath=".\button_change.h"
 					>
 				</File>
 				<File
-					RelativePath=".\button_value_inc.h"
+					RelativePath=".\button_display.h"
 					>
 				</File>
 				<File
