@@ -14,8 +14,8 @@ class ButtonValueInc : public ButtonValue {
 	private:
 
 		
-		void (*inc)(int party, int village, int number);
-		int (*getCurrent)(int, int);	// get currentvalue of item
+		void (*inc)(int party, int village, int number); //increase item
+		int (*getCurrent)(int, int);	// get value of item
 
 	public:
 		ButtonValueInc(float x1, float x2, float y1, float y2, float relX, float relY, int id, int (*getWish)(int, int),int (*getCurrent)(int,int), void (*inc)(int, int, int), int party = 0, int village= 0);
