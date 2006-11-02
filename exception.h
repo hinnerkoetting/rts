@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////
 // Ausnahmebehandlung
 
-// Ausnahmeklasse für Ausnahmen im Interpreter.
+// Ausnahmeklasse für Ausnahmen im Spiel
 // Kapselt nur einen String.
 #include <string>
 class  GeneralGameException {

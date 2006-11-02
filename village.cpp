@@ -4,7 +4,12 @@
 #include "pathfinding.h"
 #include "Windows.h"
 #include "Util.h"
+#include "button_value.h"
+#include "button_value_inc.h"
+#include "exception.h"
+#include <string>
 
+using namespace std;
 //Constructor
 //initializes member variables to default values
 Village::Village(int x, int y){
@@ -24,6 +29,7 @@ Village::Village(int x, int y){
 	wish_defenders=0;
 	wish_soldiers=0;			
 	hq = new HeadQuarter(x, y, this->belongTo);
+	initMenu();
 		
 }
 void Village::draw() {
@@ -214,3 +220,54 @@ void Village::createNewIdlePersonAtVillage(){
 	
 
 }
+
+
+/*
+ * each village has a individual menue
+ * if the it's selected, on the left side the individual menue is presented
+ * this method initialised the menue
+ */
+void Village::initMenu(){
+	//temporary standard menue
+	//maybe later individual menues
+
+	MenuList menue;
+	MenuButton* m1;
+	m1 = new ButtonValue	(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, BUTTON_UNIT_ID		, &Village::getAllUnitsIn	, 0, 0);
+	menue.push_back(m1);
+	m1 = new ButtonValue	(0		, 0.05	, 0.2, 0.25, 0.02, 0.08, BUTTON_HOUSE_ID	, &Village::getIdleUnitsIn	, 0 ,0);
+ 	menue.push_back(m1);
+	m1 = new ButtonValueInc (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, &Village::getWishedSoldiersIn	, &Village::getCurrentSoldiersIn, &Village::changeValueOfWishedSoldiers,  0,0);
+	menue.push_back(m1);
+	m1 = new ButtonValueInc (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, &Village::getWishedGoldMinerIn	, &Village::getCurrentGoldMinerIn, &Village::changeValueOfWishedGoldMiner,  0,0);
+	menue.push_back(m1);
+	
+	Menu::setMenuList(menue);
+}
+
+
+int Village::getNumberOfCurrentWorkers(string ressourcename){
+	//noch Umstellung auf Map
+	return goldMiner.size();
+	
+};
+
+
+int Village::getNumberOfWishedWorkers(string ressourcename){
+	//noch Umstellung auf Map
+	return wish_goldminingUnits;
+	
+};
+
+
+void Village::changeNrOfWorkers(string ressourcename, int change){
+	//noch Umstellung auf Map
+	if (ressourcename=="Gold"){
+		wish_goldminingUnits+=change;
+	}
+	else {
+
+		throw new GeneralGameException("Ressource derzeit nicht definiert");
+	}
+
+};
