@@ -94,8 +94,10 @@ class Village{ //vielleicht einiges in die cpp verschieben
 		void incGoldMiner(int number);
 
 
-		void incWishSoldiers(int number) {wish_soldiers+=number;};
-		void incWishGoldMiner(int number) {wish_goldminingUnits+=number;};
+		void incWishSoldiers(int number) {if (wish_soldiers+number >= 0)
+			wish_soldiers+=number; }
+		void incWishGoldMiner(int number) {if (wish_goldminingUnits+number >= 0 )
+											wish_goldminingUnits+=number;}
 
 
 		//button functions
