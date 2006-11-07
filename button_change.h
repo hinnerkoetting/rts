@@ -12,20 +12,19 @@
 #include "menu_button.h"
 
 #include "button_display.h"
+#include "game_object.h"
 
 
-namespace display{
-	enum change_ID { GOLDMINER, SOLDIER};
-}
+
 
 
 class ButtonValueChangerHandler abstract{
 
 
 	public:
-		virtual int getCurrentValue(display::change_ID ch_id)=0;
-		virtual int getWishedValue(display::change_ID ch_id)=0;
-		virtual void changeValue(display::change_ID, int change)=0;
+		virtual int getCurrentValue(GameObject::gameObject_ID ch_id)=0;
+		virtual int getWishedValue(GameObject::gameObject_ID ch_id)=0;
+		virtual void changeValue(GameObject::gameObject_ID, int change)=0;
 };
 
 
@@ -37,11 +36,11 @@ class ButtonChangeValue : public ButtonDisplay {
 		void (*inc)(int party, int village, int number); //increase item
 		int (*getCurrent)(int, int);	// get value of item
 		ButtonValueChangerHandler* handler;
-		display::change_ID changeID;
+		GameObject::gameObject_ID changeID;
 
 	public:
 	//	ButtonChangeValue(float x1, float x2, float y1, float y2, float relX, float relY, int id, int (*getWish)(int, int),int (*getCurrent)(int,int), void (*inc)(int, int, int), int party = 0, int village= 0);
-		ButtonChangeValue(float x1, float x2, float y1, float y2, float relX, float relY, int id, ButtonValueChangerHandler* handler, display::change_ID ch_ID);
+		ButtonChangeValue(float x1, float x2, float y1, float y2, float relX, float relY, int id, ButtonValueChangerHandler* handler, GameObject::gameObject_ID ch_ID);
 		virtual void draw();
 
 

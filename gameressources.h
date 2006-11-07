@@ -1,5 +1,6 @@
 //includes headers of all ressources
 
+
 #ifndef RESSOURCES
 #define RESSOURCES
 
@@ -11,11 +12,15 @@
 //#include "graphical_entity.h"
 
 
-
+//namespace ressources{
+	
+//};
 
 //Ressource Zwischenklasse
  class Ressource abstract: public GameObject{
 
+	
+	
  protected:
 		int amount; //amount of ressource still inside
 
@@ -23,6 +28,8 @@
 
 		void dismissUnit();
  public: 		
+
+
 	 void thinkAboutDismiss(){
 	
 	 };

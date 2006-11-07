@@ -10,17 +10,16 @@
 #ifndef BUTTON_VALUE_H_DEF
 #define BUTTON_VALUE_H_DEF
 #include "menu_button.h"
+#include "game_object.h"
 
 
 
-namespace display{
-	enum display_ID { IDLEWORKER, TOTAL_UNITS};
-}
+
 
 
 class ButtonValueReader abstract{
 	public:
-		virtual int getDisplayButtonValue(display::display_ID)=0;
+		virtual int getDisplayButtonValue(GameObject::gameObject_ID)=0;
 };
 
 
@@ -29,7 +28,7 @@ class ButtonDisplay : public MenuButton {
 		ButtonDisplay() {}
 		float relativeX;  //position of value relative to original x position
 		float relativeY;
-		display::display_ID displayID;
+		GameObject::gameObject_ID displayID;
 
 		void drawBorders(); //draws a quad around image + value
 		int village;		// id of village
@@ -40,7 +39,7 @@ class ButtonDisplay : public MenuButton {
 	public:
 		//obsolete
 	//	ButtonDisplay(float x1, float x2, float y1, float y2, float relX, float relY, int id, int (*get)(int, int), int party, int village);	
-		ButtonDisplay(float x1, float x2, float y1, float y2, float relX, float relY, int id, ButtonValueReader* handler, display::display_ID dID);	
+		ButtonDisplay(float x1, float x2, float y1, float y2, float relX, float relY, int id, ButtonValueReader* handler, GameObject::gameObject_ID dID);	
 
 		//draws the button (OPENGL)
 		virtual void draw();

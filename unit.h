@@ -14,7 +14,7 @@
 #include "mymath.h"
 #include "game_object.h"
 
-enum Unit_Type { IDLE_WORKER, GOLDMINER };
+
 
 class  Unit : public GameObject {
 	//friend class Hero;	//(warum brauchen wir hier friend?)
@@ -30,7 +30,7 @@ class  Unit : public GameObject {
 		void roundPos() { setPos(getX(), getY()); }// sets actual position to an "integer" (Pos%getPosConst=0)
 		bool nextToBuilding(int buildingID);
 
-		Unit_Type unitType;
+		gameObject_ID unitType;
 	private:
 		
 		
@@ -51,8 +51,8 @@ class  Unit : public GameObject {
 		virtual void think()=0; //if a unit acts autonom, the decision proces is here
 		virtual void setNewGoal(int goal)=0; //sets general goal for a unit like mining
 
-		virtual void setType(Unit_Type unitType);
-		virtual Unit_Type getType(){ return unitType;}
+		virtual void setType(gameObject_ID unitType);
+		virtual gameObject_ID getType(){ return unitType;}
 
 };
 #endif

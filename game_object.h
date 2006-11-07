@@ -14,7 +14,16 @@
  * every object in game which stands on gamefield is derived by this class
  *
  */
+
+
+
 class GameObject {
+	
+public: enum gameObject_ID { GOLDMINER, SOLDIER, IDLEWORKER, TOTAL_UNITS, GOLD, WOOD, OIL};
+
+
+
+
 	private:
 		int id;				//every unit type has an unique id
 		

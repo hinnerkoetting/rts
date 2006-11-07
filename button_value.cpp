@@ -30,7 +30,7 @@
 	this->village = village;
 }*/
 
-ButtonDisplay::ButtonDisplay(float x1, float x2, float y1, float y2, float relX, float relY, int id, ButtonValueReader* handl, display::display_ID dID){
+ButtonDisplay::ButtonDisplay(float x1, float x2, float y1, float y2, float relX, float relY, int id, ButtonValueReader* handl, GameObject::gameObject_ID dID){
 	this->x1 = x1;
 	this->x2 = x2;
 	this->y1 = y1;
