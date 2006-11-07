@@ -8,17 +8,19 @@
 /////////////////////////////////////////////////////////////////
 
 #include <math.h>
+#include "gl/glut.h"
 #include "gra_ingame.h"
 #include "ingame.h"
 #include "options.h"
+#include "gl/glut.h"
 #include "graphic.h"
 #include "errors.h"
-#include "gl/glut.h"
 #include "field.h"
 #include "unit.h"
 #include "hero.h"
 #include "mymath.h"
 #include "party.h"
+
 
 float GraIngame::xPos = 0.0f;
 float GraIngame::yPos = 0.0f;

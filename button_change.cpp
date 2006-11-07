@@ -15,6 +15,11 @@
 #include "point.h"
 #include <string>
 
+
+
+//TODO: Vielleicht umstellen auf Interfaces für Ressource_Worker
+//Soldaten...und die bisherigen passiven Display button?
+
 /*
 
 ButtonChangeValue::ButtonChangeValue(float x1, float x2, float y1, float y2, float relX, float relY, int id, int (*getWish)(int, int), int (*getCurrent)(int, int), void (*inc)(int, int, int ),int party, int village) {
@@ -33,7 +38,7 @@ ButtonChangeValue::ButtonChangeValue(float x1, float x2, float y1, float y2, flo
 	this->village = village;
 }*/
 
-ButtonChangeValue::ButtonChangeValue(float x1, float x2, float y1, float y2, float relX, float relY, int id, ButtonValueChangerHandler* handl, display::change_ID ch_Id) {
+ButtonChangeValue::ButtonChangeValue(float x1, float x2, float y1, float y2, float relX, float relY, int id, ButtonValueChangerHandler* handl, GameObject::gameObject_ID ch_Id) {
 	this->x1 = x1;
 	this->x2 = x2;
 	this->y1 = y1;

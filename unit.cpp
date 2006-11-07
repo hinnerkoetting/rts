@@ -40,7 +40,7 @@ float length(float x, float y) {
 	return sqrt(x*x + y*y);
 }
 
-	void Unit::setType(Unit_Type typeOfUnit){
+void Unit::setType(GameObject::gameObject_ID typeOfUnit){
 	this->unitType=typeOfUnit;
 }
 

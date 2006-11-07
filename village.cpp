@@ -1,3 +1,4 @@
+#include <string>
 #include "village.h"
 #include "worker.h"
 #include "party.h"
@@ -7,7 +8,8 @@
 #include "button_display.h"
 #include "button_change.h"
 #include "exception.h"
-#include <string>
+#include "game_object.h"
+
 
 using namespace std;
 //Constructor
@@ -24,8 +26,8 @@ Village::Village(int x, int y){
 	addUnit(15, 13);
 	addUnit(15, 9);
 	//players wish
-	wish_goldminingUnits=0;
-	wish_idleWorkers=0;
+	//wish_goldminingUnits=0;
+	//wish_idleWorkers=0;
 	wish_defenders=0;
 	wish_soldiers=0;			
 	hq = new HeadQuarter(x, y, this->belongTo);
@@ -38,8 +40,15 @@ void Village::draw() {
 		std::vector<Unit*>::value_type tmp = *i;
 		tmp->draw();
 	}
-	gmine->draw();
+	
+	VillageRessources::iterator i=mVillageRessources.begin();
+	while (i!=mVillageRessources.end()){
+		i->second->draw();
+		i++;
+	}
+	
 }
+
 
 
 /**
@@ -57,19 +66,32 @@ void Village::midTermThink(){
 			createNewIdlePersonAtVillage();
 		}
 
-	//adopt current numbers of workers with wished numbers
-		if (wish_goldminingUnits>getNrOfCurrentGoldMiner()){
-			if (getNrOfIdleUnits()>0){
-				Worker* changingWorker=static_cast<Worker*>(idleUnits.front());
-
-				idleUnits.erase(idleUnits.begin());
-
-				(*changingWorker).setType(GOLDMINER);
-				goldMiner.push_back(changingWorker);
-				//cur_goldminingUnits=goldMiner.size();
+		//for each ressource: analyse if additional workers are required
+		map<GameObject::gameObject_ID,Units>::iterator i=mcurrentworkersforJob.begin();
+		//if (mcurrentworkersforJob.size()>!=NULL){
+			while (i!=mcurrentworkersforJob.end()){
+				GameObject::gameObject_ID worker_Type=i->first;
 				
+				int nrOfCurrentWorkers=i->second.size();
+				int wishedworkers=getNumberOfWishedWorker(worker_Type);
+				if (wishedworkers>nrOfCurrentWorkers){
+					if (getNrOfIdleUnits()>0){
+						//TODO check cast subject. good design?
+						Worker* changingWorker=static_cast<Worker*>(midleUnits.front());
+						midleUnits.erase(midleUnits.begin());
+						(*changingWorker).setType(worker_Type);
+						i->second.push_back(changingWorker);
+					}
+				}
+				i++;
 			}
-		}
+		//}
+		
+		
+
+		//removal of workers happens individual after return to headquarter
+
+
 		//all units of the village may now think about the next step to do
 for (std::vector<Unit*>::iterator i = this->allUnits.begin(); i != allUnits.end(); i++) {
 		std::vector<Unit*>::value_type tmp = *i;
@@ -100,10 +122,10 @@ void Village::calc() {
 void Village::addUnit(int x, int y) {
 	Worker* w =new Worker(x, y);
 	allUnits.push_back(w);
-	idleUnits.push_back(w);
+	midleUnits.push_back(w);
 }
 
-
+/*
 
 int Village::getAllUnitsIn(int party, int village) {
 	Village* vil = getVillage(party, village);
@@ -126,7 +148,7 @@ int Village::getCurrentSoldiersIn(int party, int village) {
 	return -1;
 }
 
-
+/*
 int Village::getWishedGoldMinerIn(int party, int village) {
 	Village* vil = getVillage(party, village);
 	if (vil != 0)
@@ -149,7 +171,7 @@ int Village::getIdleUnitsIn(int party, int village) {
 		return vil->getNrOfIdleUnits();
 	return -1;
 }
-
+*/
 
 /*void Village::incAllUnits(int number) {
 	//TODO
@@ -172,16 +194,16 @@ void Village::incGoldMinerIn(int party, int village, int number) {
 void Village::incUnitsJob(std::vector<Unit*>* u, int number) {
 	if (number >= 0) {
 		for (int i = 0; i < number; i++) {
-			if (this->idleUnits.size() > 0) {
-				u->push_back(this->idleUnits.back());
-				this->idleUnits.pop_back();
+			if (this->midleUnits.size() > 0) {
+				u->push_back(this->midleUnits.back());
+				this->midleUnits.pop_back();
 			}
 		}
 	}
 	else {
 		for (int i= number; i < 0; i++) {
 			if (u->size() > 0) {
-				this->idleUnits.push_back(u->back());
+				this->midleUnits.push_back(u->back());
 				u->pop_back();
 			}
 		}
@@ -189,13 +211,14 @@ void Village::incUnitsJob(std::vector<Unit*>* u, int number) {
 }
 
 void Village::incSoldiers(int number) {
-	incUnitsJob(&this->soldiers, number);
+	incUnitsJob(&this->msoldiers, number);
 }
 
+/*
 void Village::incGoldMiner(int number) {
 	
 	incUnitsJob(&this->goldMiner, number);
-}
+}*/
 
 void Village::incIdleUnits(int number) {
 	//TODO
@@ -233,38 +256,24 @@ void Village::initMenu(){
 
 	MenuList menue;
 	MenuButton* m1;
-	m1 = new ButtonDisplay	(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, BUTTON_UNIT_ID		, this, display::TOTAL_UNITS);
+	m1 = new ButtonDisplay	(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, BUTTON_UNIT_ID		, this, GameObject::TOTAL_UNITS);
 	
 	menue.push_back(m1);
 
-	m1 = new ButtonDisplay	(0		, 0.05	, 0.2, 0.25, 0.02, 0.08, BUTTON_HOUSE_ID	, this, display::IDLEWORKER);
+	m1 = new ButtonDisplay	(0		, 0.05	, 0.2, 0.25, 0.02, 0.08, BUTTON_HOUSE_ID	, this, GameObject::IDLEWORKER);
  	menue.push_back(m1);
 
-	m1 = new ButtonChangeValue (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, this, display::SOLDIER);
+	m1 = new ButtonChangeValue (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, this, GameObject::SOLDIER);
 	
 	menue.push_back(m1);
 	
-	m1 = new ButtonChangeValue (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, this, display::GOLDMINER);
+	m1 = new ButtonChangeValue (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, this, GameObject::GOLDMINER);
 	menue.push_back(m1);
 	
 	Menu::setMenuList(menue);
 }
 
-
-int Village::getNumberOfCurrentWorkers(string ressourcename){
-	//noch Umstellung auf Map
-	return goldMiner.size();
-	
-};
-
-
-int Village::getNumberOfWishedWorkers(string ressourcename){
-	//noch Umstellung auf Map
-	return wish_goldminingUnits;
-	
-};
-
-
+/*
 void Village::changeNrOfWorkers(string ressourcename, int change){
 	//noch Umstellung auf Map
 	if (ressourcename=="Gold"){
@@ -275,15 +284,15 @@ void Village::changeNrOfWorkers(string ressourcename, int change){
 		throw new GeneralGameException("Ressource derzeit nicht definiert");
 	}
 
-};
+};*/
 
 
-int Village::getDisplayButtonValue(display::display_ID display_Item){
+int Village::getDisplayButtonValue(GameObject::gameObject_ID display_Item){
 	switch(display_Item)
 	{
-		case display::IDLEWORKER:
+		case GameObject::IDLEWORKER:
 			return getNrOfIdleUnits();
-		case display::TOTAL_UNITS:
+		case GameObject::TOTAL_UNITS:
 			return getNrOfAllUnits();
 		default: throw GeneralGameException("Display type not implemented yet");
 	};
@@ -292,39 +301,58 @@ int Village::getDisplayButtonValue(display::display_ID display_Item){
 
 		
 
-int Village::getCurrentValue(display::change_ID ch_id){ 
+int Village::getCurrentValue(GameObject::gameObject_ID ch_id){ 
 	switch (ch_id){
-		case display::SOLDIER:
+		//some units still have to be done manually
+		case GameObject::SOLDIER:
 			return getNrOfCurrentSoldiers();
-		case display::GOLDMINER:
-			return getNrOfCurrentGoldMiner();
+		
 		default: 
-			throw GeneralGameException("Display type not implemented yet");
+			//ressources can already be done generic
+			return  getNrOfCurrentWorker(ch_id);
+			
 	};
 };
 
-int Village::getWishedValue(display::change_ID ch_id){
-switch (ch_id){
-		case display::SOLDIER:
-			return getNrOfWishedSoldiers();
-		case display::GOLDMINER:
-			return getNrOfWishedGoldMiner();
-		default: 
-			throw GeneralGameException("Display type not implemented yet");	
-	};
+//Jetzt ist es erstmal für Worker....gut so? nicht konsistent, da ja prinzipiell auch für Soldaten
+//irgendwo noch unterscheidung
+int Village::getWishedValue(GameObject::gameObject_ID ch_id){
+	return mwishedNumberOfWorkersForJob[ch_id];
 };
 
-void Village::changeValue(display::change_ID ch_id, int change){
-	switch (ch_id){
-		case display::SOLDIER:
-			wish_soldiers+=change;
-			return;			
-		case display::GOLDMINER:
-			wish_goldminingUnits+=change;
-			return;
-		default: 
-			throw GeneralGameException("Display type not implemented yet");	
-
-	};
+//Jetzt ist es erstmal für Worker....gut so? nicht konsistent, da ja prinzipiell auch für Soldaten
+//irgendwo noch unterscheidung
+void Village::changeValue(GameObject::gameObject_ID ch_id, int change){
+	mwishedNumberOfWorkersForJob[ch_id]+=change;
+	
 
 };
+
+
+
+int Village::getNumberOfWishedWorker(GameObject::gameObject_ID ressource){
+
+	return mwishedNumberOfWorkersForJob[ressource];
+};
+
+
+
+int Village::getNrOfCurrentWorker(GameObject::gameObject_ID ressource){
+	return mcurrentworkersforJob[ressource].size();
+};
+
+Village::Village(){
+
+	//muss hier wirklich was initialisiert werden?
+};
+
+/*
+void Village::changeNrOfWorkers(GameObject::gameObject_ID worker_type, int change){
+	mcurrentworkersforJob{worker_type]+=change;
+}*/
+
+
+//Vielleicht die verschiedenen Worker Types abschaffen....
+//sie einfach über die Ressource ansprechen...GOLD statt GoldMiner...usw.
+
+//die ID sollte mit der ID für die Grafikdarstellung vereinigt werden
