@@ -12,20 +12,26 @@
 #include <string>
 #include <map>
 
+
 #include "headquarter.h"
 #include "unit.h"
-#include "gameressources.h"
-#include "menue.h"
 
-#include "button_display.h"
-#include "button_change.h"
 #include "game_object.h"
+#include "gameressources.h"
+
+#include "menue.h"
+#include "button_display.h"
+
+#include "button_ressource.h"
+
+
 
 
 
 using namespace std;
 
-class Village: public ButtonValueReader, public ButtonValueChangerHandler { 
+
+class Village: public ButtonValueReader, public BtnRessourceHandler { 
 	private:	
 
 		//player
@@ -71,7 +77,7 @@ class Village: public ButtonValueReader, public ButtonValueChangerHandler {
 		int wish_soldiers;
 
 		//GUI
-		Menu villageMenu;
+		ActiveMenu villageMenu;
 
 		int levelOfVillage;
 	
@@ -138,8 +144,8 @@ class Village: public ButtonValueReader, public ButtonValueChangerHandler {
 		int getDisplayButtonValue(GameObject::gameObject_ID);
 	
 		virtual int getCurrentValue(GameObject::gameObject_ID);
-		virtual int getWishedValue(GameObject::gameObject_ID);
-		virtual void changeValue(GameObject::gameObject_ID, int change);
+		virtual int getWishedWorker(GameObject::gameObject_ID);
+		virtual void changeNrWorker(GameObject::gameObject_ID, int change);
 		
 
 
@@ -165,7 +171,7 @@ class Village: public ButtonValueReader, public ButtonValueChangerHandler {
 		static Village* getVillage(int party, int village);
 
 		void setGoldMine(Goldmine* goldmine){
-			this->mVillageRessources[GameObject::GOLDMINER]=goldmine;
+			this->mVillageRessources[GameObject::GOLD]=goldmine;
 		}
 	
 

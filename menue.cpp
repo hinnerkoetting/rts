@@ -25,7 +25,25 @@
 		
 
 
-std::vector <MenuButton*> Menu::menu;
+std::vector <MenuButton*> ActiveMenu::menu;
 
 
+//initiales default buttons
+VillageMenu::VillageMenu(){
 
+};
+
+void VillageMenu::addRessourceButton(GameObject::gameObject_ID){
+	
+};	
+	
+void VillageMenu::removeRessourceButton(GameObject::gameObject_ID){
+};
+	//removeSoldierType(GameObject::gameObject_ID);
+	//addSoldierType(GameObject::gameObject_ID);
+	//later add research
+void VillageMenu::makeActive(){
+		ActiveMenu::setMenuList(villageMenuList);
+				
+	};
+	

@@ -34,7 +34,7 @@ void NewGame::DrawBG(const short iType)
 
 /*
  *
- * draws buttons of the New Game Menu
+ * draws buttons of the New Game ActiveMenu
  * TODO: rework
  */
 void NewGame::DrawButtons()
@@ -70,8 +70,8 @@ void NewGame::Input()
 	}
 	if (keys[VK_ESCAPE].iNumber)
 	{
-		grafikStream = &Menu::MainMenu::DrawMenu;
-		//Game::Input = &Menu::MainMenu::Input;
+		grafikStream = &ActiveMenu::MainMenu::DrawMenu;
+		//Game::Input = &ActiveMenu::MainMenu::Input;
 		return;
 	}*/
 }

@@ -438,11 +438,11 @@
 					Name="Menu"
 					>
 					<File
-						RelativePath=".\button_change.cpp"
+						RelativePath=".\button_functions.cpp"
 						>
 					</File>
 					<File
-						RelativePath=".\button_functions.cpp"
+						RelativePath=".\button_ressource.cpp"
 						>
 					</File>
 					<File
@@ -636,11 +636,11 @@
 				Name="Menu"
 				>
 				<File
-					RelativePath=".\button_change.h"
+					RelativePath=".\button_display.h"
 					>
 				</File>
 				<File
-					RelativePath=".\button_display.h"
+					RelativePath=".\button_ressource.h"
 					>
 				</File>
 				<File
@@ -805,14 +805,6 @@
 				</File>
 				<File
 					RelativePath=".\switch.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="calculation"
-				>
-				<File
-					RelativePath=".\calculation.h"
 					>
 				</File>
 			</Filter>

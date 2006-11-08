@@ -6,7 +6,7 @@
 #include "Windows.h"
 #include "Util.h"
 #include "button_display.h"
-#include "button_change.h"
+#include "button_ressource.h"
 #include "exception.h"
 #include "game_object.h"
 
@@ -93,7 +93,7 @@ void Village::midTermThink(){
 
 
 		//all units of the village may now think about the next step to do
-for (std::vector<Unit*>::iterator i = this->allUnits.begin(); i != allUnits.end(); i++) {
+	for (std::vector<Unit*>::iterator i = this->allUnits.begin(); i != allUnits.end(); i++) {
 		std::vector<Unit*>::value_type tmp = *i;
 		tmp->think();
 	}
@@ -263,14 +263,14 @@ void Village::initMenu(){
 	m1 = new ButtonDisplay	(0		, 0.05	, 0.2, 0.25, 0.02, 0.08, BUTTON_HOUSE_ID	, this, GameObject::IDLEWORKER);
  	menue.push_back(m1);
 
-	m1 = new ButtonChangeValue (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, this, GameObject::SOLDIER);
+	m1 = new ButtonRessource (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, this, GameObject::SOLDIER);
 	
 	menue.push_back(m1);
 	
-	m1 = new ButtonChangeValue (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, this, GameObject::GOLDMINER);
+	m1 = new ButtonRessource (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, this, GameObject::GOLD);
 	menue.push_back(m1);
 	
-	Menu::setMenuList(menue);
+	ActiveMenu::setMenuList(menue);
 }
 
 /*
@@ -316,13 +316,13 @@ int Village::getCurrentValue(GameObject::gameObject_ID ch_id){
 
 //Jetzt ist es erstmal für Worker....gut so? nicht konsistent, da ja prinzipiell auch für Soldaten
 //irgendwo noch unterscheidung
-int Village::getWishedValue(GameObject::gameObject_ID ch_id){
+int Village::getWishedWorker(GameObject::gameObject_ID ch_id){
 	return mwishedNumberOfWorkersForJob[ch_id];
 };
 
 //Jetzt ist es erstmal für Worker....gut so? nicht konsistent, da ja prinzipiell auch für Soldaten
 //irgendwo noch unterscheidung
-void Village::changeValue(GameObject::gameObject_ID ch_id, int change){
+void Village::changeNrWorker(GameObject::gameObject_ID ch_id, int change){
 	mwishedNumberOfWorkersForJob[ch_id]+=change;
 	
 
@@ -351,8 +351,5 @@ void Village::changeNrOfWorkers(GameObject::gameObject_ID worker_type, int chang
 	mcurrentworkersforJob{worker_type]+=change;
 }*/
 
-
-//Vielleicht die verschiedenen Worker Types abschaffen....
-//sie einfach über die Ressource ansprechen...GOLD statt GoldMiner...usw.
 
 //die ID sollte mit der ID für die Grafikdarstellung vereinigt werden

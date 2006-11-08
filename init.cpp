@@ -15,7 +15,7 @@
 #include <vector>
 #include "menue.h"
 #include "button_display.h"
-#include "button_change.h"
+#include "button_ressource.h"
 #include "party.h"
 #include "defines.h"
 #include "init.h"
@@ -182,13 +182,13 @@ void Init::menu() {
 	//menue.push_back(m1);
 	//m1 = new ButtonDisplay	(0		, 0.05	, 0.2, 0.25, 0.02, 0.08, BUTTON_HOUSE_ID	, &Village::getIdleUnitsIn	, 0 ,0);
  	menue.push_back(m1);
-	m1 = new ButtonChangeValue (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, this, display::SOLDIER);
-	//m1 = new ButtonChangeValue (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, &Village::getWishedSoldiersIn	, &Village::getCurrentSoldiersIn, &Village::changeValueOfWishedSoldiers,  0,0);
+	m1 = new ButtonRessource (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, this, display::SOLDIER);
+	//m1 = new ButtonRessource (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, &Village::getWishedSoldiersIn	, &Village::getCurrentSoldiersIn, &Village::changeValueOfWishedSoldiers,  0,0);
 	//menue.push_back(m1);
-	m1 = new ButtonChangeValue (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, &Village::getWishedGoldMinerIn	, &Village::getCurrentGoldMinerIn, &Village::changeValueOfWishedGoldMiner,  0,0);
-	m1 = new ButtonChangeValue (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, this, display::GOLDMINER);
+	m1 = new ButtonRessource (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, &Village::getWishedGoldMinerIn	, &Village::getCurrentGoldMinerIn, &Village::changeValueOfWishedGoldMiner,  0,0);
+	m1 = new ButtonRessource (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, this, display::GOLD);
 	menue.push_back(m1);
 	
-	Menu::setMenuList(menue);
+	ActiveMenu::setMenuList(menue);
 */	
 }
