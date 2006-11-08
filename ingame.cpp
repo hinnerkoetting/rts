@@ -114,7 +114,7 @@ void Ingame::mouseClick(int button, int state, int x, int y) {
 		if (y >= Options::ResolutionY - GraIngame::getMenuWidth() * Options::ResolutionX) //on minimap
 			IngameMenu::miniMapClick(button, state, x, y);
 		else {
-			std::vector<MenuButton*> menueList=Menu::getMenuList();
+			std::vector<MenuButton*> menueList=ActiveMenu::getMenuList();
 
 			int mx = x / GraIngame::getMenuWidth();
 			for (unsigned int i=0;i<menueList.size();i++){				
