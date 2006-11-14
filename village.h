@@ -26,7 +26,7 @@
 
 
 
-
+//class VillageMenu;
 
 using namespace std;
 
@@ -57,7 +57,7 @@ class Village: public ButtonValueReader, public BtnRessourceHandler {
 		map<GameObject::gameObject_ID,Units> mcurrentworkersforJob;
 
 
-
+	VillageMenu mVillageMenu;
 
 		HeadQuarter* hq;
 		//Research Goal, and state
@@ -105,7 +105,7 @@ class Village: public ButtonValueReader, public BtnRessourceHandler {
 
 
 	public:
-		Village();
+		//Village();
 		std::vector<Unit*> allUnits;//wieso public?
 		void addUnit(int x, int y);
 
@@ -164,7 +164,11 @@ class Village: public ButtonValueReader, public BtnRessourceHandler {
 
 
 		Village(int x, int y);
-		~Village() {delete hq; /* TODO: delete all units*/}
+		~Village() {
+			delete hq; 
+			hq=NULL;
+			
+			/* TODO: delete all units*/}
 		void setBelongTo(int id) { belongTo = id; } //belong to party
 		void draw(); // draw all units, buildings etc which belong to this village
 		void calc(); // unit movement...

@@ -14,8 +14,9 @@
 using namespace std;
 //Constructor
 //initializes member variables to default values
-Village::Village(int x, int y){
+Village::Village(int x, int y) {
 
+	
 	//current state
 	//cur_goldminingUnits=0;
 	//cur_idleWorkers=0;
@@ -31,9 +32,12 @@ Village::Village(int x, int y){
 	wish_defenders=0;
 	wish_soldiers=0;			
 	hq = new HeadQuarter(x, y, this->belongTo);
+
+	mVillageMenu.setVillage(this);
 	initMenu();
-		
+
 }
+
 void Village::draw() {
 	this->hq->draw();
 	for (std::vector<Unit*>::iterator i = this->allUnits.begin(); i != allUnits.end(); i++) {
@@ -253,24 +257,14 @@ void Village::createNewIdlePersonAtVillage(){
 void Village::initMenu(){
 	//temporary standard menue
 	//maybe later individual menues
+	
+	mVillageMenu.addRessourceButton(GameObject::GOLD);
 
-	MenuList menue;
-	MenuButton* m1;
-	m1 = new ButtonDisplay	(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, BUTTON_UNIT_ID		, this, GameObject::TOTAL_UNITS);
 	
-	menue.push_back(m1);
-
-	m1 = new ButtonDisplay	(0		, 0.05	, 0.2, 0.25, 0.02, 0.08, BUTTON_HOUSE_ID	, this, GameObject::IDLEWORKER);
- 	menue.push_back(m1);
-
-	m1 = new ButtonRessource (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, this, GameObject::SOLDIER);
 	
-	menue.push_back(m1);
+	//temporary set Active
+	mVillageMenu.makeActive();
 	
-	m1 = new ButtonRessource (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, this, GameObject::GOLD);
-	menue.push_back(m1);
-	
-	ActiveMenu::setMenuList(menue);
 }
 
 /*
@@ -341,10 +335,11 @@ int Village::getNrOfCurrentWorker(GameObject::gameObject_ID ressource){
 	return mcurrentworkersforJob[ressource].size();
 };
 
-Village::Village(){
+/*
+Village::Village():mVillageMenu(this){
 
 	//muss hier wirklich was initialisiert werden?
-};
+};*/
 
 /*
 void Village::changeNrOfWorkers(GameObject::gameObject_ID worker_type, int change){
