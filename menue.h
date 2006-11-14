@@ -13,6 +13,9 @@
 #include <vector>
 #include "menu_button.h"
 #include "game_object.h"
+#include "button_display.h"
+#include "button_ressource.h"
+//#include "village.h"
 
 typedef  std::vector<MenuButton*> MenuList;
 
@@ -27,6 +30,8 @@ class ActiveMenu {
 
 };
 
+class Village;
+
 /**
  * manages a menus for a villages
  * cares about layout of the menu
@@ -34,8 +39,17 @@ class ActiveMenu {
 class VillageMenu{
 private:
 	MenuList villageMenuList;
+	//BtnRessourceHandler* mRessourceHandler;
+	//ButtonValueReader* mButtonValueReader;
+	Village* assignedVillage;
+	//TODO: Das Village muss sinnvollerweise rein
 public:
-	VillageMenu();
+	VillageMenu(){
+		assignedVillage=NULL;	
+	};
+	VillageMenu(Village* v);
+	void setVillage(Village *v);
+	
 	void addRessourceButton(GameObject::gameObject_ID);
 	//addSoldierType(GameObject::gameObject_ID);
 	void removeRessourceButton(GameObject::gameObject_ID);

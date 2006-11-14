@@ -17,6 +17,11 @@
 #include "exit.h"
 #include "mainmenu.h"
 #include "newmenu.h"
+//TODO defines anders integrieren
+#include "defines.h"
+#include "button_display.h"
+#include "button_ressource.h"
+#include "village.h"
 /*
  *
  * switches interface to main menu
@@ -29,11 +34,34 @@ std::vector <MenuButton*> ActiveMenu::menu;
 
 
 //initiales default buttons
-VillageMenu::VillageMenu(){
+VillageMenu::VillageMenu(Village* v){
+	assignedVillage=v;
+	//TODO: optimize code
+	
+	assignedVillage=NULL;
+	MenuButton* m1;
+//	ButtonValueReader bla=*assignedVillage;
+	//Village v1=*assignedVillage;
+	//ButtonValueReader* br=&v1;
+	m1 = new ButtonDisplay	(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, BUTTON_UNIT_ID		, assignedVillage, GameObject::TOTAL_UNITS);
+	
+	
+	villageMenuList.push_back(m1);
 
-};
+	m1 = new ButtonDisplay	(0		, 0.05	, 0.2, 0.25, 0.02, 0.08, BUTTON_HOUSE_ID	, assignedVillage, GameObject::IDLEWORKER);
+ 	villageMenuList.push_back(m1);
+
+	m1 = new ButtonRessource (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, assignedVillage, GameObject::SOLDIER);
+	
+	villageMenuList.push_back(m1);
+}
+
 
 void VillageMenu::addRessourceButton(GameObject::gameObject_ID){
+	MenuButton* m1;
+	m1 = new ButtonRessource (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, assignedVillage, GameObject::GOLD);
+	villageMenuList.push_back(m1);
+	
 	
 };	
 	
@@ -47,3 +75,25 @@ void VillageMenu::makeActive(){
 				
 	};
 	
+//WIRD NOCH OPTIMIERT!!!!!!!!ENTWICKLUNGSCODE!!!!!!!!!!!!!!!
+	void VillageMenu::setVillage(Village *v){ 
+		this->assignedVillage=v;
+		
+	MenuButton* m1;
+//	ButtonValueReader bla=*assignedVillage;
+	//Village v1=*assignedVillage;
+	//ButtonValueReader* br=&v1;
+	m1 = new ButtonDisplay	(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, BUTTON_UNIT_ID		, assignedVillage, GameObject::TOTAL_UNITS);
+	
+	
+	villageMenuList.push_back(m1);
+
+	m1 = new ButtonDisplay	(0		, 0.05	, 0.2, 0.25, 0.02, 0.08, BUTTON_HOUSE_ID	, assignedVillage, GameObject::IDLEWORKER);
+ 	villageMenuList.push_back(m1);
+
+	m1 = new ButtonRessource (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, assignedVillage, GameObject::SOLDIER);
+	
+	villageMenuList.push_back(m1);
+	};
+
+	//NORMALER CODE
