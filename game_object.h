@@ -22,7 +22,7 @@ class GameObject {
 //Goldminer wird rausgenommen
 //statt dessen wird einfach Gold eingetragen
 
-public: enum gameObject_ID {  SOLDIER, IDLEWORKER, TOTAL_UNITS, GOLD, WOOD, OIL};
+public: enum gameObject_ID {  SOLDIER=100, IDLEWORKER, TOTAL_UNITS, GOLD, WOOD, OIL};
 
 
 

@@ -22,8 +22,11 @@ void GraIngame::loadImages() {
 	Graphic::loadImage("data/goldmine_button.jpg", BUTTON_GOLDMINE_ID);
 
 	Graphic::loadImage("data/worker2.gif", WORKER_ID);
-	Graphic::loadImage("data/goldmine.bmp", GOLDMINE_ID);
+	
 	Graphic::loadImage("data/village.jpg", VILLAGE_ID);
 	Graphic::loadImage("data/headquarter.gif", HEADQUARTER_ID);
+
+	//Graphic::loadImage("data/goldmine.bmp", GOLDMINE_ID);
+	Graphic::loadGameObjectImage("data/goldmine.bmp", GameObject::GOLD);
 	
 }
