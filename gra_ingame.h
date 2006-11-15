@@ -2,7 +2,7 @@
 //
 //					
 //					gra_ingame.h
-//					graphical functions ingame
+//					graphical functions ViewAndControl
 //					
 //
 /////////////////////////////////////////////////////////////////

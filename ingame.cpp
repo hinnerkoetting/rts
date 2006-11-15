@@ -23,11 +23,12 @@
 #include "inp_ingame.h"
 #include "ingame_menu.h"
 #include "init.h"
-
+#include "worldModel.h"
+#include "gameViewAndControl.h"
 
 
 namespace worldModel{
-	Field worldModel::fields[MAX_FIELDS_X][MAX_FIELDS_Y];
+	Field fields[MAX_FIELDS_X][MAX_FIELDS_Y];
 	std::vector<Party> partys;
 }
 
@@ -39,7 +40,7 @@ namespace Performance{
 
 }
 
-namespace Ingame {
+namespace ViewAndControl {
 
 	
 //	int iCurXPos = 0;	//map position
@@ -60,7 +61,7 @@ double sqr(const double d) {
  * draws game
  *
  */
-void Ingame::draw() {	
+void ViewAndControl::draw() {	
 	
 	static int b = 0;
 	if (b <= 1) {
@@ -85,9 +86,9 @@ void Ingame::draw() {
  * computing positions etc.
  * 
  */
-void Ingame::calc() {
+void ViewAndControl::calc() {
 	int time=glutGet(GLUT_ELAPSED_TIME);			
-	Ingame::incTimeHold(time);
+	ViewAndControl::incTimeHold(time);
 	IngameMenu::calcFPS(time);
 	mouse(mouseHold, -1, GraIngame::getMX(), GraIngame::getMY());
 	for (std::vector<Party>::iterator i = worldModel::partys.begin(); i != worldModel::partys.end(); i++) {
@@ -121,7 +122,7 @@ void worldModel::DestroyWorld() {
  * checking where clicked, executing that function
  *
  */
-void Ingame::mouseClick(int button, int state, int x, int y) {
+void ViewAndControl::mouseClick(int button, int state, int x, int y) {
 	if(x <= Options::ResolutionX * GraIngame::getMenuWidth()) { // on menu
 		if (y >= Options::ResolutionY - GraIngame::getMenuWidth() * Options::ResolutionX) //on minimap
 			IngameMenu::miniMapClick(button, state, x, y);

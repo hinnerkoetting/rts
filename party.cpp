@@ -1,6 +1,6 @@
 #include "village.h"
 #include "party.h"
-#include "ingame.h"
+#include "gameViewAndControl.h"
 #include <vector>
 int Party::number = 0;
 

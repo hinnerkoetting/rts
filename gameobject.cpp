@@ -8,8 +8,10 @@
 /////////////////////////////////////////////////////////////////
 
 #include "game_object.h"
-#include "Ingame.h"
+#include "gameViewAndControl.h"
 #include "options.h"
+#include "worldModel.h"
+
 void GameObject::setPos(int x, int y) { 
 	if (getX() > 0 && getY() > 0)  //hack(init problem)
 		worldModel::fields[getX()][getY()].setBlocked(0);

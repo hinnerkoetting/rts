@@ -13,7 +13,7 @@
 
 #include <cmath>
 #include <math.h>
-#include "ingame.h"
+#include "gameViewAndControl.h"
 #include "settings.h"
 
 
@@ -60,11 +60,11 @@ bool Fireball::Create(Hero* Hero)
  */
 void Fireball::Draw(Fireball* Fireball)
 {
-/*	if ((Fireball->xPos >= Ingame::iCurXPos - 20) && (Fireball->xPos <= Ingame::iCurXPos + 20)
-		&& (Fireball->yPos >= Ingame::iCurYPos - 20) && (Fireball->yPos <= Ingame::iCurYPos + 20))
+/*	if ((Fireball->xPos >= ViewAndControl::iCurXPos - 20) && (Fireball->xPos <= ViewAndControl::iCurXPos + 20)
+		&& (Fireball->yPos >= ViewAndControl::iCurYPos - 20) && (Fireball->yPos <= ViewAndControl::iCurYPos + 20))
 	{
-		float x = float(0.2f + (Fireball->xPos - Ingame::iCurXPos) /40 * 1.6);
-		float y = (Fireball->yPos - Ingame::iCurYPos) /20;
+		float x = float(0.2f + (Fireball->xPos - ViewAndControl::iCurXPos) /40 * 1.6);
+		float y = (Fireball->yPos - ViewAndControl::iCurYPos) /20;
 		Gra::g.DrawPixel(Point(x, y, Fireball->Direction.z, Fireball->Direction.r, Fireball->Direction.g, Fireball->Direction.b), 5.0f);
 	}*/
 }
@@ -89,7 +89,7 @@ void Fireball::Move(Fireball* Fireball)
 		return;
 	}
 	Fireball->iTimeLived += 1;
-	Unit* lpHero = Ingame::Heroes;
+	Unit* lpHero = ViewAndControl::Heroes;
 	while (lpHero != 0)
 	{
 		if (!(lpHero == Fireball->Parent))

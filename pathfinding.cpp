@@ -8,11 +8,11 @@
 /////////////////////////////////////////////////////////////////
 #include "pathfinding.h"
 #include "field.h"
-#include "ingame.h"
+#include "gameViewAndControl.h"
 #include "errors.h"
 #include "mymath.h"
 #include <algorithm>
-
+#include "worldModel.h"
 
 /*
  *
