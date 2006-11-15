@@ -11,6 +11,7 @@
 #include "gl/glut.h"
 #include "devil/include/IL/ilut.h"
 #include "options.h"
+#include "graphic.h"
 /*
  *
  * drawborders
@@ -217,6 +218,21 @@ void GraIngame::createDLImages() {
 		glBindTexture(GL_TEXTURE_2D, 0);
 	glEndList();
 	}
+	
+	std::map<GameObject::gameObject_ID,GLuint>::iterator i=Graphic::gameObjectTextures.begin();
+	
+	while (i!=Graphic::gameObjectTextures.end()){
+		glNewList((*i).first, GL_COMPILE);
+		glBindTexture(GL_TEXTURE_2D, (*i).second);
+		glEnable(GL_BLEND);
+		glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		Graphic::drawQuad(	P0, P1, P2, P3);
+		glDisable(GL_BLEND);
+		glBindTexture(GL_TEXTURE_2D, 0);		
+		glEndList();
+		i++;
+	}
+
 
 	
 }

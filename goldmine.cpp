@@ -7,5 +7,5 @@
 
 
 void Goldmine::draw() {
-	GraphicInterface::drawObjectGame(GOLDMINE_ID, this->getX(), this->getY(), lenX, lenY);
+	GraphicInterface::drawObjectGame(GOLD, this->getX(), this->getY(), lenX, lenY);
 }

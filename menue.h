@@ -47,7 +47,11 @@ public:
 	VillageMenu(){
 		assignedVillage=NULL;	
 	};
+
+	//erstmal nicht nutzen
 	VillageMenu(Village* v);
+
+
 	void setVillage(Village *v);
 	
 	void addRessourceButton(GameObject::gameObject_ID);
