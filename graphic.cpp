@@ -9,7 +9,7 @@
 #include "Graphic.h"
 #include "options.h"
 #include "gl/glut.h"
-#include "ingame.h"
+//#include "gameMode.h"
 #include "gra_ingame.h"
 
 float Graphic::zPos = 3.0f;

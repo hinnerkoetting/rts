@@ -55,41 +55,41 @@ bool Spells::spDecrease() {
  * increases an edge and others if needed
  *
  */
-bool Spells::incEdge(int x, int y) {	 //BUG: if at one position there is an error so higth can't be increased, all fields increased earlier will stay increased
+bool Spells::incEdge(int x, int y) {	 //BUG: if at one position there is an error so higth can't be increased, all worldModel::fields increased earlier will stay increased
 	using namespace Ingame;
 	if (x > 0 && y > 0 && x < Options::iNumberEdgesX && y < Options::iNumberEdgesY) {// if not at the border of map
-		int heigth = fields[x][y].lb->getHeigth();
+		int heigth = worldModel::fields[x][y].lb->getHeigth();
 		if (heigth > 10)
 			return false;
-		if (fields[x+1][y].lb->getHeigth() < heigth)
+		if (worldModel::fields[x+1][y].lb->getHeigth() < heigth)
 			if (!incEdge(x+1, y))
 				return false;
-		if (fields[x][y+1].lb->getHeigth() < heigth)
+		if (worldModel::fields[x][y+1].lb->getHeigth() < heigth)
 			if (!incEdge(x, y+1))
 				return false;
-		if (fields[x][y-1].lb->getHeigth() < heigth)
+		if (worldModel::fields[x][y-1].lb->getHeigth() < heigth)
 			if (!incEdge(x, y-1))
 				return false;
-		if (fields[x-1][y].lb->getHeigth() < heigth)
+		if (worldModel::fields[x-1][y].lb->getHeigth() < heigth)
 			if (!incEdge(x-1, y))
 				return false;
-		if (fields[x-1][y-1].lb->getHeigth() < heigth)
+		if (worldModel::fields[x-1][y-1].lb->getHeigth() < heigth)
 			if (!incEdge(x-1, y-1))
 				return false;
-		if (fields[x+1][y+1].lb->getHeigth() < heigth)
+		if (worldModel::fields[x+1][y+1].lb->getHeigth() < heigth)
 			if (!incEdge(x+1, y+1))
 				return false;
-		if (fields[x-1][y+1].lb->getHeigth() < heigth)
+		if (worldModel::fields[x-1][y+1].lb->getHeigth() < heigth)
 			if (!incEdge(x-1, y+1))
 				return false;
-		if (fields[x+1][y-1].lb->getHeigth() < heigth)
+		if (worldModel::fields[x+1][y-1].lb->getHeigth() < heigth)
 			if (!incEdge(x+1, y-1))
 				return false;
-		fields[x][y].lb->inc();
-		fields[x][y].calcType();
-		fields[x-1][y].calcType();
-		fields[x][y-1].calcType();
-		fields[x-1][y-1].calcType();
+		worldModel::fields[x][y].lb->inc();
+		worldModel::fields[x][y].calcType();
+		worldModel::fields[x-1][y].calcType();
+		worldModel::fields[x][y-1].calcType();
+		worldModel::fields[x-1][y-1].calcType();
 		return true;
 	}
 	return false;
@@ -99,38 +99,38 @@ bool Spells::incEdge(int x, int y) {	 //BUG: if at one position there is an erro
 bool Spells::decEdge(int x, int y) {
 	using namespace Ingame;
 	if (x > 0 && y > 0 && x < Options::iNumberEdgesX && y < Options::iNumberEdgesY) {// if not at the border of map
-		int heigth = fields[x][y].lb->getHeigth();
+		int heigth = worldModel::fields[x][y].lb->getHeigth();
 		if (heigth <= 0)
 			return false;
-		if (fields[x+1][y].lb->getHeigth() > heigth)
+		if (worldModel::fields[x+1][y].lb->getHeigth() > heigth)
 			if (!decEdge(x+1, y))
 				return false;
-		if (fields[x][y+1].lb->getHeigth() > heigth)
+		if (worldModel::fields[x][y+1].lb->getHeigth() > heigth)
 			if (!decEdge(x, y+1))
 				return false;
-		if (fields[x][y-1].lb->getHeigth() > heigth)
+		if (worldModel::fields[x][y-1].lb->getHeigth() > heigth)
 			if (!decEdge(x, y-1))
 				return false;
-		if (fields[x-1][y].lb->getHeigth() > heigth)
+		if (worldModel::fields[x-1][y].lb->getHeigth() > heigth)
 			if (!decEdge(x-1, y))
 				return false;
-		if (fields[x-1][y-1].lb->getHeigth() > heigth)
+		if (worldModel::fields[x-1][y-1].lb->getHeigth() > heigth)
 			if (!decEdge(x-1, y-1))
 				return false;
-		if (fields[x+1][y+1].lb->getHeigth() > heigth)
+		if (worldModel::fields[x+1][y+1].lb->getHeigth() > heigth)
 			if (!decEdge(x+1, y+1))
 				return false;
-		if (fields[x-1][y+1].lb->getHeigth() > heigth)
+		if (worldModel::fields[x-1][y+1].lb->getHeigth() > heigth)
 			if (!decEdge(x-1, y+1))
 				return false;
-		if (fields[x+1][y-1].lb->getHeigth() > heigth)
+		if (worldModel::fields[x+1][y-1].lb->getHeigth() > heigth)
 			if (!decEdge(x+1, y-1))
 				return false;
-		fields[x][y].lb->dec();
-		fields[x][y].calcType();
-		fields[x-1][y].calcType();
-		fields[x][y-1].calcType();
-		fields[x-1][y-1].calcType();
+		worldModel::fields[x][y].lb->dec();
+		worldModel::fields[x][y].calcType();
+		worldModel::fields[x-1][y].calcType();
+		worldModel::fields[x][y-1].calcType();
+		worldModel::fields[x-1][y-1].calcType();
 		return true;
 	}
 	return false;

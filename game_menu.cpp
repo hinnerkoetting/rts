@@ -27,7 +27,7 @@ void IngameMenu::drawMenu() {
 	
 	glLoadIdentity();
 	char buf[5];
-	_itoa_s(Ingame::iFPS, buf, 5, 10);
+	_itoa_s(Performance::iFPS, buf, 5, 10);
 	GraphicInterface::drastring2d(0.01, 0.03, GLUT_BITMAP_TIMES_ROMAN_24, buf); //fps
 	Graphic::drawLine2D(Point(Options::ResolutionX -1, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f), // rigth border
 							Point(Options::ResolutionX -1, Options::ResolutionY, 0.0f, 1.0f, 1.0f, 1.0f));
@@ -56,11 +56,11 @@ void IngameMenu::drawButtons() {
  */
 void IngameMenu::calcFPS(int time) {
 	using namespace Ingame;
-	iFPSCounter++;
-	if (time - timeBaseFPS > 1000) {
-		timeBaseFPS = time;
-		iFPS = iFPSCounter;
-		iFPSCounter = 0;
+	Performance::iFPSCounter++;
+	if (time - Performance::timeBaseFPS > 1000) {
+		Performance::timeBaseFPS = time;
+		Performance::iFPS = Performance::iFPSCounter;
+		Performance::iFPSCounter = 0;
 	}
 }
 
@@ -78,7 +78,7 @@ void IngameMenu::drawMiniMap() {
 						Point(x2, y1, 0, 0.8f, 0.1f, 0.1f)); 
 	Graphic::drawLine2D(Point(x2, y1, 0, 0.8f, 0.1f, 0.1f),
 						Point(x2, y2, 0, 0.8f, 0.1f, 0.1f)); 
-	float visX = 0.75* 1.105f * GraIngame::getZ() / GraIngame::getLength(); //visible fields in x direction
+	float visX = 0.75* 1.105f * GraIngame::getZ() / GraIngame::getLength(); //visible worldModel::fields in x direction
 	float visY = 0.83f * GraIngame::getZ() / GraIngame::getHeigth();
 	float lenghtX = (x2-x1) * (visX/Options::iNumberEdgesX); //pixel per field avaible on minimap
 	float lenghtY = (y2-y1) * (visY/Options::iNumberEdgesY);

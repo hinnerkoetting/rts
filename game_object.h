@@ -23,7 +23,9 @@ class GameObject {
 //statt dessen wird einfach Gold eingetragen
 
 public: enum gameObject_ID {  SOLDIER=100, IDLEWORKER, TOTAL_UNITS, GOLD, WOOD, OIL};
-
+//ist es hier möglich und sinnvoll, verschiedene Enumerations einzubauen?
+//eine für die Ressourcen
+//eine für Units usw...?
 
 
 
@@ -31,7 +33,7 @@ public: enum gameObject_ID {  SOLDIER=100, IDLEWORKER, TOTAL_UNITS, GOLD, WOOD, 
 		int id;				//every unit type has an unique id
 		
 	protected:
-		void setBlocked();	// blocks all fields this object stands on
+		void setBlocked();	// blocks all worldModel::fields this object stands on
 		int xPos;					// yPos is calculated by y-field * posconst
 		int yPos;
 		int belongTo;
