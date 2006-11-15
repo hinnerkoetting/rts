@@ -12,7 +12,8 @@
 #include "gl/glut.h"
 #include "errors.h"
 #include "math.h"
-#include "ingame.h"
+#include "gameViewAndControl.h"
+#include "worldModel.h"
 /*
  *
  * create a list of worldModel::fields describing the path of that unit

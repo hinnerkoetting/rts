@@ -9,7 +9,7 @@
 
 #include "modeSelection.h"
 #include "gl/glut.h"
-#include "ingame.h"
+#include "gameViewAndControl.h"
 #include "inp_ingame.h"
 #include "errors.h"
 #include "options.h"
@@ -18,6 +18,7 @@
 #include "devil/include/IL/ilut.h"
 #include "menue.h"
 #include "mainmenu.h"
+#include "worldModel.h"
 /*
  *
  * switch to main menu
@@ -65,14 +66,14 @@ void ModeSelection::gameMode() {
 	glShadeModel(GL_SMOOTH);
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_DEPTH_TEST);
-	glutKeyboardFunc(Ingame::input);
-	glutSpecialFunc(Ingame::inputSp);
-	glutMouseFunc(Ingame::mouse);
-	glutDisplayFunc(Ingame::draw);
-	glutIdleFunc(Ingame::calc);
+	glutKeyboardFunc(ViewAndControl::input);
+	glutSpecialFunc(ViewAndControl::inputSp);
+	glutMouseFunc(ViewAndControl::mouse);
+	glutDisplayFunc(ViewAndControl::draw);
+	glutIdleFunc(ViewAndControl::calc);
 	glutReshapeFunc(Graphic::changeSize);
-	glutPassiveMotionFunc(Ingame::mouseMove);
-	glutMotionFunc(Ingame::mouseMove);
+	glutPassiveMotionFunc(ViewAndControl::mouseMove);
+	glutMotionFunc(ViewAndControl::mouseMove);
 	//glEnable(GL_LIGHTING);
 	//glDisable(GL_LIGHT1);
 	

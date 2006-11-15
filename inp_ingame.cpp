@@ -2,7 +2,7 @@
 //
 //					
 //					inp_ingame.cpp
-//					input ingame
+//					input ViewAndControl
 //					
 //
 /////////////////////////////////////////////////////////////////
@@ -16,12 +16,12 @@
 #include "gra_ingame.h"
 #include "errors.h"
 #include "options.h"
-#include "ingame.h"
+#include "gameViewAndControl.h"
 #include "ingame_menu.h"
 #include "spells.h"
 #include "settings.h"
 
-namespace Ingame {
+namespace ViewAndControl {
 	int mouseHold = -1;
 	_Input keys[256];
 	_Input mouseButton[5];
@@ -32,7 +32,7 @@ namespace Ingame {
  * if enough time elapsed inc time key is hold
  *
  */
-void Ingame::incTimeHold(int time) {
+void ViewAndControl::incTimeHold(int time) {
 	if (time - Performance::timeBaseKeys > 20) {
 		Performance::timeBaseKeys = time;
 		for (int j = 0; j < 256; j++)
@@ -48,7 +48,7 @@ void Ingame::incTimeHold(int time) {
  * special keys
  *
  */
-void Ingame::inputSp(int key, int x, int y) {
+void ViewAndControl::inputSp(int key, int x, int y) {
 	if (keys[key].iIntervallHold > Settings::RepeatLock(key)) 
 		keys[key].locked = false;
 	if (!keys[key].locked) {   // usually if u hold a button that linked function would be executed every frame, this way you lock that key for a period when its not executed
@@ -70,7 +70,7 @@ void Ingame::inputSp(int key, int x, int y) {
 		}
 	}
 }
-void Ingame::input(unsigned char key, int x, int y) {
+void ViewAndControl::input(unsigned char key, int x, int y) {
 	if (keys[key].iIntervallHold > Settings::RepeatLock(key)) 
 		keys[key].locked = false;
 	if (!keys[key].locked) {
@@ -104,7 +104,7 @@ void Ingame::input(unsigned char key, int x, int y) {
  * handles mouse input: BUG: mouse kann nicht geklickt gelassen werden
  *
  */
-void Ingame::mouse(int button, int state, int x, int y) {	
+void ViewAndControl::mouse(int button, int state, int x, int y) {	
 	if (state == GLUT_DOWN)
 		mouseHold = button;
 	else if (state == GLUT_UP || button == -1)
@@ -116,7 +116,7 @@ void Ingame::mouse(int button, int state, int x, int y) {
 			mouseButton[button].iIntervallHold = 0;
 			mouseButton[button].locked = true;
 			if (x <= Options::ResolutionX * GraIngame::getMenuWidth()) 
-						Ingame::mouseClick(button, state, x, y); //TODO
+						ViewAndControl::mouseClick(button, state, x, y); //TODO
 			else {
 				switch (button) {
 					case GLUT_LEFT_BUTTON:
@@ -136,7 +136,7 @@ void Ingame::mouse(int button, int state, int x, int y) {
  * called when mouse is moves
  *
  */
-void Ingame::mouseMove(int x, int y) {
+void ViewAndControl::mouseMove(int x, int y) {
 	GraIngame::setMouse(x, y);
 }
 

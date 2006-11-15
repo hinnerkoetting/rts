@@ -8,14 +8,14 @@
 /////////////////////////////////////////////////////////////////
 
 #include "spells.h"
-#include "ingame.h"
+#include "gameViewAndControl.h"
 
 
 #include "options.h"
 #include "errors.h"
 #include "gra_ingame.h"
 #include "field.h"
-
+#include "worldModel.h"
 /*
  *
  * the spell "increase"
@@ -56,7 +56,7 @@ bool Spells::spDecrease() {
  *
  */
 bool Spells::incEdge(int x, int y) {	 //BUG: if at one position there is an error so higth can't be increased, all worldModel::fields increased earlier will stay increased
-	using namespace Ingame;
+	using namespace ViewAndControl;
 	if (x > 0 && y > 0 && x < Options::iNumberEdgesX && y < Options::iNumberEdgesY) {// if not at the border of map
 		int heigth = worldModel::fields[x][y].lb->getHeigth();
 		if (heigth > 10)
@@ -97,7 +97,7 @@ bool Spells::incEdge(int x, int y) {	 //BUG: if at one position there is an erro
 
 
 bool Spells::decEdge(int x, int y) {
-	using namespace Ingame;
+	using namespace ViewAndControl;
 	if (x > 0 && y > 0 && x < Options::iNumberEdgesX && y < Options::iNumberEdgesY) {// if not at the border of map
 		int heigth = worldModel::fields[x][y].lb->getHeigth();
 		if (heigth <= 0)

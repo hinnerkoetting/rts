@@ -11,7 +11,7 @@
 #include "gra_ingame.h"
 #include "gl/glut.h"
 #include "options.h"
-#include "ingame.h"
+#include "gameViewAndControl.h"
 #include "errors.h"
 #include "menue.h"
 #include "graphic_interface.h"
@@ -55,7 +55,7 @@ void IngameMenu::drawButtons() {
  *
  */
 void IngameMenu::calcFPS(int time) {
-	using namespace Ingame;
+	using namespace ViewAndControl;
 	Performance::iFPSCounter++;
 	if (time - Performance::timeBaseFPS > 1000) {
 		Performance::timeBaseFPS = time;

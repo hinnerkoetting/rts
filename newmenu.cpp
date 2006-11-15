@@ -62,10 +62,10 @@ void NewGame::Input()
 	/*using namespace Game;
 	if (keys['1'].iNumber)
 	{
-		Ingame::InitGame();
-		Ingame::NewHeroes(2);
-		grafikStream = &Ingame::Draw::Game;
-		Game::Input = &Ingame::Input;
+		ViewAndControl::InitGame();
+		ViewAndControl::NewHeroes(2);
+		grafikStream = &ViewAndControl::Draw::Game;
+		Game::Input = &ViewAndControl::Input;
 		return;
 	}
 	if (keys[VK_ESCAPE].iNumber)

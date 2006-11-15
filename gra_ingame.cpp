@@ -2,7 +2,7 @@
 //
 //					
 //					gra_ingame.cpp
-//					graphical functions ingame
+//					graphical functions ViewAndControl
 //					
 //
 /////////////////////////////////////////////////////////////////
@@ -10,7 +10,7 @@
 #include <math.h>
 #include "gl/glut.h"
 #include "gra_ingame.h"
-#include "ingame.h"
+#include "gameViewAndControl.h"
 #include "options.h"
 #include "gl/glut.h"
 #include "graphic.h"
@@ -20,7 +20,7 @@
 #include "hero.h"
 #include "mymath.h"
 #include "party.h"
-
+#include "worldModel.h"
 
 float GraIngame::xPos = 0.0f;
 float GraIngame::yPos = 0.0f;

@@ -19,7 +19,8 @@
 #include "party.h"
 #include "defines.h"
 #include "init.h"
-#include "ingame.h"
+#include "gameViewAndControl.h"
+#include "worldModel.h"
 //test
 /*
  *

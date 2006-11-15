@@ -601,76 +601,8 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<Filter
-				Name="Input"
-				>
-				<File
-					RelativePath=".\inp_ingame.h"
-					>
-				</File>
-				<File
-					RelativePath=".\input.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Properties.h"
-					>
-				</File>
-				<File
-					RelativePath=".\Util.h"
-					>
-				</File>
-				<File
-					RelativePath=".\WinProperties.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Map"
-				>
-				<File
-					RelativePath=".\Edge.h"
-					>
-				</File>
-				<File
-					RelativePath=".\field.h"
-					>
-				</File>
-			</Filter>
-			<Filter
-				Name="Menu"
-				>
-				<File
-					RelativePath=".\button_display.h"
-					>
-				</File>
-				<File
-					RelativePath=".\button_ressource.h"
-					>
-				</File>
-				<File
-					RelativePath=".\mainmenu.h"
-					>
-				</File>
-				<File
-					RelativePath=".\menu_button.h"
-					>
-				</File>
-				<File
-					RelativePath="menue.h"
-					>
-				</File>
-				<File
-					RelativePath=".\newmenu.h"
-					>
-				</File>
-			</Filter>
-			<Filter
 				Name="Game"
 				>
-				<File
-					RelativePath="ingame.h"
-					>
-				</File>
 				<File
 					RelativePath=".\init.h"
 					>
@@ -685,6 +617,10 @@
 				</File>
 				<File
 					RelativePath=".\village.h"
+					>
+				</File>
+				<File
+					RelativePath=".\worldModel.h"
 					>
 				</File>
 				<Filter
@@ -740,6 +676,18 @@
 					</File>
 					<File
 						RelativePath="spells.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Map"
+					>
+					<File
+						RelativePath=".\Edge.h"
+						>
+					</File>
+					<File
+						RelativePath=".\field.h"
 						>
 					</File>
 				</Filter>
@@ -815,6 +763,66 @@
 					RelativePath=".\modeSelection.h"
 					>
 				</File>
+			</Filter>
+			<Filter
+				Name="ViewAndControl"
+				>
+				<File
+					RelativePath=".\gameViewAndControl.h"
+					>
+				</File>
+				<Filter
+					Name="Input"
+					>
+					<File
+						RelativePath=".\inp_ingame.h"
+						>
+					</File>
+					<File
+						RelativePath=".\input.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Properties.h"
+						>
+					</File>
+					<File
+						RelativePath=".\Util.h"
+						>
+					</File>
+					<File
+						RelativePath=".\WinProperties.h"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="Menu"
+					>
+					<File
+						RelativePath=".\button_display.h"
+						>
+					</File>
+					<File
+						RelativePath=".\button_ressource.h"
+						>
+					</File>
+					<File
+						RelativePath=".\mainmenu.h"
+						>
+					</File>
+					<File
+						RelativePath=".\menu_button.h"
+						>
+					</File>
+					<File
+						RelativePath="menue.h"
+						>
+					</File>
+					<File
+						RelativePath=".\newmenu.h"
+						>
+					</File>
+				</Filter>
 			</Filter>
 		</Filter>
 	</Files>

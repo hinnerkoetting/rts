@@ -2,15 +2,15 @@
 //
 //					
 //					inp_ingame.cpp
-//					input ingame
+//					input ViewAndControl
 //					
 //
 /////////////////////////////////////////////////////////////////
 
 #include "input.h"
-#include "ingame.h"
+#include "gameViewAndControl.h"
 
-namespace Ingame {
+namespace ViewAndControl {
 	void input(unsigned char key, int x, int y);
 	void inputSp(int key, int x, int y);
 	extern int mouseHold;
