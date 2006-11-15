@@ -33,8 +33,8 @@ namespace Ingame {
  *
  */
 void Ingame::incTimeHold(int time) {
-	if (time - timeBaseKeys > 20) {
-		timeBaseKeys = time;
+	if (time - Performance::timeBaseKeys > 20) {
+		Performance::timeBaseKeys = time;
 		for (int j = 0; j < 256; j++)
 			if (keys[j].locked)
 				keys[j].iIntervallHold++;

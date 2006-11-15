@@ -55,12 +55,12 @@ void GraIngame::drawFields() {
 				vY = false;
 				if (Graphic::visible(Point(x * getLength(), y * getHeigth(), 0))) { // better performance
 					vY = true;
-					if (Ingame::fields[x][y].lt->getHeigth() == 0 || Ingame::fields[x][y].rt->getHeigth() == 0 ||
-						Ingame::fields[x][y].rb->getHeigth() == 0 || Ingame::fields[x][y].lb->getHeigth() == 0) // if a part of water field
+					if (worldModel::fields[x][y].lt->getHeigth() == 0 || worldModel::fields[x][y].rt->getHeigth() == 0 ||
+						worldModel::fields[x][y].rb->getHeigth() == 0 || worldModel::fields[x][y].lb->getHeigth() == 0) // if a part of water field
 						glCallList(FIELD_WATER);
 					else 
 						glCallList(FIELD_BEHINDGRAD);						// draw green field behind gradient
-					glCallList(Ingame::fields[x][y].type);				// draw field
+					glCallList(worldModel::fields[x][y].type);				// draw field
 				}
 				else if (vY)		//  better performance
 					leaveY = true;
@@ -68,7 +68,7 @@ void GraIngame::drawFields() {
 				y++;
 			}
 		}
-		else if (vX)  // there have been visible fields left from this, this is invisible so no need to check the rest: better performance
+		else if (vX)  // there have been visible worldModel::fields left from this, this is invisible so no need to check the rest: better performance
 			leaveX = true; 
 		glTranslatef(0, -getHeigth() *y, 0);
 		x++;
@@ -108,7 +108,7 @@ void GraIngame::drawCursor() {
  *
  */
 void GraIngame::drawPartys() {
-	for (std::vector<Party>::iterator i = Ingame::partys.begin(); i != Ingame::partys.end(); i++) {
+	for (std::vector<Party>::iterator i = worldModel::partys.begin(); i != worldModel::partys.end(); i++) {
 		std::vector<Party>::value_type tmp = *i;
 		tmp.draw();
 	}

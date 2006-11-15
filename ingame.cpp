@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////
 //
-//					ingame.cpp
+//					gameMode.cpp
 //					draws GraphicALTs while playing
 //					play functions
 //					
@@ -8,7 +8,7 @@
 /////////////////////////////////////////////////////////////////
 
 
-#include "ingame.h"
+//#include "gameMode.h"
 #include "options.h"
 #include "menue.h"
 #include "spells.h"
@@ -24,20 +24,32 @@
 #include "ingame_menu.h"
 #include "init.h"
 
-namespace Ingame {
-	Field fields[MAX_FIELDS_X][MAX_FIELDS_Y];
-	
-	int iCurXPos = 0;	//map position
-	int iCurYPos = 0;
+
+
+namespace worldModel{
+	Field worldModel::fields[MAX_FIELDS_X][MAX_FIELDS_Y];
 	std::vector<Party> partys;
+}
+
+namespace Performance{
 	int iFPSCounter = 0;
 	int timeBaseFPS = 0;
 	int timeBaseKeys = 0;
 	int iFPS = 0;
+
 }
+
+namespace Ingame {
+
+	
+//	int iCurXPos = 0;	//map position
+//	int iCurYPos = 0;
+
+}
+
 Party* Party::getParty(int nr) {
-	if ((unsigned)nr < Ingame::partys.size()) 
-		return &Ingame::partys.at(nr); 
+	if ((unsigned)nr < worldModel::partys.size()) 
+		return &worldModel::partys.at(nr); 
 	return 0;
 }
 double sqr(const double d) {
@@ -78,7 +90,7 @@ void Ingame::calc() {
 	Ingame::incTimeHold(time);
 	IngameMenu::calcFPS(time);
 	mouse(mouseHold, -1, GraIngame::getMX(), GraIngame::getMY());
-	for (std::vector<Party>::iterator i = Ingame::partys.begin(); i != partys.end(); i++) {
+	for (std::vector<Party>::iterator i = worldModel::partys.begin(); i != worldModel::partys.end(); i++) {
 		std::vector<Party>::value_type tmp = *i;
 		tmp.calc();
 	}
@@ -99,7 +111,7 @@ void Ingame::calc() {
  *
  */
 
-void Ingame::DestroyWorld() {
+void worldModel::DestroyWorld() {
 
 	
 }
@@ -130,6 +142,6 @@ void Ingame::mouseClick(int button, int state, int x, int y) {
  * initialises world
  *
  */
-void Ingame::initGame() {
+void worldModel::initGame() {
 	Init::start();	
 }

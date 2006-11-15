@@ -13,6 +13,7 @@
 #include "mymath.h"
 #include <algorithm>
 
+
 /*
  *
  * check if a node is on a list
@@ -91,7 +92,7 @@ bool Pathfinding::atDestination(int x, int y, Node* n) {
 
 /*
  *
- * checks next 2 fields for barriers
+ * checks next 2 worldModel::fields for barriers
  *
  */
 void Pathfinding::checkPath(int actX, int actY) {
@@ -104,9 +105,9 @@ void Pathfinding::checkPath(int actX, int actY) {
 		int deltaX2 = actual->x - next->x;
 		int deltaY2 = actual->y - next->y;
 		int tmp = abs(deltaX1 * deltaX2) + abs(deltaY1 * deltaY2);
-		if (tmp == 1)   { //actual position and next two fields are not "in a line"
+		if (tmp == 1)   { //actual position and next two worldModel::fields are not "in a line"
 			int a = 0;
-			if (!Ingame::fields[actual->x][actual->y].blocked()) {
+			if (!worldModel::fields[actual->x][actual->y].blocked()) {
 				int x = actual->x;
 				int y = actual->y;
 				delete(this->path.front());
@@ -141,48 +142,48 @@ void Pathfinding::findPath(int orX, int orY) {
 		closedList.push_back(actual);
 		openList.remove(actual);
 		if (y < Options::iNumberEdgesY - 1) { // upper field
-				Node* n = new Node(x, y+1, actual->costs + Ingame::fields[x][ y+1].getCosts() * 2, actual);
+				Node* n = new Node(x, y+1, actual->costs + worldModel::fields[x][ y+1].getCosts() * 2, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			
 			if (x > 0) {							//upperleft
-				Node* n = new Node(x-1, y+1, actual->costs + Ingame::fields[x-1][ y+1].getCosts() * 3, actual);
+				Node* n = new Node(x-1, y+1, actual->costs + worldModel::fields[x-1][ y+1].getCosts() * 3, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			}
 			
 		}
 		if (y > 0) {
-			Node* n = new Node(x, y-1, actual->costs + Ingame::fields[x][ y-1].getCosts() * 2, actual);
+			Node* n = new Node(x, y-1, actual->costs + worldModel::fields[x][ y-1].getCosts() * 2, actual);
 			if (!onList(closedList, n) && !onList(openList, n))
 				openList.push_back(n);
 			
 			if (x < Options::iNumberEdgesX - 1)  {//upperright field
-					Node* n = new Node(x+1, y-1, actual->costs + Ingame::fields[x+1][ y-1].getCosts()*3, actual);
+					Node* n = new Node(x+1, y-1, actual->costs + worldModel::fields[x+1][ y-1].getCosts()*3, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			}
 			if (x > 0) {							//upperleft
-				Node* n = new Node(x-1, y-1, actual->costs + Ingame::fields[x-1][ y-1].getCosts() * 3, actual);
+				Node* n = new Node(x-1, y-1, actual->costs + worldModel::fields[x-1][ y-1].getCosts() * 3, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			}
 			
 		}
 		if (x < Options::iNumberEdgesX - 1 && y < Options::iNumberEdgesY - 1)  {//upperright field // this is supposed to be not in upper if (else units would cross their way)
-				Node* n = new Node(x+1, y+1, actual->costs + (Ingame::fields[x+1][ y+1].getCosts()) *3, actual);
+				Node* n = new Node(x+1, y+1, actual->costs + (worldModel::fields[x+1][ y+1].getCosts()) *3, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			}
 		
 		if (x > 0) {
 
-				Node* n = new Node(x-1, y, actual->costs + Ingame::fields[x-1][ y].getCosts()*2, actual);
+				Node* n = new Node(x-1, y, actual->costs + worldModel::fields[x-1][ y].getCosts()*2, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			}
 		if (x < Options::iNumberEdgesX) { 
-				Node* n = new Node(x+1, y, actual->costs + Ingame::fields[x+1][ y].getCosts()*2, actual);
+				Node* n = new Node(x+1, y, actual->costs + worldModel::fields[x+1][ y].getCosts()*2, actual);
 				if (!onList(closedList, n) && !onList(openList, n))
 					openList.push_back(n);
 			}

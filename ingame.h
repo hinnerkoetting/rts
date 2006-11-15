@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////
 //
-//					ingame.h
+//					gameMode.h
 //					draws GraphicALTs while playing
 //					play functions
 //					
@@ -19,28 +19,36 @@
 #include "gameressources.h"
 #include "party.h"
 
-namespace Ingame
-{ 
+
+namespace worldModel{
 	extern Field fields[MAX_FIELDS_X][MAX_FIELDS_Y];
-
-
-	void draw();
-	void calc();
-	extern int iCurXPos;
-	extern int iCurYPos;
 	extern std::vector<Party> partys;
-	
-	
-	void Input();
-	
-	void mouseClick(int button, int state, int x, int y);
-
 	void initGame();
 	void DestroyWorld();
 
+}
+
+namespace Ingame
+{ 
+	void draw();
+	void mouseClick(int button, int state, int x, int y);
+	
+	//void Input();
+	
+	
+
+
+	void calc();
+	
+	
+	
+}
+
+namespace Performance{
 	extern int iFPSCounter;
 	extern int timeBaseFPS;
 	extern int timeBaseKeys;
 	extern int iFPS;
 }
+
 #endif

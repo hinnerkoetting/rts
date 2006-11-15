@@ -34,7 +34,7 @@ class Node { // divide world into grid for pathfinding
  * save CPU cycles
  * 
  * When a path is found there may be units which block another faster path so it's important
- * when a unit reaches a field to check next two fields for barriers
+ * when a unit reaches a field to check next two worldModel::fields for barriers
  * so the unit doesn't make a silly "dodge" movement but there isn't anymore a barrier
  */
 class Pathfinding {

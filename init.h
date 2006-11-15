@@ -1,4 +1,4 @@
-// create fields, partys, units etc.
+// create worldModel::fields, partys, units etc.
 
 #ifndef INIT_H_DEF
 #define INIT_H_DEF

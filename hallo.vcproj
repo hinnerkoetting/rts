@@ -327,26 +327,6 @@
 					>
 				</File>
 				<File
-					RelativePath="main.cpp"
-					>
-					<FileConfiguration
-						Name="Debug|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							PreprocessorDefinitions=""
-						/>
-					</FileConfiguration>
-					<FileConfiguration
-						Name="Release|Win32"
-						>
-						<Tool
-							Name="VCCLCompilerTool"
-							PreprocessorDefinitions=""
-						/>
-					</FileConfiguration>
-				</File>
-				<File
 					RelativePath=".\mymath.cpp"
 					>
 				</File>
@@ -389,10 +369,6 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
-				</File>
-				<File
-					RelativePath=".\switch.cpp"
-					>
 				</File>
 			</Filter>
 			<Filter
@@ -588,6 +564,34 @@
 				>
 				<File
 					RelativePath=".\goldmine.cpp"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="framework"
+				>
+				<File
+					RelativePath="main.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							PreprocessorDefinitions=""
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							PreprocessorDefinitions=""
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\modeselection.cpp"
 					>
 				</File>
 			</Filter>
@@ -803,8 +807,12 @@
 					RelativePath="settings.h"
 					>
 				</File>
+			</Filter>
+			<Filter
+				Name="framework"
+				>
 				<File
-					RelativePath=".\switch.h"
+					RelativePath=".\modeSelection.h"
 					>
 				</File>
 			</Filter>
