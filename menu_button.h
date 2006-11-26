@@ -10,6 +10,9 @@
 #define DEF_MENUBUTTON
 
 
+
+
+
 class MenuButton {
 	protected:
 		float x1;			// image coordinates
@@ -37,4 +40,7 @@ class MenuButton {
 
 	
 };
+
+
+
 #endif

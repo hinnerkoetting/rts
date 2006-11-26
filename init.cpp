@@ -105,6 +105,7 @@ void Init::newPartys(int number) {
 		p.push_back(Party());
 		Goldmine* g=new Goldmine(15,15);
 		Village* v=new Village(10,10);
+		v->setName("WALLHOEFEN");
 		v->setGoldMine(g);
 		
 		p.at(p.size() -1 ).addVillage(v);

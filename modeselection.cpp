@@ -71,8 +71,10 @@ void ModeSelection::gameMode() {
 	glutSpecialFunc(ViewAndControl::inputSp);
 	glutMouseFunc(ViewAndControl::mouse);
 	glutDisplayFunc(ViewAndControl::draw);
-	glutIdleFunc(ViewAndControl::calc);
+	glutIdleFunc(ViewAndControl::mouse_calc);
 	glutReshapeFunc(Graphic::changeSize);
 	glutPassiveMotionFunc(ViewAndControl::mouseMove);
 	glutMotionFunc(ViewAndControl::mouseMove);
+	//glutTimerFunc(10,worldModel::unitMovement,10);
+	glutTimerFunc(1000,worldModel::partyCalc,10);
 }

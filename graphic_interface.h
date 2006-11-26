@@ -10,6 +10,8 @@
 #ifndef GRAPHIC_INTERFACE_H_DEF
 #define GRAPHIC_INTERFACE_H_DEF
 
+#include <string>
+
 class GraphicInterface {
 	public:
 		// coordinates given are position of top left corner of that object
@@ -17,6 +19,7 @@ class GraphicInterface {
 		static void drawObjectGame(int dlIndex, float x, float y, int lenX, int lenY); // draw an object on the gamefield
 		static void drastring3d(float x, float y, float z, void *font, char *string);
 		static void drastring2d(float x, float y, void *font, char *string);
+		static void drastring2d(float x, float y, std::string text);
 		static void drawLineStrip(float x1, float x2, float y1, float y2, float r = 1.0f, float g = 1.0f, float b = 1.0f);
 		static void initGame();
 		static void initGraphics(int argc, char **argv);

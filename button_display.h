@@ -16,7 +16,6 @@
 
 
 
-
 class ButtonValueReader abstract{
 	public:
 		virtual int getDisplayButtonValue(GameObject::gameObject_ID)=0;
@@ -56,6 +55,7 @@ class ButtonDisplay : public MenuButton {
 /*
  *  Interface for reading display Value
  */
+
 
 
 

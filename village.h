@@ -34,6 +34,8 @@ using namespace std;
 class Village: public ButtonValueReader, public BtnRessourceHandler { 
 	private:	
 
+		string name; //name of the village
+
 		//player
 		int belongTo;
 		//originally i used an individual enumeration for displayable object, for changeable object and
@@ -82,7 +84,7 @@ class Village: public ButtonValueReader, public BtnRessourceHandler {
 		int levelOfVillage;
 	
 
-		void midTermThink();
+	
 	int lastTimeForThinking;
 	
 
@@ -108,6 +110,9 @@ class Village: public ButtonValueReader, public BtnRessourceHandler {
 		//Village();
 		std::vector<Unit*> allUnits;//wieso public?
 		void addUnit(int x, int y);
+
+		//unit decisions
+		void midTermThink();
 
 		//get units
 		int getNrOfAllUnits() { return allUnits.size(); }
@@ -170,18 +175,26 @@ class Village: public ButtonValueReader, public BtnRessourceHandler {
 			
 			/* TODO: delete all units*/}
 		void setBelongTo(int id) { belongTo = id; } //belong to party
+		
+		void setName(string name){ this->name=name;};
+		string getName(){ return this->name;};
+
 		void draw(); // draw all units, buildings etc which belong to this village
-		void calc(); // unit movement...
+		//void calc(); //midTermThink
+		void unitMovement();
 		static Village* getVillage(int party, int village);
 
 		void setGoldMine(Goldmine* goldmine){
 			this->mVillageRessources[GameObject::GOLD]=goldmine;
-		}
+		};
 	
 
 
 
 
 };
+
+
+
 
 #endif

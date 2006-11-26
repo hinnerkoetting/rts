@@ -22,6 +22,7 @@
 #include "button_display.h"
 #include "button_ressource.h"
 #include "village.h"
+#include "villageNameButton.h"
 /*
  *
  * switches interface to main menu
@@ -94,6 +95,15 @@ void VillageMenu::makeActive(){
 	m1 = new ButtonRessource (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, assignedVillage, GameObject::SOLDIER);
 	
 	villageMenuList.push_back(m1);
+
+	//Village name
+	//das klappt leider nicht. Er zeigt den text nicht an. Keine Ahnung, warum
+	MenuButton* villageButton=new VillageNameButton(0.1,0.15, 0.3,0.35, assignedVillage);
+
+
+	villageMenuList.push_back(villageButton);
+	
+
 	};
 
 	//NORMALER CODE

@@ -7,10 +7,12 @@
 //
 ////////////////////////////////////////////////////////////////
 
+#include "defines.h"
 #include "graphic_interface.h"
 #include "gl/glut.h"
 #include "gra_ingame.h"
 #include "options.h"
+
 
 
 void GraphicInterface::drastring3d(float x, float y, float z, void* font, char* string) {  
@@ -26,4 +28,13 @@ void GraphicInterface::drastring2d(float x, float y, void *font, char *string) {
   for (c=string; *c != '\0'; c++) {
     glutBitmapCharacter(font, *c);
   }
+}
+
+
+void GraphicInterface::drastring2d(float x, float y, std::string text){
+	char chartxt[50];
+	char* cchar=&chartxt[0];
+	strncpy(cchar, text.c_str(),text.size());
+	drastring2d(x,y,BUTTON_VALUE_FONT,cchar);
+
 }

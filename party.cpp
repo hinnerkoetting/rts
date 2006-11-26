@@ -23,6 +23,14 @@ void Party::draw() {
 void Party::calc() {
 	for (std::vector<Village*>::iterator i = this->villages.begin(); i != villages.end(); i++) {
 		std::vector<Village*>::value_type tmp = *i;
-		tmp->calc();
+		tmp->midTermThink();
 	}
 }
+
+void Party::unitMovement(){
+	for (std::vector<Village*>::iterator i = this->villages.begin(); i != villages.end(); i++) {
+		std::vector<Village*>::value_type tmp = *i;
+		tmp->unitMovement();
+	}
+	
+};
