@@ -103,25 +103,20 @@ void Village::midTermThink(){
 	}
 }
 
-
-
-void Village::calc() {
+void Village::unitMovement(){
 	for (std::vector<Unit*>::iterator i = this->allUnits.begin(); i != allUnits.end(); i++) {
 		std::vector<Unit*>::value_type tmp = *i;
-		tmp->move();
-		
+		tmp->move();		
 	}
-
-
-	int time=glutGet(GLUT_ELAPSED_TIME);
-	if ((time-lastTimeForThinking)>1000){
-		lastTimeForThinking=time;
-		//folgender Teil alle 1 Sekunden
-		midTermThink();
-		
-	}
-	//current and wish anpassen
 }
+
+
+/*
+void Village::calc() {
+
+		midTermThink();
+	
+}*/
 
 void Village::addUnit(int x, int y) {
 	Worker* w =new Worker(x, y);

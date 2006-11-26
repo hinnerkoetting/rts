@@ -86,15 +86,17 @@ void ViewAndControl::draw() {
  * computing positions etc.
  * 
  */
-void ViewAndControl::calc() {
+void ViewAndControl::mouse_calc() {
 	int time=glutGet(GLUT_ELAPSED_TIME);			
 	ViewAndControl::incTimeHold(time);
 	IngameMenu::calcFPS(time);
 	mouse(mouseHold, -1, GraIngame::getMX(), GraIngame::getMY());
+	
 	for (std::vector<Party>::iterator i = worldModel::partys.begin(); i != worldModel::partys.end(); i++) {
 		std::vector<Party>::value_type tmp = *i;
-		tmp.calc();
+		tmp.unitMovement();
 	}
+	
 
 }
 

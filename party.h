@@ -37,6 +37,7 @@ class Party{
 		void draw();
 		static Party* getParty(int nr);
 		void calc(); //calculating ressources, units movement...
+		void unitMovement();
 		
 	
 	

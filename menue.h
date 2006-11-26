@@ -53,6 +53,8 @@ public:
 
 
 	void setVillage(Village *v);
+
+	
 	
 	void addRessourceButton(GameObject::gameObject_ID);
 	//addSoldierType(GameObject::gameObject_ID);

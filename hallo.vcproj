@@ -410,6 +410,10 @@
 					RelativePath=".\village.cpp"
 					>
 				</File>
+				<File
+					RelativePath=".\worldModel.cpp"
+					>
+				</File>
 				<Filter
 					Name="Menu"
 					>
@@ -459,6 +463,10 @@
 					</File>
 					<File
 						RelativePath=".\newmenu.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\villageNameButton.cpp"
 						>
 					</File>
 				</Filter>
@@ -820,6 +828,10 @@
 					</File>
 					<File
 						RelativePath=".\newmenu.h"
+						>
+					</File>
+					<File
+						RelativePath=".\villageNameButton.h"
 						>
 					</File>
 				</Filter>
