@@ -56,16 +56,16 @@ void ViewAndControl::inputSp(int key, int x, int y) {
 		keys[key].locked = true;
 		switch (key) {
 			case GLUT_KEY_LEFT:
-				GraIngame::move(-1.0f, 0.0f);
+				GraIngame::mapMove(-1.0f, 0.0f);
 				break;
 			case GLUT_KEY_RIGHT:
-				GraIngame::move(+1.0f, 0.0f);
+				GraIngame::mapMove(+1.0f, 0.0f);
 				break;
 			case GLUT_KEY_UP:
-				GraIngame::move(0.0f, 1.0f);
+				GraIngame::mapMove(0.0f, 1.0f);
 				break;
 			case GLUT_KEY_DOWN:
-				GraIngame::move(0.0f, -1.0f);
+				GraIngame::mapMove(0.0f, -1.0f);
 				break;			
 		}
 	}

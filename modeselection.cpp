@@ -53,11 +53,12 @@ void ModeSelection::gameMode() {
 	glutGameModeString(c);
 	if (glutGameModeGet(GLUT_GAME_MODE_POSSIBLE)) 
 		glutEnterGameMode();
-	else Error::MesBoxOk("Fehler", "Falscher Grafikmodus");
+	else {
+		Error::MesBoxOk("Fehler", "Falscher Grafikmodus");
+		exit(1);
+	}
+
 	glClearColor(0.5, 0.5, 0.5, 1.0);
-	
-	//glEnable(GL_CULL_FACE);
-	//glCullFace(GL_BACK);
 	
 	
 	
@@ -74,9 +75,4 @@ void ModeSelection::gameMode() {
 	glutReshapeFunc(Graphic::changeSize);
 	glutPassiveMotionFunc(ViewAndControl::mouseMove);
 	glutMotionFunc(ViewAndControl::mouseMove);
-	//glEnable(GL_LIGHTING);
-	//glDisable(GL_LIGHT1);
-	
-	
-	
 }

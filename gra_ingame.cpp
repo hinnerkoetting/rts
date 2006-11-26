@@ -32,7 +32,7 @@ float GraIngame::menuX = 0.25f;
 	
 void GraIngame::init() {
 	loadImages();
-	createDL();
+	createDisplayList();
 }
 
 void GraIngame::drawFields() {
@@ -118,7 +118,7 @@ void GraIngame::drawPartys() {
  * moves map
  * *REWORK*: not move further then map
  */
-void GraIngame::move(float x, float y) {
+void GraIngame::mapMove(float x, float y) {
 	if (xPos + x * GraIngame::getZ()/20  > 0)// && xPos + x * GraIngame::getZ()/20 < Options::iNumberEdgesX * GraIngame::getLength() )
 		xPos += x * GraIngame::getZ() / 20;
 	if (yPos + y* GraIngame::getZ()/20 > 0)// && yPos + x * GraIngame::getZ()/20 < Options::iNumberEdgesY * GraIngame::getHeigth() )
