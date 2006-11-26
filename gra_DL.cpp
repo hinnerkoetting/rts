@@ -27,7 +27,7 @@ void GraIngame::drawBorders() {
 	}
 }
 
-void GraIngame::createDLFields() {
+void GraIngame::createDisplayListFields() {
 	GLuint start = glGenLists(100);
 	float r = 0.2f;										// create DL of a water field
 	float g = 0.05f;
@@ -199,7 +199,7 @@ void GraIngame::createDLFields() {
 	glEndList();
 }
 
-void GraIngame::createDLImages() {
+void GraIngame::createDisplayListImages() {
 	
 	Point P0 = Point(0.0f, 0.0f, 0, 1.0f, 1.0f, 1.0f);
 	Point P1 = Point(1.0f, 0.0f, 0, 1.0f, 1.0f, 1.0f);
@@ -260,10 +260,10 @@ void GraIngame::createDLImages() {
  * create DLs
  *
  */
-void GraIngame::createDL() {
+void GraIngame::createDisplayList() {
 	
-	GraIngame::createDLFields();
-	GraIngame::createDLImages();
+	GraIngame::createDisplayListFields();
+	GraIngame::createDisplayListImages();
 	//GraIngame::createDLUnits(listNr + 19);
 	
 
