@@ -26,7 +26,7 @@ MenuButton::MenuButton(float x1, float x2, float y1, float y2, void (*function)(
 	this->x2 = x2;
 	this->y1 = y1;
 	this->y2 = y2;
-	this->function = function;
+//	this->function = function;
 	this->id = id;
 }
 
@@ -58,5 +58,5 @@ int MenuButton::getY2() {
 }
 
 void MenuButton::click(int button) {
-	this->function(button, this);
+//	this->function(button, this);
 }

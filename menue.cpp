@@ -59,9 +59,9 @@ VillageMenu::VillageMenu(Village* v){
 
 
 void VillageMenu::addRessourceButton(GameObject::gameObject_ID){
-	MenuButton* m1;
-	m1 = new ButtonRessource (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, assignedVillage, GameObject::GOLD);
-	villageMenuList.push_back(m1);
+	//MenuButton* m1;
+	//m1 = new ButtonRessource (0.1	, 0.15	, 0.2, 0.25, 0.02, 0.08, BUTTON_GOLDMINE_ID	, assignedVillage, GameObject::GOLD);
+	//villageMenuList.push_back(m1);
 	
 	
 };	
@@ -84,21 +84,21 @@ void VillageMenu::makeActive(){
 //	ButtonValueReader bla=*assignedVillage;
 	//Village v1=*assignedVillage;
 	//ButtonValueReader* br=&v1;
-	m1 = new ButtonDisplay	(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, BUTTON_UNIT_ID		, assignedVillage, GameObject::TOTAL_UNITS);
+	//m1 = new ButtonDisplay	(0		, 0.05	, 0.1, 0.15, 0.02, 0.08, BUTTON_UNIT_ID		, assignedVillage, GameObject::TOTAL_UNITS);
 	
 	
-	villageMenuList.push_back(m1);
+	//villageMenuList.push_back(m1);
 
-	m1 = new ButtonDisplay	(0		, 0.05	, 0.2, 0.25, 0.02, 0.08, BUTTON_HOUSE_ID	, assignedVillage, GameObject::IDLEWORKER);
- 	villageMenuList.push_back(m1);
+	//m1 = new ButtonDisplay	(0		, 0.05	, 0.2, 0.25, 0.02, 0.08, BUTTON_HOUSE_ID	, assignedVillage, GameObject::IDLEWORKER);
+ 	//villageMenuList.push_back(m1);
 
-	m1 = new ButtonRessource (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, assignedVillage, GameObject::SOLDIER);
+	//m1 = new ButtonRessource (0.05	, 0.1	, 0.2, 0.25, 0.02, 0.08, BUTTON_ATTACK_ID	, assignedVillage, GameObject::SOLDIER);
 	
-	villageMenuList.push_back(m1);
+	//villageMenuList.push_back(m1);
 
 	//Village name
-	//das klappt leider nicht. Er zeigt den text nicht an. Keine Ahnung, warum
-	MenuButton* villageButton=new VillageNameButton(0.1,0.15, 0.3,0.35, assignedVillage);
+	
+	MenuButton* villageButton=new VillageNameButton(0.05,0.2,0.05,0.62, assignedVillage);
 
 
 	villageMenuList.push_back(villageButton);
