@@ -23,7 +23,7 @@ class MenuButton {
 		MenuButton() { };
 		virtual void drawBorders();
 	private:
-		void (*function)(int button, MenuButton*);	//usually called by click() function	
+		//void (*function)(int button, MenuButton*);	//usually called by click() function	
 	public:
 		
 		MenuButton(float x1, float x2, float y1, float y2, void (*function)(int,MenuButton*), int id);

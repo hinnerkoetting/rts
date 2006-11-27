@@ -21,6 +21,7 @@ public:
 	Village* getVillage(){ return v;};
 	
 	void draw();
+	void click(int button);				// what to do on mouseclick
 
 };
 
