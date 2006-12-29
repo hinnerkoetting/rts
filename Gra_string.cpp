@@ -32,9 +32,5 @@ void GraphicInterface::drastring2d(float x, float y, void *font, char *string) {
 
 
 void GraphicInterface::drastring2d(float x, float y, std::string text){
-	char chartxt[50];
-	char* cchar=&chartxt[0];
-	strncpy(cchar, text.c_str(),text.size());
-	drastring2d(x,y,BUTTON_VALUE_FONT,cchar);
-
+	drastring2d(x,y,BUTTON_VALUE_FONT, const_cast<char*>(text.c_str()));
 }
