@@ -39,7 +39,8 @@ class ButtonDisplay : public MenuButton {
 		//obsolete
 	//	ButtonDisplay(float x1, float x2, float y1, float y2, float relX, float relY, int id, int (*get)(int, int), int party, int village);	
 		ButtonDisplay(float x1, float x2, float y1, float y2, float relX, float relY, int id, ButtonValueReader* handler, GameObject::gameObject_ID dID);	
-
+		//Short Version
+		ButtonDisplay(float x1, float y1, int id, ButtonValueReader* handler, GameObject::gameObject_ID dID);	
 		//draws the button (OPENGL)
 		virtual void draw();
 

@@ -42,6 +42,17 @@ ButtonDisplay::ButtonDisplay(float x1, float x2, float y1, float y2, float relX,
 	this->displayID=dID;
 	};	
 
+ButtonDisplay::ButtonDisplay(float x1, float y1, int id, ButtonValueReader* handler, GameObject::gameObject_ID dID){
+	this->x1 = x1;
+	this->x2 = x1+0.1;
+	this->y1 = y1;
+	this->y2 = y1+0.1;
+	this->relativeX = 0.2;
+	this->relativeY = 0.2;
+	this->id = id;
+	this->handler=handler;		
+	this->displayID=dID;
+}
 
 
 	void ButtonDisplay::draw() {
